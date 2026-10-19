@@ -13,19 +13,20 @@ Un set di README di best practice su come usare Claude, da usare come fonte di v
 Ogni README è datato, con regole operative brevi in testa e prove sotto, e va rivalutato quando esce un nuovo modello (ad esempio Opus 5.6).
 
 ## Stato (19 ottobre 2026)
-- Tema 4 (memoria): fatto in due passaggi. v1 con 4 sottoagenti (circa 3 USD, 55 letture). v2 con un solo agente (riportato: 33 letture, 4 ricerche, circa 7 minuti), validatore a 0 errori, `memoria.md` di 158 righe.
+- Tema 4 (memoria): fatto in due passaggi, `notte_01_memoria/`. v1 con 4 sottoagenti (circa 3 USD, 55 letture). v2 con un solo agente, come correzione della v1 (33 letture, 4 ricerche, circa 7 minuti; costo in USD non ancora riportato), validatore a 0 errori, `memoria.md` di 158 righe. PR #1 e #2 unite il 19 ottobre.
 - Temi 2 e collegamento app-Code: esistono due report del 18 ottobre in `precedenti/`, scritti con un metodo diverso e non ancora riverificati con il metodo delle notti.
 - Temi 1, 3, 5: da fare.
 
 ## Repo
-`tomauspsi/best_practice`, privato. Cartella locale: `D:\Workspace\best_practice`. `main` non esiste.
-- `claude/correzione-notte-01` (head 479bfae): prompt v2, `precedenti/`, `tools/validate_notte.py`.
-- `claude/determined-hamilton-m6vkag` (head 3753550): v1 e risultati v2 in `notte_01_memoria/`.
-- PR #1 in bozza verso `claude/correzione-notte-01`.
-Decisione aperta: come chiudere (unire la PR, eleggere un branch di integrazione o creare `main`). Proponi, non decidere.
+`tomauspsi/best_practice`, privato. Cartella locale: `D:\Workspace\best_practice`.
+- `main`: branch di integrazione, creato il 19 ottobre dallo stato unito di `claude/determined-hamilton-m6vkag` (notte 01 v1+v2, `precedenti/`, `tools/validate_notte.py`, questo file). Ogni notte lavora su un branch `claude/...` e apre una PR in bozza verso `main`.
+- `claude/determined-hamilton-m6vkag` e `claude/correzione-notte-01`: storici, già uniti.
+- Le routine clonano il branch predefinito del repo: va impostato su `main` (GitHub > Settings > General > Default branch), altrimenti una sessione fresca non vede questo file aggiornato.
 
 ## Metodo confermato dalle run
-- UN SOLO AGENTE, nessun sottoagente: aumentano solo il costo. Tetti per run: 120 letture di pagina, 30 ricerche, 150 minuti. Pagine lunghe lette a sezioni con `offset`; estratti verbatim di al massimo 15 parole.
+- Un solo agente per run, per scelta dell'utente: la notte 02 serve anche a confrontare il costo (saldo prima e dopo). Fatti noti: i sottoagenti fanno richieste proprie che pesano sull'uso ([costs](https://code.claude.com/docs/en/costs)); Anthropic stima circa 4 volte i token di una chat per un agente singolo e circa 15 volte per un sistema multi-agente, che però ha reso il 90,2% in più su un suo eval di ricerca ([multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)); i sottoagenti tengono fuori dal contesto principale l'output voluminoso. Quindi costano di più ma non "solo": se servono ampiezza o parallelismo, si usano con un modello economico e si dichiara nel log.
+- Tetti per run (scelta dell'utente, non dati di prodotto): 120 letture di pagina, 30 ricerche, 150 minuti.
+- WebFetch restituisce le pagine lunghe a blocchi di 100.000 caratteri: leggerle con `offset` e un prompt mirato. Estratti verbatim di al massimo 15 parole (regola di stile).
 - Tier 1: arxiv.org (nota "preprint"), anthropic.com e sottodomini, github.com/anthropics, domini ufficiali Google e Microsoft. Tier 2: openai.com, documentazione di altri vendor (provvisorio), Reddit con almeno 100 voti e 30 commenti, GitHub con almeno 1.000 stelle e ultimo commit leggibile entro 6 mesi, issue chiuse con fix. Tier 3: il resto.
 - Un claim su cosa FA un prodotto richiede Tier 1 corrente. Solo Tier 3 resta [Segnale T3]. Tag: [Verificato] [Inferenza] [Obsoleto/Conflitto] [Segnale T3]. [Verificato] solo dopo lettura reale.
 - Siti rifiutati dagli strumenti (Reddit, Stack Overflow; 403 su openai.com, help.openai.com, Medium, api.github.com; Discord vuoto): non si aggirano con proxy, cache o mirror. Si registra il blocco e si passa a una fonte equivalente.
@@ -50,9 +51,10 @@ Crediti regalati: 57 USD prima della run 1, 54 dopo; saldo prima della v2: 54 US
 - Quando serve un'approvazione (spesa di crediti, creazione o merge, scritture fuori dal branch di lavoro) chiudi dicendo le parole esatte da scrivere, ad esempio « Per procedere, scrivi « Ok notte 02 »». Un "ok" generico non vale.
 - Tono calmo e caldo, qualche immagine sobria; con numeri, percorsi e comandi precisione asciutta. Controlla a campione alla fonte prima di scrivere "verificato".
 
-## Prossimi passi (nessuno eseguito, ciascuno chiede l'OK dell'utente)
-1. Chiudere la PR #1 e fissare il branch di integrazione.
-2. Salvare questo brief come `CLAUDE.md` del repo.
+## Prossimi passi (ciascuno chiede l'OK dell'utente)
+Fatti il 19 ottobre: PR #1 e #2 unite; brief salvato come `CLAUDE.md`; `main` creato.
+1. Impostare `main` come branch predefinito (lo fa l'utente su GitHub).
+2. Generalizzare `tools/validate_notte.py` (voci C1-C12 legate alla notte 01).
 3. Notte 02 (comportamento: AGENTS.md e CLAUDE.md), partendo dall'elenco domini in `calibrazione.md`, con validatore generalizzato.
 4. Programmare ogni notte come attività cloud una tantum, con notifica push e un solo agente.
 5. A README stabili, copiarli nel Project "Istruzioni Claude" per le chat dell'app.
