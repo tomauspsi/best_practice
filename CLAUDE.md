@@ -13,7 +13,7 @@ Un set di README di best practice su come usare Claude, da usare come fonte di v
 Ogni README è datato, con regole operative brevi in testa e prove sotto, e va rivalutato quando esce un nuovo modello (ad esempio Opus 5.6).
 
 ## Stato (19 ottobre 2026)
-- Tema 4 (memoria): fatto in due passaggi, `notte_01_memoria/`. v1 con 4 sottoagenti (circa 3 USD, 55 letture). v2 con un solo agente, come correzione della v1 (33 letture, 4 ricerche, circa 7 minuti; costo in USD non ancora riportato), validatore a 0 errori, `memoria.md` di 158 righe. PR #1 e #2 unite il 19 ottobre.
+- Tema 4 (memoria): fatto in due passaggi, `notte_01_memoria/`. v1 con 4 sottoagenti (circa 3 USD, 55 letture). v2 con un solo agente, come correzione della v1 (33 letture, 4 ricerche, circa 7 minuti; 2 USD), validatore a 0 errori, `memoria.md` di 158 righe. PR #1 e #2 unite il 19 ottobre.
 - Temi 2 e collegamento app-Code: esistono due report del 18 ottobre in `precedenti/`, scritti con un metodo diverso e non ancora riverificati con il metodo delle notti.
 - Temi 1, 3, 5: da fare.
 
@@ -24,7 +24,8 @@ Ogni README è datato, con regole operative brevi in testa e prove sotto, e va r
 - Le routine clonano il branch predefinito del repo: va impostato su `main` (GitHub > Settings > General > Default branch), altrimenti una sessione fresca non vede questo file aggiornato.
 
 ## Metodo confermato dalle run
-- Un solo agente per run, per scelta dell'utente: la notte 02 serve anche a confrontare il costo (saldo prima e dopo). Fatti noti: i sottoagenti fanno richieste proprie che pesano sull'uso ([costs](https://code.claude.com/docs/en/costs)); Anthropic stima circa 4 volte i token di una chat per un agente singolo e circa 15 volte per un sistema multi-agente, che però ha reso il 90,2% in più su un suo eval di ricerca ([multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)); i sottoagenti tengono fuori dal contesto principale l'output voluminoso. Quindi costano di più ma non "solo": se servono ampiezza o parallelismo, si usano con un modello economico e si dichiara nel log.
+- Priorità dell'utente: lavoro fatto bene, anche se richiede più tempo. Per queste ricerche (poche fonti ufficiali da leggere a fondo e triangolare) si usa un solo agente con tempo ampio. I sottoagenti servono soprattutto ad ampiezza e velocità: costano di più, perché ogni sottoagente fa richieste proprie ([costs](https://code.claude.com/docs/en/costs)), e nella v1 hanno restituito parafrasi da ricontrollare. Anthropic stima circa 4 volte i token di una chat per un agente singolo e circa 15 volte per un sistema multi-agente ([multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)).
+- Ogni notte gira in una sessione nuova (attività cloud): una sessione lunga rimanda tutta la cronologia a ogni richiesta e costa di più a parità di lavoro ([costs](https://code.claude.com/docs/en/costs)).
 - Tetti per run (scelta dell'utente, non dati di prodotto): 120 letture di pagina, 30 ricerche, 150 minuti.
 - WebFetch restituisce le pagine lunghe a blocchi di 100.000 caratteri: leggerle con `offset` e un prompt mirato. Estratti verbatim di al massimo 15 parole (regola di stile).
 - Tier 1: arxiv.org (nota "preprint"), anthropic.com e sottodomini, github.com/anthropics, domini ufficiali Google e Microsoft. Tier 2: openai.com, documentazione di altri vendor (provvisorio), Reddit con almeno 100 voti e 30 commenti, GitHub con almeno 1.000 stelle e ultimo commit leggibile entro 6 mesi, issue chiuse con fix. Tier 3: il resto.
@@ -38,7 +39,12 @@ Ogni README è datato, con regole operative brevi in testa e prove sotto, e va r
 - Quindi le regole permanenti vanno in questo `CLAUDE.md` (sotto 200 righe) e i prompt delle attività restano brevi.
 
 ## Costi
-Crediti regalati: 57 USD prima della run 1, 54 dopo; saldo prima della v2: 54 USD. Dentro la sessione i dollari non sono visibili: l'utente confronta il saldo prima e dopo ogni notte e te lo riporta. Registra letture, ricerche e durata nel log.
+Crediti regalati: 57 USD prima della run 1, 54 dopo; v2 costata 2 USD (saldo 52 USD).
+| Run | Costo | Letture | Ricerche | Sottoagenti | Durata |
+|---|---|---|---|---|---|
+| v1 | circa 3 USD | circa 55 | circa 8 | 4 | circa 5 min |
+| v2 | 2 USD | 33 | 4 | 0 | circa 7 min |
+Lettura dei dati: il costo segue letture, chiamate e strumenti (circa 0,06 USD a lettura in entrambe), non il tempo. La v2 girava in una sessione già lunga, quindi probabilmente sovrastima il costo di una sessione fresca [Inferenza]. Dentro la sessione i dollari non sono visibili: l'utente confronta il saldo prima e dopo ogni notte e te lo riporta. Registra letture, ricerche e durata nel log.
 
 ## Perimetro e sicurezza
 - Le attività pianificate partono con TUTTI i connettori dell'account agganciati (Gmail, Drive, Calendario...) e approvazione automatica. Il divieto di usarli va ripetuto in ogni prompt.
