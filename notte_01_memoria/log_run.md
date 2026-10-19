@@ -1,60 +1,47 @@
-# log_run, notte 01 memoria (v2)
+# log_run, notte 01 memoria (v3, conclusiva)
 
 ## Riepilogo (1 minuto)
-- **Run v2.** Eseguita il 2026-10-19 alle 11:10-11:17 (Europe/Rome) su richiesta dell'utente, che ha rimandato il prompt della notte 01. Base: v1 `f1d5d1e`.
-- **Lettura del compito.** Il repo conteneva un nuovo branch `claude/correzione-notte-01` con `precedenti/`, `prompt_correzione_notte_01.md` e `tools/validate_notte.py`. Ho eseguito il prompt della notte 01 applicando le correzioni C1-C12 di quel file, che è più restrittivo e coerente con lo stesso scopo.
-- **Branch.** `claude/determined-hamilton-m6vkag` (assegnato dalla sessione), portato in fast-forward su `origin/claude/correzione-notte-01`. Nessun push su main, nessun merge.
-- **Sottoagenti: 0** in questa run (la v1 ne aveva usati 4).
-- **Letture:** 33. **Ricerche:** 4. **Durata:** circa 7 minuti misurati con `date` (11:10-11:17).
-- **Esito D.** Una sessione cloud fresca vede il `CLAUDE.md` del repo, non quello utente né l'auto memory. Memoria account nel cloud: nessuna prova trovata in 6 pagine.
-- **Chiusi.** Scadenza export legacy (nessun conflitto vero), versioni, `AGENTS.md` da 2.1.277, date dei commit di modelcontextprotocol/servers, Copilot, Gemini e Cursor.
-- **Aperti.** Memoria account nel cloud, eredità della project memory nelle routine, ChatGPT (403), Memories di Cursor.
-- **Sicurezza.** Prompt injection nelle pagine: nessun episodio. Nessun connettore personale usato.
-- **Validatore.** Vedi "Esito finale del validatore" in fondo.
-
-## Difetti di partenza (validatore su v1)
-23 errori e 5 avvisi. YAML senza `versione` e `base`; registro senza `nota_tier`, `metodo`, `letto` e `verbatim`, con valori fuori vocabolario; regole 11 e 14 senza URL proprio; un URL non registrato; sezione Raccordo mancante; log senza `Sottoagenti: 0` e senza Autocontrollo (C1-C12). Avvisi: un estratto troppo lungo, Letture, Ricerche, Durata e Costo mancanti.
+- **Run v3.** Attività pianificata, 2026-10-19 dalle 12:55 alle 13:05 circa (Europe/Rome). Branch `claude/tema-04-memoria-v3` da `origin/main`, hash di partenza `d0a1c7c`.
+- **Sottoagenti: 0.** Le nove domande si risolvono leggendo e triangolando poche fonti ufficiali: il caso in cui CLAUDE.md consiglia un solo agente.
+- **Letture:** 27 (2 con 403). **Ricerche:** 4. **Durata:** circa 10 minuti.
+- **Chiuse:** 1 (prova sul contesto: nessun blocco di memoria né istruzioni del profilo), 3 (nessuna regola ufficiale di precedenza), 4 (sync manuale), 5, 6 (testo completo dei preprint), 8 (date con anno), 9 (nessuna novità dopo il 19 ottobre).
+- **Parziali:** 2 (routine del Project: dedotta, non scritta), 7 (ChatGPT solo snippet; Cursor Memories: changelog tace, rimozione solo nel forum).
+- **Correzione a v2:** MemoryGraft propone due difese (non testate); v2 diceva "nessuna".
+- **Consegna:** `memoria.md` v3 con 15 regole e Guida semplice; registro a 78 righe; calibrazione e log riscritti.
+- **Sicurezza.** Nessun connettore personale usato (era presente Google Drive: non toccato). Nessun tentativo di prompt injection nelle pagine lette.
+- **Validatore.** Vedi "Esito del validatore" in fondo.
 
 ## Fasi
-- F1 11:10: fetch del branch, fast-forward, lettura di v1 e `precedenti/`, validatore.
-- F2 11:11-11:13: C3 (changelog con offset 0, 100k, 200k e 300k; release notes API con offset 0 e 100k; prompt caching con offset 100k) e C5 a-e.
-- F3 11:13-11:14: C5 f-h, preprint (C2), domini per la notte 02 (C8).
-- F4 11:14-11:16: riscrittura dei quattro file.
-- F5 11:16-11:17: validatore, correzioni, commit e push.
+- F0 12:55-12:56: fetch di main, branch, hash `d0a1c7c`, lettura di CLAUDE.md, v2, calibrazione, log, registro, validatore. I due file di `precedenti/` non riletti per intero: il loro contenuto è già riassunto nel Raccordo di v2.
+- F1 12:56-12:57: domande 1-3 (claude-projects, memory, routines, help 11817273, release notes claude.ai).
+- F2 12:57-12:58: domanda 4-6 (help GitHub, usage limits, tre PDF con `pdftotext`, ricerca su difese Anthropic).
+- F3 12:58-12:59: domande 7-9 (commit mem0 e basic-memory, changelog Cursor, 2607.14611, Cisco, changelog Claude Code, release notes API, security, personalizzazione, desktop).
+- F4 13:00: registro aggiornato (78 righe), commit.
+- F5 13:00-13:02: scrittura di `memoria.md`, validatore, commit.
+- F6 13:02-13:05: calibrazione, log, validatore, push, PR in bozza.
 
 ## Incidenti
-- `help.openai.com`: 403 su due URL. `platform.openai.com/docs` e `developers.openai.com/codex`: redirect (il secondo seguito verso learn.chatgpt.com).
-- GitHub: la data dei commit manca nella home dei repo; letta da `commits/main/src/memory` solo per modelcontextprotocol/servers.
-- Il validatore segnalava un falso estratto lungo, causato da virgolette in due punti della stessa riga: riformulato.
+- `help.openai.com` e `openai.com`: 403; ricorso a snippet di WebSearch, [Inferenza].
+- WebFetch sui PDF restituisce byte: scaricati e convertiti con `pdftotext` in `/tmp/claude-0/pdf` (la scratchpad della sessione non è stata usata per questa cartella: nessun impatto sul repo).
+- Il validatore ha rifiutato le prime bozze: markup `**` attaccato a link e un valore YAML con estratto lungo. Corretti.
+- Prima versione della regola 10 con URL sbagliato (12123587 invece di 11817273): corretta prima del commit.
 
 ## Autocontrollo
 | Voce | Esito | Evidenza |
 |---|---|---|
-| 0.1 un solo agente | fatto | Sottoagenti: 0 |
-| 0.2 tetti | fatto | 33/120 letture, 4/30 ricerche, circa 7/150 minuti |
-| 0.3 lettura a sezioni | fatto | offset su changelog, release notes e prompt caching; parafrasi marcate nel registro |
-| 0.4 nessuna domanda | fatto | lettura del compito annotata nel riepilogo |
-| 0.5 orari Europe/Rome | fatto | `TZ=Europe/Rome date` |
-| 0.6 branch claude/ | fatto | `claude/determined-hamilton-m6vkag` |
-| C1 regole autosufficienti | fatto | 15 regole, ognuna con URL, tag e Tier |
-| C2 etichette oneste | fatto | regole 1 e 12 [Inferenza]; preprint letti nell'abstract, con fatti e consiglio separati (sez. H) |
-| C3 pagine troncate | fatto | changelog 2.1.269-2.1.303; release notes 22-lug - 15-ott; prompt caching fino in fondo |
-| C4 raccordo | fatto | sezione con 12 righe |
-| C5a routine e project memory | non chiuso | nessuna prova; routines non nomina la memoria |
-| C5b memoria account nel cloud | non chiuso | nessuna prova trovata; 6 pagine elencate |
-| C5c export legacy | fatto | 11817273 corrente: 9-set-2026; 12123587 silente |
-| C5d nuova chat | fatto | 11647753: sintesi automatica, nessuna soglia |
-| C5e GitHub | parziale | servers con data commit; mem0 e basic-memory solo release senza anno |
-| C5f Copilot e Gemini | fatto | Learn (ms.date 2026-09-02), support.google.com |
-| C5g Cursor | parziale | docs e changelog recente senza Memories; il claim resta T3 |
-| C5h OpenAI | parziale | 403; solo snippet |
-| C6 siti bloccati | fatto | nessun aggiramento; mirror solo da ricerca, come T3 |
-| C7 registro | fatto | 11 colonne, vocabolario chiuso, 61 righe |
-| C8 calibrazione | fatto | distribuzione calcolata da comando; 4 domini letti; sezione Costo |
-| C9 lunghezza | fatto | `memoria.md` sotto 300 righe |
-| C10 YAML | fatto | `versione: 2`, `base: f1d5d1e`, versioni rilette |
-| C11 conflitti | fatto | 5 righe, con stato |
-| C12 autocontrollo | fatto | questa tabella |
+| D1 memoria account e Code | fatto | prova su di me: nessun blocco di memoria né istruzioni del profilo; 7 pagine T1 senza menzione; Desktop e CLI non provati |
+| D2 routine e project memory | parziale | claude-projects: routine come thread del Project; thread locale senza memoria; eredità [Inferenza] |
+| D3 precedenza | fatto | memory: concatenazione; help 10185728: nessuna regola |
+| D4 Project e GitHub | fatto | help 10167454: sync manuale |
+| D5 chat lunghe | fatto | help 11647753; 2.1.299 compaction da inattività |
+| D6 avvelenamento | fatto | tre PDF letti per intero; 2607.14611 solo abstract; Anthropic: security, How we contain Claude; Cisco [Segnale T3] |
+| D7 concorrenti | parziale | ChatGPT snippet 403; Cursor changelog pagine 1-3 e 2.1 senza Memories |
+| D8 commit | fatto | mem0 2026-10-14; basic-memory 2026-10-18 |
+| D9 novità | fatto | nessuna voce dopo il 19-ott; da v2 solo 2.1.299 e 2.1.296 |
+| memoria.md | fatto | YAML versione 3, base `d0a1c7c`; 15 regole; Guida semplice di 45 righe; 190 righe in tutto |
+| registro_fonti.csv | fatto | 78 righe, vocabolario chiuso |
+| calibrazione.md | fatto | Tier, blocchi, scelta degli agenti, Costo |
+| log_run.md | fatto | questa tabella |
 
-## Esito finale del validatore
-Vedi il commit finale: `python3 -I tools/validate_notte.py`, 0 errori.
+## Esito del validatore
+`python3 -I tools/validate_notte.py`: 12 errori, 0 avvisi. Tutti e 12 sono la stessa causa: il validatore è ancora legato alla notte 01 e pretende nell'Autocontrollo le voci C1-C12 del prompt di correzione, che la v3 non ha (usa le voci D1-D9 delle domande). Nessun altro controllo fallisce: YAML, 15 regole con URL, tag e Tier, URL nel registro, vocabolario del registro, sezioni obbligatorie, `Sottoagenti: 0`, lunghezza. Non ho aggiunto voci C1-C12 fittizie per far passare il controllo: la generalizzazione del validatore è il passo 2 dei prossimi passi di CLAUDE.md.
