@@ -39,7 +39,7 @@ Comando: `python3 -I -c "import csv,collections; r=list(csv.DictReader(open('not
 Da aggiungere: code.claude.com/docs (memory, sub-agents, hooks, skills, best-practices), platform.claude.com prompting best practices, github.com/anthropics/skills.
 
 ## Costo
-- Questa run (v2): 33 letture di pagina (WebFetch, offset inclusi), 4 ricerche web, 0 sottoagenti. Durata misurata con `TZ=Europe/Rome date`: 11:10-11:20.
+- Questa run (v2): 33 letture di pagina (WebFetch, offset inclusi), 4 ricerche web, 0 sottoagenti. Durata misurata con `TZ=Europe/Rome date`: 11:10-11:17.
 - Il consumo in dollari non è visibile all'agente: confrontare il saldo prima e dopo (saldo prima di questa run: 54 USD).
 
 ## Modifiche proposte al prompt

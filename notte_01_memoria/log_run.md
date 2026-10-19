@@ -1,11 +1,11 @@
 # log_run, notte 01 memoria (v2)
 
 ## Riepilogo (1 minuto)
-- **Run v2.** Eseguita il 2026-10-19 alle 11:10-11:20 (Europe/Rome) su richiesta dell'utente, che ha rimandato il prompt della notte 01. Base: v1 `f1d5d1e`.
+- **Run v2.** Eseguita il 2026-10-19 alle 11:10-11:17 (Europe/Rome) su richiesta dell'utente, che ha rimandato il prompt della notte 01. Base: v1 `f1d5d1e`.
 - **Lettura del compito.** Il repo conteneva un nuovo branch `claude/correzione-notte-01` con `precedenti/`, `prompt_correzione_notte_01.md` e `tools/validate_notte.py`. Ho eseguito il prompt della notte 01 applicando le correzioni C1-C12 di quel file, che è più restrittivo e coerente con lo stesso scopo.
 - **Branch.** `claude/determined-hamilton-m6vkag` (assegnato dalla sessione), portato in fast-forward su `origin/claude/correzione-notte-01`. Nessun push su main, nessun merge.
 - **Sottoagenti: 0** in questa run (la v1 ne aveva usati 4).
-- **Letture:** 33. **Ricerche:** 4. **Durata:** circa 10 minuti misurati con `date` (11:10-11:20).
+- **Letture:** 33. **Ricerche:** 4. **Durata:** circa 7 minuti misurati con `date` (11:10-11:17).
 - **Esito D.** Una sessione cloud fresca vede il `CLAUDE.md` del repo, non quello utente né l'auto memory. Memoria account nel cloud: nessuna prova trovata in 6 pagine.
 - **Chiusi.** Scadenza export legacy (nessun conflitto vero), versioni, `AGENTS.md` da 2.1.277, date dei commit di modelcontextprotocol/servers, Copilot, Gemini e Cursor.
 - **Aperti.** Memoria account nel cloud, eredità della project memory nelle routine, ChatGPT (403), Memories di Cursor.
@@ -20,7 +20,7 @@
 - F2 11:11-11:13: C3 (changelog con offset 0, 100k, 200k e 300k; release notes API con offset 0 e 100k; prompt caching con offset 100k) e C5 a-e.
 - F3 11:13-11:14: C5 f-h, preprint (C2), domini per la notte 02 (C8).
 - F4 11:14-11:16: riscrittura dei quattro file.
-- F5 11:16-11:20: validatore, correzioni, commit e push.
+- F5 11:16-11:17: validatore, correzioni, commit e push.
 
 ## Incidenti
 - `help.openai.com`: 403 su due URL. `platform.openai.com/docs` e `developers.openai.com/codex`: redirect (il secondo seguito verso learn.chatgpt.com).
@@ -31,7 +31,7 @@
 | Voce | Esito | Evidenza |
 |---|---|---|
 | 0.1 un solo agente | fatto | Sottoagenti: 0 |
-| 0.2 tetti | fatto | 33/120 letture, 4/30 ricerche, circa 10/150 minuti |
+| 0.2 tetti | fatto | 33/120 letture, 4/30 ricerche, circa 7/150 minuti |
 | 0.3 lettura a sezioni | fatto | offset su changelog, release notes e prompt caching; parafrasi marcate nel registro |
 | 0.4 nessuna domanda | fatto | lettura del compito annotata nel riepilogo |
 | 0.5 orari Europe/Rome | fatto | `TZ=Europe/Rome date` |
