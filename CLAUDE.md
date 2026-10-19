@@ -1,7 +1,7 @@
 # Brief di progetto — "Istruzioni Claude" (best practice per Claude, autunno 2026)
 
 ## Come si lavora
-Da ora il lavoro operativo passa solo da Claude Code: programmi tu le attività, le esegui, le verifichi. La chat di claude.ai serve solo a progettare i prompt.
+Da ora il lavoro operativo passa solo da Claude Code: programmi tu i prompt, le attività, le esegui, le verifichi.
 
 ## Obiettivo
 Un set di README di best practice su come usare Claude, da usare come fonte di verità per gli agenti, così che non debbano cercare ogni volta come si scrive AGENTS.md o le istruzioni di comportamento. Cinque temi, una notte di ricerca per tema:
