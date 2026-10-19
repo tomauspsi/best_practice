@@ -1,38 +1,49 @@
-# Calibrazione fonti — notte 01 (2026-10-19)
+# Calibrazione fonti, notte 01 (v2, 2026-10-19)
 
 ## Cosa ha funzionato
-- **Tier 1 Anthropic**: code.claude.com, platform.claude.com, support.claude.com, github.com/anthropics (pagina HTML delle issue): tutti leggibili. Le pagine docs non riportano data di pubblicazione; le date affidabili stanno solo nei changelog e nelle release notes.
-- Pagine grandi (changelog ~1 MB, release notes 127k, prompt caching 160k caratteri): WebFetch ne restituisce una parte; serve `offset`. Non tutte lette.
-- news.ycombinator.com, dev.to, huggingface.co, simonwillison.net, ai.google.dev, learn.microsoft.com (solo home), docs.aws.amazon.com, forum.cursor.com (indice): ok.
+- **Tier 1 Anthropic** (code.claude.com, platform.claude.com, support.claude.com, github.com/anthropics): tutto leggibile. Le pagine docs non hanno date; le date affidabili stanno nei changelog e nelle release notes.
+- **Pagine lunghe.** Si leggono a blocchi di 100.000 caratteri con `offset`. Il changelog di Claude Code (1.113.891 caratteri) contiene le versioni da 2.1.269 a 2.1.303 nei primi 400.000.
+- **Tier 1 di altri vendor.** learn.microsoft.com (con `ms.date` nei metadati), support.google.com e arxiv.org/abs: leggibili.
+- **Docs di altri vendor:** cursor.com/docs, docs.github.com, learn.chatgpt.com (Codex, dopo un redirect 308 da developers.openai.com) e agents.md: leggibili.
+- **GitHub HTML:** stelle leggibili. La data dell'ultimo commit si legge dalla pagina `commits/main/<path>`; la pagina `releases` mostra giorno e mese senza anno per l'anno corrente.
 
 ## Cosa è stato bloccato
 | Dominio | Esito | Trattamento |
 |---|---|---|
-| reddit.com, old.reddit.com | rifiutato dallo strumento | non aggirato; nessun dato Reddit |
-| stackoverflow.com | rifiutato dallo strumento | non aggirato |
-| medium.com | 403 | solo snippet di ricerca (declassato) |
-| openai.com, help.openai.com (FAQ) | 403 | solo snippet di ricerca |
-| api.github.com | 403 | pagina HTML di GitHub (senza data commit) |
-| discord.com | ok ma vuoto | non indicizzabile, confermato |
-| platform.openai.com | redirect 301 | non seguito |
-- arXiv: l'URL di ricerca provato dava 404 (errore mio, non blocco); i preprint sono arrivati da snippet.
-- Il connettore GitHub MCP non era disponibile per i repo di terzi.
+| reddit.com, old.reddit.com | bloccato dallo strumento | non aggirato; mirror reddit.sentinel-team.org solo da ricerca normale, come T3 |
+| stackoverflow.com | bloccato dallo strumento | non aggirato |
+| help.openai.com (entrambi gli URL), openai.com | 403 | snippet di WebSearch, usati come [Inferenza] |
+| medium.com | 403 | non usato |
+| api.github.com | 403 | pagina HTML di GitHub |
+| platform.openai.com/docs | redirect 301 verso developers.openai.com | non seguito (non tratta ChatGPT) |
+| discord.com | vuoto | confermato non indicizzabile |
 
-## Distribuzione dei Tier (52 URL nel registro)
-T1: 30 · T2: 11 · T3: 11 (alcuni T1 letti solo da snippet). Il peso reale delle affermazioni è quasi tutto T1.
+## Distribuzione dei Tier (registro v2, calcolata con `csv.DictReader`)
+- 61 righe: T1 29 · T2 19 · T3 13.
+- Esiti: ok 40, ok parziale 3, snippet 6, 403 5, bloccato dallo strumento 3, redirect 2, 404 1, vuoto 1.
+- Metodo: fetch 55, snippet 6.
+Comando: `python3 -I -c "import csv,collections; r=list(csv.DictReader(open('notte_01_memoria/registro_fonti.csv'))); print(collections.Counter(x['tier'] for x in r))"`
 
 ## Soglie
-- **Reddit (100 voti, 30 commenti):** non verificabile, il sito è inaccessibile con questi strumenti. Per ora irrilevante.
-- **GitHub (1.000 stelle + attività negli ultimi 6 mesi):** la parte "attività" non si misura (data ultimo commit non visibile, API 403). Rischio di soglia troppo larga: mem0 (67k stelle) e basic-memory (4,3k) passano su sole stelle. Proposta: richiedere stelle ≥ 1.000 **e** una data di ultimo commit leggibile, altrimenti T3.
-- Issue chiuse su github.com/anthropics: utili come T1 per i bug, ma "chiusa" non prova che il fix funzioni; marcare lo stato come non riverificato.
+- **Reddit (100 voti e 30 commenti):** inapplicabile, perché il sito è bloccato dallo strumento e i mirror non mostrano i voti in modo affidabile. Lasciala invariata; tutto Reddit resta T3 finché non c'è accesso diretto.
+- **GitHub (≥ 1.000 stelle e ultimo commit leggibile entro 6 mesi):** applicabile solo con `commits/main`. Per modelcontextprotocol/servers la data è leggibile (2026-10-19). Per mem0 e basic-memory si legge solo una release senza anno ("25 Sep", "25 Aug"): li ho tenuti in T2 con `nota_tier` "anno dedotto". Proposta: considerare "data senza anno" sufficiente solo se è anche la release marcata "Latest".
+- **Issue chiuse su github.com/anthropics:** T1 come esistenza del bug, non come prova del fix.
 
-## Elenco proposto per la notte 02 (istruzioni di comportamento, AGENTS.md)
-code.claude.com/docs (memory, sub-agents, hooks, settings, skills), agents.md (sito dello standard), github.com/openai/agents.md, cursor.com/docs/context/rules, docs.github.com (istruzioni Copilot), platform.claude.com/docs prompting best practices, github.com/anthropics (skills, claude-code), arxiv.org, simonwillison.net. Aggiungere un controllo preliminare di raggiungibilità di agents.md.
+## Domini per la notte 02 (istruzioni di comportamento, AGENTS.md), una lettura ciascuno
+| Dominio | Esito | Cosa offre |
+|---|---|---|
+| [agents.md](https://agents.md/) | ok | standard; "The closest AGENTS.md to the edited file wins" |
+| [docs.github.com](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions) | ok | `.github/copilot-instructions.md`, `.github/instructions/*.instructions.md`, `AGENTS.md` |
+| [cursor.com/docs](https://cursor.com/docs/context/rules) | ok | `.cursor/rules`, `AGENTS.md` in root e sottocartelle |
+| [learn.chatgpt.com](https://learn.chatgpt.com/docs/agent-configuration/agents-md) | ok (dopo un redirect 308) | Codex: `AGENTS.override.md`, limite di 32 KiB |
+Da aggiungere: code.claude.com/docs (memory, sub-agents, hooks, skills, best-practices), platform.claude.com prompting best practices, github.com/anthropics/skills.
 
-## Modifiche proposte a questo prompt
-1. Indicare se `precedenti/` esiste: in questa run il repo era vuoto e il confronto è saltato.
-2. Chiarire se vale il branch `claude/notte-01-memoria` o quello assegnato dalla sessione (qui usato quello assegnato: `claude/determined-hamilton-m6vkag`).
-3. Consentire un modello fisso per i sottoagenti e fissare "estratto ≤ 15 parole verbatim": gli agenti hanno restituito parafrasi (segnalate "parafrasi").
-4. Aggiungere una regola per le pagine troncate: obbligo di rileggere con `offset` quelle citate come fonte unica.
-5. Il vincolo "ogni URL citato compare nel registro con esito ok" collide con i preprint letti solo da snippet: ammettere esito "snippet" con declassamento.
-6. Il fuso orario del sandbox è UTC: l'orario Rome va calcolato con `TZ=Europe/Rome`.
+## Costo
+- Questa run (v2): 33 letture di pagina (WebFetch, offset inclusi), 4 ricerche web, 0 sottoagenti. Durata misurata con `TZ=Europe/Rome date`: 11:10-11:17.
+- Il consumo in dollari non è visibile all'agente: confrontare il saldo prima e dopo (saldo prima di questa run: 54 USD).
+
+## Modifiche proposte al prompt
+1. Il prompt v1 nomina `precedenti/` ma la cartella era assente; ora è sul branch `claude/correzione-notte-01`. Indicare il branch sorgente.
+2. Il prompt v1 consente fino a 5 sottoagenti, il prompt di correzione ne vieta l'uso. Allineare le due versioni (0 sottoagenti è la scelta più economica).
+3. Ammettere esplicitamente l'esito "snippet" per le fonti 403, con declassamento automatico a [Inferenza].
+4. Per GitHub indicare la pagina `commits/main/<path>` come fonte della data dell'ultimo commit.
