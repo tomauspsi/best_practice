@@ -1,9 +1,10 @@
 # Memoria di Claude: guida semplice
 
-Valida al 19 ottobre 2026. Da rivedere quando esce un nuovo modello di Claude o quando le novità ufficiali toccano la memoria.
-Le prove, le fonti e il dettaglio tecnico, per gli agenti, stanno in `notte_01_memoria/memoria.md`. Questo file è per te.
+Valida al 19 ottobre 2026. Da rivedere quando esce un nuovo modello di Claude o quando le novità ufficiali toccano la memoria.  
+Le prove, le fonti e il dettaglio tecnico, per gli agenti, stanno in `ricerche`. Questo file è per te.
 
 ## In una frase
+
 Non esiste una memoria unica di Claude. Esistono più "quaderni" separati, e ogni strumento legge solo i suoi. Un file che vuoi far leggere a tutti deve stare in un posto che tutti sanno raggiungere, e va richiamato, non copiato.
 
 ## I quaderni che esistono davvero
@@ -33,6 +34,7 @@ Quindi sì: ogni strumento è in gran parte un silo. Di comune c'è una sola cos
 ## Il file su Google Drive condiviso: ha senso?
 
 Come funziona il connettore Drive, secondo la guida ufficiale:
+
 - Claude legge un file di Drive solo quando glielo chiedi o glielo alleghi, e legge la versione più recente.
 - Dentro un Project, un documento Google resta aggiornato da solo. Funziona però solo nei Project privati, non in quelli condivisi.
 - Claude può anche creare e salvare file su Drive.
@@ -41,6 +43,7 @@ Come funziona il connettore Drive, secondo la guida ufficiale:
 Il punto da tenere a mente: non è una memoria. È un file che Claude va a leggere quando qualcuno gli dice di farlo. Non entra nel contesto da solo.
 
 La mia valutazione, non una regola ufficiale (nessuna fonte confronta Drive e repo):
+
 - **Per i file che servono agli agenti** (regole, ricerche, istruzioni): meglio il repo `D:\Workspace\best_practice`. Ha la storia delle modifiche, lo legge Code ovunque, anche nel cloud, e un Project della chat può collegarlo con "Sync now".
 - **Drive ha senso** per un documento che vuoi modificare a mano dal telefono o dal browser e far leggere alle chat, e che non è sensibile.
 - **Non fare le due cose insieme sullo stesso testo.** Due copie si scostano, e Claude può seguire quella sbagliata.
