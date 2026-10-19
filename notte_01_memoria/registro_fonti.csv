@@ -1,0 +1,53 @@
+url,dominio,tier,data_fonte,esito,alternativa_usata,note
+https://code.claude.com/docs/en/memory,code.claude.com,1,corrente,ok,,letta intera da 2 agenti
+https://code.claude.com/docs/llms.txt,code.claude.com,1,corrente,ok,,"nessuna occorrenza di 'dream'"
+https://code.claude.com/docs/en/changelog,code.claude.com,1,2026-10-18,ok parziale,,letto offset 0 e 100000; 2.1.303 corrente
+https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md,raw.githubusercontent.com,1,senza date,ok parziale,changelog docs,letto ~10-20% di ~1 MB
+https://code.claude.com/docs/en/cloud-environments,code.claude.com,1,corrente,ok,,tabella what carries over
+https://code.claude.com/docs/en/routines,code.claude.com,1,corrente,ok,,
+https://code.claude.com/docs/en/claude-projects,code.claude.com,1,corrente,ok,,Projects beta Pro/Max
+https://code.claude.com/docs/en/claude-code-on-the-web,code.claude.com,1,corrente,ok,,
+https://code.claude.com/docs/en/settings,code.claude.com,1,corrente,ok,,
+https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool,platform.claude.com,1,corrente,ok,,
+https://platform.claude.com/docs/en/build-with-claude/context-editing,platform.claude.com,1,corrente,ok,,
+https://platform.claude.com/docs/en/build-with-claude/compaction,platform.claude.com,1,corrente,ok,,
+https://platform.claude.com/docs/en/build-with-claude/prompt-caching,platform.claude.com,1,corrente,ok parziale,,letti 100k di 160k caratteri
+https://platform.claude.com/docs/en/build-with-claude/context-windows,platform.claude.com,1,corrente,ok,,context rot
+https://platform.claude.com/docs/en/managed-agents/dreams,platform.claude.com,1,corrente,ok,,research preview dreaming-2026-04-21
+https://platform.claude.com/docs/en/release-notes/overview,platform.claude.com,1,2026-07..2026-10,ok parziale,,letti 100k di 127k
+https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context,support.claude.com,1,s.d.,ok,,
+https://support.claude.com/en/articles/12138966-release-notes,support.claude.com,1,2026-07-10..2026-08-25,ok,,
+https://support.claude.com/en/articles/12123587-importing-and-exporting-your-memory-from-claude,support.claude.com,1,s.d.,ok,,nessuna scadenza export
+https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects,support.claude.com,1,"s.d. (Updated this week)",ok,,
+https://github.com/anthropics/claude-code/issues?q=is%3Aissue+memory+is%3Aclosed,github.com,1,2026-09..2026-10,ok,,issue chiuse #100205 #101785 #101732
+https://arxiv.org/a/search?query=agent+memory+poisoning,arxiv.org,1,,404,URL errato non blocco; snippet via WebSearch,
+https://arxiv.org/pdf/2606.04329,arxiv.org,1 (preprint),2026-06,solo snippet,,non aperto
+https://arxiv.org/abs/2512.16962,arxiv.org,1 (preprint),2025-12,solo snippet,,MemoryGraft
+https://arxiv.org/pdf/2604.02623,arxiv.org,1 (preprint),2026-04,solo snippet,,eTAMP
+https://blog.google/innovation-and-ai/products/gemini-app/switch-to-gemini-app/,blog.google,1,2026-03,ok,,
+https://ai.google.dev/,ai.google.dev,1,,ok,,home
+https://learn.microsoft.com/en-us/,learn.microsoft.com,1,,ok,,pagina memoria Copilot non trovata
+https://microsoft.github.io/zerotrustassessment/docs/workshop-guidance/AI/AI_183,microsoft.github.io,1 provvisorio,s.d.,ok via ricerca,,non è learn.microsoft.com
+https://github.com/modelcontextprotocol/servers/tree/main/src/memory,github.com,2,s.d.,ok,,stelle e commit non letti
+https://github.com/mem0ai/mem0,github.com,2,s.d.,ok,,67.4k stelle; commit n.d.
+https://github.com/basicmachines-co/basic-memory,github.com,2,s.d.,ok,,4.3k stelle; AGPL
+https://cursor.com/docs/context/rules,cursor.com,2 provvisorio,s.d.,ok,,
+https://help.openai.com/en/articles/11146739,help.openai.com,2,s.d.,ok via ricerca (snippet),,pagina FAQ 8590148 403
+https://openai.com/,openai.com,2,,403,help.openai.com via ricerca,parziale
+https://platform.openai.com/docs,platform.openai.com,2,,redirect 301,non seguito,
+https://www.reddit.com/r/ClaudeAI/,reddit.com,2,,bloccato dallo strumento,nessuna (non aggirato),
+https://old.reddit.com/r/ClaudeAI/,old.reddit.com,2,,bloccato dallo strumento,nessuna (non aggirato),
+https://forum.cursor.com/t/are-my-memories-gone/144057,forum.cursor.com,3,~2025-fine,ok via ricerca,,staff in forum; changelog primario non trovato
+https://news.ycombinator.com/item?id=45000000,news.ycombinator.com,3,,ok,,nessun contenuto pertinente
+https://discord.com/invite/anthropic,discord.com,3,,ok ma vuoto,,solo la parola 'Claude'; non indicizzabile
+https://dev.to/,dev.to,3,,ok,,home
+https://medium.com/,medium.com,3,,403,snippet da ricerca,parziale
+https://huggingface.co/,huggingface.co,3,,ok,,
+https://stackoverflow.com/,stackoverflow.com,3,,bloccato dallo strumento,nessuna,
+https://simonwillison.net/search/?q=claude+memory,simonwillison.net,3,2025-09..2026-07,ok,,
+https://docs.aws.amazon.com/,docs.aws.amazon.com,2 provvisorio,,ok,,home
+https://support.microsoft.com/topic/copilot-memory-faq,support.microsoft.com,1,,404,ricerca,URL ipotizzato
+https://api.github.com/repos/*,api.github.com,2,,403,pagina HTML GitHub,senza data commit
+https://www.implicator.ai/anthropic-adds-auto-dream-to-claude-code-fixing-memory-decay-between-sessions,implicator.ai,3,2026,solo snippet,,Auto Dream [Segnale T3]
+https://claudefa.st/blog/guide/mechanics/auto-dream,claudefa.st,3,2026,solo snippet,,
+https://vantaige.io/blog/claude-code-dreaming-memory-consolidation-setup-2026,vantaige.io,3,2026-05,solo snippet,,
