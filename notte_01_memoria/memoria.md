@@ -1,158 +1,190 @@
 ---
 tema: memoria nei prodotti Claude (claude.ai, Claude Code, API, sessioni cloud)
-versione: 2
-base: f1d5d1e
+versione: 3
+base: d0a1c7c
 verificato_il: 2026-10-19
 rivalutare_se: "nuovo modello Claude (per esempio Opus 5.6); release notes che toccano la memoria; oppure 2026-12-18"
 versioni_rilevate:
-  claude_code: "2.1.303 del 2026-10-18 (changelog code.claude.com, riletto)"
-  app_claude_ai: "nessun numero di versione nelle release notes; ultima voce sulla memoria: 2026-08-25"
-  modelli: "claude-opus-5-5 (2026-09-22), claude-sonnet-5-5 (2026-09-28), claude-haiku-5-5 (2026-10-07), claude-fable-5-1 (2026-09-01); claude-mythos-5-1 solo Project Glasswing"
-  api: "memory tool memory_20250818 senza beta header; compaction on demand compact-2026-09-04 (2026-09-14); Dreams research preview dreaming-2026-04-21"
+  claude_code: "2.1.303 del 2026-10-18 (changelog code.claude.com, riletto: nessuna versione più nuova)"
+  app_claude_ai: "senza numero di versione; memoria: ultima voce 2026-08-25; ultima voce in assoluto 2026-10-07"
+  modelli: "claude-opus-5-5 (2026-09-22), claude-sonnet-5-5 (2026-09-28), claude-haiku-5-5 (2026-10-07, 1M di contesto), claude-fable-5-1 (2026-09-01)"
+  api: "memory tool memory_20250818; compaction on demand (2026-09-14); ultima voce delle release notes API riletta: 2026-10-15"
 ---
 
-# Memoria nei prodotti Claude: stato al 19 ottobre 2026 (v2)
+# Memoria nei prodotti Claude: stato al 19 ottobre 2026 (v3, conclusiva)
 
-v2 corregge la v1 (commit `f1d5d1e`): rilegge le pagine troncate, chiude o riclassifica le domande aperte e confronta i due report del 18 ottobre in [precedenti/](../precedenti/).
+v3 chiude le domande aperte di v2 (base `f1d5d1e`) e v1. Parte da `d0a1c7c` (main). I fatti [Verificato] di v2 sono riusati; sono stati riletti alla fonte quelli citati con frasi nuove.
 
 ## Risposta breve
-- Le memorie sono cinque e separate: memoria di claude.ai (account e Project), ricerca nelle chat passate, `CLAUDE.md`/`AGENTS.md`, auto memory locale di Claude Code, memory tool dell'API (storage tuo). In più, la project memory dei Projects di Claude Code (beta).
-- Una sessione cloud fresca, anche da routine, parte da un clone del repo: vede `CLAUDE.md` e `.claude/rules/` del repo, non vede `C:\Users\Tommi\.claude\CLAUDE.md` né l'auto memory locale.
-- Che la memoria chat dell'account arrivi a Claude Code cloud: nessuna prova trovata in sei pagine ufficiali. Va trattata come assente.
-- Il canale documentato e versionabile per un agente notturno sono i file nel repo. La memoria è contesto, non vincolo: per bloccare un'azione servono gli hook.
-- "Dreams" esiste solo come API di Managed Agents in research preview. Non è una funzione di Claude Code.
+- Le memorie sono cinque e separate: memoria di claude.ai (account e Project), ricerca nelle chat passate, `CLAUDE.md`/`AGENTS.md`, auto memory locale di Claude Code, memory tool dell'API. In più la project memory dei Projects di Claude Code (beta).
+- Una sessione cloud fresca (anche da routine) vede il clone del repo, non `C:\Users\Tommi\.claude\CLAUDE.md` né l'auto memory locale. La memoria chat dell'account: nessuna prova nelle docs e, nella prova su questa sessione, nessun blocco di memoria nel contesto. Trattala come assente.
+- Non esiste una regola ufficiale di precedenza tra profilo, Project, memoria e `CLAUDE.md`. In Claude Code i file sono concatenati, non sovrascritti: se si contraddicono, Claude può seguirne uno a caso.
+- Un Project di chat con GitHub resta aggiornato solo se premi "Sync now".
+- La memoria è contesto, non vincolo: per bloccare un'azione servono gli hook.
 
 ## REGOLE OPERATIVE PER AGENTI
-1. Non assumere che una sessione cloud conosca la memoria dell'account claude.ai: metti il contesto nel prompt o nel repo. [Inferenza] · T1 · nessuna menzione di Claude Code nell'help center: <https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context>
+1. Non assumere che una sessione cloud conosca la memoria dell'account claude.ai: metti il contesto nel prompt o nel repo. [Inferenza] · T1 · le docs non la nominano e una sessione cloud fresca non ne mostrava blocchi: <https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context>
 2. Scrivi il prompt di una routine autosufficiente: ogni run è una sessione nuova e non ne riusa altre. [Verificato] · T1 · <https://code.claude.com/docs/en/routines>
-3. Metti le istruzioni per il cloud in `./CLAUDE.md` o `./.claude/rules/` del repo: fanno parte del clone. [Verificato] · T1 · <https://code.claude.com/docs/en/cloud-environments>
-4. Non contare su `~/.claude/CLAUDE.md`, skill, agent e command utente nel cloud: committali in `.claude/` o falli scrivere da uno setup script. [Verificato] · T1 · <https://code.claude.com/docs/en/cloud-environments>
-5. Non contare sull'auto memory locale nel cloud: non è condivisa tra macchine né con gli ambienti cloud. [Verificato] · T1 · <https://code.claude.com/docs/en/memory>
-6. Tieni ogni `CLAUDE.md` sotto le 200 righe e sposta il resto in `.claude/rules/`, con `paths` per le regole locali. [Verificato] · T1 · <https://code.claude.com/docs/en/memory>
-7. Metti in cima a `MEMORY.md` ciò che conta: all'avvio si caricano solo le prime 200 righe o 25 KB. [Verificato] · T1 · <https://code.claude.com/docs/en/memory>
-8. Se il repo ha sia `AGENTS.md` sia `CLAUDE.md`, scrivi `@AGENTS.md` dentro `CLAUDE.md`: senza import Claude Code legge solo `CLAUDE.md`. La lettura nativa di `AGENTS.md` (da 2.1.277) vale solo senza alcun `CLAUDE.md` o `CLAUDE.local.md`. [Verificato] · T1 · <https://code.claude.com/docs/en/memory>
-9. Per vincoli di sicurezza usa hook `PreToolUse`, non `CLAUDE.md`, che è contesto e non configurazione imposta. [Verificato] · T1 · <https://code.claude.com/docs/en/memory>
-10. In claude.ai isola la memoria con un Project, e disattiva "Use account memory" per isolarla del tutto. La ricerca nelle chat passate non attraversa i Project. [Verificato] · T1 · <https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context>
-11. Non affidare dati sensibili alla memoria di claude.ai. I temi sensibili sono esclusi di default, e cancellare una chat non cancella le memorie derivate. [Verificato] · T1 · <https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context>
-12. Non far scrivere in memoria testo preso da pagine esterne senza revisione. Un preprint mostra che agenti che scrivono e recuperano memoria più aggressivamente sono più attaccabili e che le difese anti-injection esistenti non coprono il caso. [Inferenza] dal fatto citato · T1 (preprint) · <https://arxiv.org/abs/2606.04329>
-13. Con il memory tool dell'API valida ogni path sotto `/memories` (path traversal) e limita dimensione e scadenza dei file. [Verificato] · T1 · <https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool>
-14. Nelle sessioni API lunghe abbina compaction (riassume) e memory tool (conserva ciò che deve sopravvivere al riassunto). [Verificato] · T1 · <https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool>
-15. Non citare "Auto Dream" come funzione di Claude Code: la parola "dream" non compare nell'indice delle docs di Claude Code. [Verificato] per l'assenza; il claim positivo è [Segnale T3] · T1 · <https://code.claude.com/docs/llms.txt>
+3. Metti le istruzioni per il cloud in `./CLAUDE.md` o `./.claude/rules/` del repo e committa skill e agent in `.claude/`: `~/.claude/` dell'utente non arriva nel cloud. [Verificato] · T1 · <https://code.claude.com/docs/en/cloud-environments>
+4. Non contare sull'auto memory locale nel cloud: non è condivisa tra macchine né con gli ambienti cloud. [Verificato] · T1 · <https://code.claude.com/docs/en/memory>
+5. Tieni ogni `CLAUDE.md` sotto le 200 righe (regole di cartella in `.claude/rules/` con `paths`) e metti in cima a `MEMORY.md` ciò che conta: si caricano solo 200 righe o 25 KB. [Verificato] · T1 · <https://code.claude.com/docs/en/memory>
+6. Se esistono sia `AGENTS.md` sia `CLAUDE.md`, scrivi `@AGENTS.md` dentro `CLAUDE.md`: senza import Claude Code legge solo `CLAUDE.md`. [Verificato] · T1 · <https://code.claude.com/docs/en/memory>
+7. Per vincoli di sicurezza usa hook `PreToolUse`, non `CLAUDE.md`, che è contesto e non configurazione imposta. [Verificato] · T1 · <https://code.claude.com/docs/en/memory>
+8. Non cercare una precedenza ufficiale: ogni informazione ha una sola casa e le istruzioni non si contraddicono; `/doctor prompt-audit` trova conflitti e istruzioni obsolete. [Verificato] per Claude Code; per profilo, Project e memoria nessuna regola trovata [Inferenza] · T1 · <https://code.claude.com/docs/en/memory>
+9. In claude.ai isola la memoria con un Project e disattiva "Use account memory" per isolarla del tutto. La ricerca nelle chat passate non attraversa i Project. [Verificato] · T1 · <https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context>
+10. Non affidare dati sensibili alla memoria di claude.ai: i temi sensibili sono esclusi di default e cancellare una chat non cancella le memorie derivate. [Verificato] · T1 · <https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context>
+11. Non far scrivere in memoria testo preso da pagine esterne senza revisione: nei test dei preprint basta una scrittura avvelenata, e i filtri anti-injection non la intercettano in modo affidabile (migliore: 67,67% di rilevazione). [Inferenza] sui fatti citati · T1 (preprint) · <https://arxiv.org/abs/2606.04329>
+12. Con il memory tool dell'API valida ogni path sotto `/memories`, limita dimensione e scadenza dei file e abbinalo alla compaction nelle sessioni lunghe. [Verificato] · T1 · <https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool>
+13. Nei Projects di Claude Code, metti le regole del repo nel suo `CLAUDE.md` e le note del Project nella project memory: un thread locale riceve le istruzioni del Project ma non i file di memoria. [Verificato] · T1 · <https://code.claude.com/docs/en/claude-projects>
+14. Per un Project di chat con un repo GitHub, premi "Sync now" prima di un'analisi: l'aggiornamento non è automatico e si sincronizzano solo nomi e contenuti di un branch. [Verificato] · T1 · <https://support.claude.com/en/articles/10167454-using-the-github-integration>
+15. Nelle chat lunghe di claude.ai lascia fare la sintesi automatica (la cronologia resta), tieni brevi le istruzioni e apri una nuova chat vicino al limite d'uso; non esiste una soglia numerica. [Verificato] · T1 · <https://support.claude.com/en/articles/11647753-understanding-usage-and-length-limits>
 
-## Stato dell'arte per domanda
+## Stato dell'arte (compresso)
 
 ### A. claude.ai (Chat e Project)
-- **Funzionamento.** Dal 10 luglio 2026 la memoria è un insieme di voci per categoria, lette e aggiornate durante la chat; la versione legacy era una sintesi aggiornata ogni 24 ore. [Verificato] T1 · [release notes](https://support.claude.com/en/articles/12138966-release-notes)
-- **Separazione.** Ogni Project ha la sua memoria. Le sue chat usano anche la memoria d'account delle chat fuori Project, mai quella di altri Project. [Verificato] T1 · [help 11817273](https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context)
-- **Controlli.** Pausa, Reset (irreversibile, anche per i Project), spegnimento per singola chat, modifica dei topic. Import sperimentale ("Memory imports are experimental and still in active development") ed export. [Verificato] T1 · [help 12123587](https://support.claude.com/en/articles/12123587-importing-and-exporting-your-memory-from-claude)
-- **Piani.** Attiva di default su Free, Pro e Max. Su Team ed Enterprise la abilita l'owner. Non disponibile con accordi HIPAA, settore pubblico o retention personalizzata. [Verificato] T1 · help 11817273.
-- **Cowork.** Dal 25 agosto 2026 "Memory now works across chat and Cowork in the cloud". Cowork locale non usa la memoria. [Verificato] T1 · release notes; help 11817273.
-- **Ricerca nelle chat passate.** Solo piani a pagamento, via RAG, con citazioni. Mai tra Project diversi; esclude Incognito. [Verificato] T1.
-- **Project knowledge.** È contenuto fornito da te e usato in ogni chat del Project; sui piani a pagamento passa a RAG vicino al limite. Il contesto non passa tra chat del Project se non lo metti nella knowledge. [Verificato] T1 · [help 9519177](https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects)
+- Dal 10-lug-2026 la memoria è un insieme di voci per categoria (prima: sintesi ogni 24 ore). [Verificato] T1 · [release notes](https://support.claude.com/en/articles/12138966-release-notes)
+- Ogni Project ha la sua memoria e usa anche quella delle chat fuori Project, mai quella di altri Project. Controlli: pausa, reset irreversibile, spegnimento per chat, topic modificabili, import sperimentale ed export. Attiva di default su Free, Pro, Max; su Team ed Enterprise la abilita l'owner. [Verificato] T1 · help 11817273
+- Cowork: dal 25-ago-2026 la memoria vale in chat e Cowork cloud; Cowork locale non la usa. Ricerca nelle chat passate: piani a pagamento, RAG, non attraversa i Project. [Verificato] T1
+- Project knowledge: contenuto tuo, usato in ogni chat del Project; sui piani a pagamento passa a RAG vicino al limite. Con l'integrazione GitHub: scegli repo, file e cartelle; "Sync" e "Sync now" aggiornano; i repo devono entrare nella finestra di contesto. [Verificato] T1 · [help 9519177](https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects)
+- Istruzioni del profilo ("Instructions for Claude"): valgono per tutte le conversazioni; quelle di Project solo dentro il Project. L'articolo dice che le funzioni si usano "independently or in combination" e non fissa precedenza. [Verificato] T1 · [help 10185728](https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features)
 
 ### B. Claude Code
-- **Ambiti `CLAUDE.md`.** Policy gestita, utente `~/.claude/CLAUDE.md`, progetto `./CLAUDE.md` o `./.claude/CLAUDE.md`, locale `CLAUDE.local.md`. Import `@path` con "a maximum depth of four hops". [Verificato] T1 · [memory](https://code.claude.com/docs/en/memory)
-- **`.claude/rules/`.** Ricorsiva, supporta symlink; senza `paths` carica sempre, con `paths` solo sui file corrispondenti. Dal 2.1.288 le regole con path e i `CLAUDE.md` annidati si caricano anche con Write ed Edit. [Verificato] T1 · [changelog](https://code.claude.com/docs/en/changelog)
-- **Limiti.** Meno di 200 righe consigliate per `CLAUDE.md`; un file fino a 4 MiB si carica intero, uno più grande viene saltato. Di `MEMORY.md` si caricano 200 righe o 25 KB. [Verificato] T1 · memory.
-- **Auto memory.** Si trova in `~/.claude/projects/<project>/memory/`, con indice `MEMORY.md` e un file per topic, di tipo `user`, `feedback`, `project` o `reference`. È condivisa tra i worktree dello stesso repo e locale alla macchina. Attiva di default in locale, spenta di default negli ambienti self-hosted. Si controlla con `autoMemoryEnabled`, `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1` e `autoMemoryDirectory`. [Verificato] T1 · memory.
-- **`/memory` e menu.** 2.1.274 aggiunge le voci Memory e Instructions al menu Customize. 2.1.275 permette di vedere, modificare e cancellare una memoria salvata. 2.1.284 neutralizza caratteri invisibili e tag che imitano il markup di Claude Code nel caricamento dell'auto memory. 2.1.285 vieta di riattivare l'auto memory da una sessione in background. 2.1.287 commuta le impostazioni con i tasti freccia. [Verificato] T1 · changelog.
-- **`AGENTS.md`.** 2.1.277 (18-set-2026): "in a project with no CLAUDE.md, Claude Code reads AGENTS.md instead". 2.1.281 lo estende a Bedrock, Vertex e Foundry. 2.1.290 corregge `AGENTS.md` di sottocartella e i symlink. Le opzioni sono `claude-md-or-agents-md` (default), `claude-md-and-agents-md` e `managed-only`. [Verificato] T1 · changelog; memory.
-- **Igiene.** `/doctor prompt-audit` (da 2.1.283) cerca istruzioni obsolete o in conflitto, perché con due istruzioni contraddittorie Claude "may pick one arbitrarily". Vicino al limite, Claude chiede di accorciare `MEMORY.md` ("merge or drop stale entries"). [Verificato] T1 · memory.
-- **Dreams.** È un job asincrono di Managed Agents che legge un memory store e da 1 a 100 trascrizioni e produce un nuovo store deduplicato, senza toccare l'input. Research preview, richiede accesso, header `dreaming-2026-04-21`. [Verificato] T1 · [dreams](https://platform.claude.com/docs/en/managed-agents/dreams). "Auto Dream" in Claude Code compare solo in blog terzi. [Segnale T3]
+- `CLAUDE.md` per ambito: gestito, utente, progetto, locale; ordine di caricamento dal più ampio al più specifico; import `@path` fino a quattro livelli. Tutti i file trovati sono concatenati, non si sovrascrivono. Le regole utente caricano prima di quelle di progetto, nessuna prevale. [Verificato] T1 · [memory](https://code.claude.com/docs/en/memory)
+- Limiti: meno di 200 righe consigliate; `MEMORY.md` 200 righe o 25 KB. Il `CLAUDE.md` di root sopravvive a `/compact` (riletto da disco). [Verificato] T1
+- Auto memory in `~/.claude/projects/<project>/memory/`, condivisa tra worktree dello stesso repo, locale alla macchina; controlli `autoMemoryEnabled`, `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1`, `autoMemoryDirectory`. [Verificato] T1 · memory
+- `AGENTS.md`: letto da 2.1.277 solo senza `CLAUDE.md`; 2.1.281 lo estende a Bedrock, Vertex, Foundry. Desktop e CLI usano gli stessi `CLAUDE.md` e le stesse impostazioni. [Verificato] T1 · [changelog](https://code.claude.com/docs/en/changelog); [desktop](https://code.claude.com/docs/en/desktop)
+- Novità sulla compattazione: 2.1.299 (14-ott) aggiunge la compaction da inattività per conversazioni oltre 200K token ferme circa 54 minuti (`"idleCompaction": false` la spegne). [Verificato] T1 · changelog
+- Dreams: job di Managed Agents in research preview (`dreaming-2026-04-21`), non una funzione di Claude Code; "Auto Dream" compare solo in blog terzi. [Verificato] T1 · [dreams](https://platform.claude.com/docs/en/managed-agents/dreams); [Segnale T3] sul resto
 
 ### C. API e Agent SDK
-- **Memory tool `memory_20250818`.** Lato client, directory `/memories`, comandi `view`, `create`, `str_replace`, `insert`, `delete` e `rename`. Funziona con Claude 4 e successivi, senza beta header; l'API aggiunge l'istruzione di guardare la memoria all'inizio. [Verificato] T1 · [memory tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool)
-- **Context editing.** Lato server, in beta con `context-management-2025-06-27`. Con il memory tool, Claude riceve un avviso prima della cancellazione. La pulizia dei tool result invalida il prefisso in cache. [Verificato] T1 · [context editing](https://platform.claude.com/docs/en/build-with-claude/context-editing)
-- **Compaction.** Lato server, riassume i turni vecchi; "can now compact a conversation on demand" dal 2026-09-14. [Verificato] T1 · [compaction](https://platform.claude.com/docs/en/build-with-claude/compaction); [release notes API](https://platform.claude.com/docs/en/release-notes/overview)
-- **Prompt caching.** TTL di 5 minuti (1 ora a pagamento); cambiare i tool invalida tutta la cache, e cambiare un breakpoint invalida quel segmento e i successivi. Dal 2026-09-01 i system message per turno, in beta, "don't invalidate the prompt cache". La pagina sul caching, letta fino in fondo, non tratta compaction né memory tool. [Verificato] T1 · [prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)
-- **Managed Agents.** Webhook `memory_store.*` dal 2026-07-22; memory stores nelle sandbox self-hosted dal 2026-08-19. [Verificato] T1 · release notes API.
-- **Context rot.** Accuratezza e recall calano al crescere dei token; la compaction è la strategia primaria. [Verificato] T1 · [context windows](https://platform.claude.com/docs/en/build-with-claude/context-windows)
+- Memory tool `memory_20250818` lato client, directory `/memories`, senza beta header. Context editing in beta (`context-management-2025-06-27`); compaction lato server, on demand dal 2026-09-14; cache con TTL 5 minuti. [Verificato] T1 · [context editing](https://platform.claude.com/docs/en/build-with-claude/context-editing); [compaction](https://platform.claude.com/docs/en/build-with-claude/compaction); [prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)
+- Context rot: accuratezza e recall calano al crescere dei token. Webhook `memory_store.*` dal 2026-07-22; memory stores self-hosted dal 2026-08-19. [Verificato] T1 · [context windows](https://platform.claude.com/docs/en/build-with-claude/context-windows); [release notes API](https://platform.claude.com/docs/en/release-notes/overview)
 
-### D. Sessioni cloud, routine e attività pianificate (domanda decisiva)
-| Cosa | Presente in una sessione cloud fresca? | Fonte T1 |
+### D. Sessioni cloud, routine, Projects di Claude Code
+| Cosa | In una sessione cloud fresca? | Fonte T1 |
 |---|---|---|
-| `CLAUDE.md`, `.claude/rules/`, skill, agent e command del repo | Sì, nel clone | [cloud-environments](https://code.claude.com/docs/en/cloud-environments) |
-| `~/.claude/CLAUDE.md`, skill, agent e command utente | No; si ricreano con uno setup script | cloud-environments |
-| Auto memory locale | No | memory |
-| Skill abilitate su claude.ai, connettori dell'account | Sì | cloud-environments, routines |
-| Memoria chat di claude.ai | Nessuna prova trovata: [Inferenza] no | sei pagine, vedi conflitti |
-| Project memory (`MEMORY.md` del Project, beta Pro e Max) | Sì, in ogni thread cloud del Project | [claude-projects](https://code.claude.com/docs/en/claude-projects) |
-- Una routine è prompt, repo e connettori; ogni run è una sessione nuova e la pagina delle routine non nomina mai la memoria. [Verificato] T1 · routines.
-- Il thread di un Project eseguito sul tuo computer parte con le istruzioni del Project ma senza i file di memoria. [Verificato] T1 · claude-projects.
-- Se le routine create da un Project ereditino la project memory non è scritto da nessuna parte: le docs dicono solo che compaiono nella tab Routines. Nessuna prova trovata. [Inferenza]
-- Auto-compaction nel cloud: `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` è impostato dalla sessione; `/compact` funziona, `/clear` no. [Verificato] T1 · [claude-code-on-the-web](https://code.claude.com/docs/en/claude-code-on-the-web)
+| `CLAUDE.md`, `.claude/rules/`, skill, agent del repo | Sì, nel clone | [cloud-environments](https://code.claude.com/docs/en/cloud-environments) |
+| `~/.claude/CLAUDE.md` e auto memory locale | No | cloud-environments; memory |
+| Skill abilitate su claude.ai, connettori dell'account | Sì (prova diretta: nel mio contesto comparivano skill e un connettore dell'account) | cloud-environments; routines |
+| Blocchi di memoria chat o istruzioni del profilo | Nella prova su di me: no. Docs: nessuna menzione [Inferenza] | vedi Prova |
+| Project memory (`MEMORY.md` del Project, beta Pro e Max) | Sì, in ogni thread cloud del Project; thread sul tuo computer: no | [claude-projects](https://code.claude.com/docs/en/claude-projects) |
+- **Prova riproducibile (domanda 1).** Sessione cloud fresca avviata da attività pianificata, 2026-10-19 12:55. Nel contesto: prompt di sistema, `CLAUDE.md` del repo, indirizzo e-mail dell'account (contesto Claude Code, non memoria), elenco di skill dell'account, un connettore dell'account. Assenti: blocchi di memoria dell'account e istruzioni del profilo. Una sola osservazione, quindi [Inferenza]; si ripete leggendo il contesto all'avvio di una sessione cloud.
+- **Project e routine (domanda 2).** Le istruzioni del Project (fino a 16.000 caratteri) vanno a ogni thread e alla conversazione; la memoria la leggono solo i thread cloud. Una routine creata da un Project "runs as threads in that project" e compare nella tab Routines; le routine fuori da un Project restano indipendenti. Quindi una routine del Project dovrebbe leggere la sua memoria, ma nessuna pagina lo dice in modo esplicito. [Inferenza] T1 · claude-projects; routines
+- Una routine è prompt, repo e connettori; è un account individuale. Auto-compaction nel cloud: `/compact` funziona, `/clear` no. [Verificato] T1 · [on the web](https://code.claude.com/docs/en/claude-code-on-the-web)
 
-### E. Passaggio di contesto tra chat
-- In claude.ai, con l'esecuzione di codice attiva, "Claude summarizes earlier messages to continue the conversation seamlessly"; le chat lunghe consumano più limite d'uso. Il consiglio è di aprire una nuova chat se ci si avvicina al limite. Non esiste una soglia numerica. [Verificato] T1 · [usage limits](https://support.claude.com/en/articles/11647753-understanding-usage-and-length-limits)
-- Per agenti multi-sessione le docs API indicano file di stato (progress log, checklist) letti all'avvio e aggiornati a fine sessione. [Verificato] T1 · memory tool.
-- Un documento di handoff nel Project è un pattern di comunità: [Segnale T3] da mirror Reddit ([snapshot](https://reddit.sentinel-team.org/posts/1rfwxr2/snapshots/2026-02-27T16%3A40%3A54.76432Z)). Con la Project knowledge è coerente con le docs. [Inferenza]
+### E. Chat lunghe
+- Con l'esecuzione di codice attiva claude.ai riassume i messaggi vecchi e "preserves" la cronologia completa; la sintesi non garantisce il dettaglio e le chat lunghe consumano più limite. Consigli ufficiali: Project (RAG), istruzioni brevi, file inutili rimossi, ragionamento esteso spento se non serve. [Verificato] T1 · [usage limits](https://support.claude.com/en/articles/11647753-understanding-usage-and-length-limits)
+- Un documento di handoff nel Project è un pattern di comunità ([Segnale T3]), coerente con le docs [Inferenza].
 
 ### F. Pattern esterni
-| Pattern | Fonte e Tier | Costo | Rischio |
-|---|---|---|---|
-| `AGENTS.md` più una cartella di appunti nel repo | docs ufficiali, T1 | 0 | istruzioni ignorabili, non vincolanti |
-| Server MCP `memory` ufficiale (grafo in `memory.jsonl`) | [servers](https://github.com/modelcontextprotocol/servers), 91,4k stelle, ultimo commit su `src/memory` 2026-10-19: T2 | 0 | file in chiaro |
-| mem0 | [mem0](https://github.com/mem0ai/mem0), 67,4k stelle, release "25 Sep" senza anno: T2 (anno dedotto) | libreria libera, cloud a pagamento | dati verso terzi se si usa il cloud |
-| basic-memory | [basic-memory](https://github.com/basicmachines-co/basic-memory), 4,3k stelle, AGPL-3.0, release v0.23.2 "25 Aug" senza anno: T2 (anno dedotto) | 0 | licenza AGPL |
-
-### G. Confronto breve (solo ciò che cambia una decisione)
-- **Copilot (M365).** Attiva di default. Spegnerla "doesn't remove saved memories"; le policy Purview non si applicano e l'admin non può limitare cosa entra in memoria. Le memorie stanno nella mailbox Exchange. [Verificato] T1 · [Learn](https://learn.microsoft.com/en-us/microsoft-365/copilot/copilot-personalization-memory)
-- **Gemini.** Memoria delle chat passate solo per account personali, dai 18 anni, con Keep Activity attivo; non funziona in Gems e Live. [Verificato] T1 · [help Gemini](https://support.google.com/gemini/answer/16598469?hl=en&co=GENIE.Platform%3DDesktop)
-- **ChatGPT.** Due interruttori collegati: spegnere le memorie salvate spegne anche la cronologia. Le pagine OpenAI rispondono 403: solo snippet. [Inferenza] T2.
-- **Cursor.** Rules in `.cursor/rules` e `AGENTS.md` in root e sottocartelle. Le docs e il changelog visibile (10 set - 16 ott 2026) non citano le Memories. [Verificato] T2 · [Cursor rules](https://cursor.com/docs/context/rules). Rimozione delle Memories: [Segnale T3].
-- **Conseguenza.** `AGENTS.md` è comune a Claude Code, Cursor, Copilot e Codex; solo Claude Code richiede l'import quando esiste anche `CLAUDE.md`.
-
-### H. Rischi
-- **Privacy.** In claude.ai i temi sensibili sono esclusi di default con opt-in separato; Incognito non salva; la scadenza di una chat non cancella le memorie derivate. [Verificato] T1.
-- **Avvelenamento: cosa dimostrano i paper**, tutti preprint senza sede dichiarata:
-  - [2606.04329](https://arxiv.org/abs/2606.04329) (3-giu-2026): "agents designed to write and retrieve memory more aggressively are more exploitable"; le difese anti-injection esistenti non coprono il caso. Nessun tasso numerico nell'abstract.
-  - [2512.16962](https://arxiv.org/abs/2512.16962) (MemoryGraft, 18-dic-2025): pochi record avvelenati coprono gran parte delle esperienze recuperate. Nessuna difesa proposta.
-  - [2604.02623](https://arxiv.org/abs/2604.02623) (eTAMP, 3-apr-2026): una sola osservazione contaminata avvelena la memoria; successo dell'attacco fino al 32,5% su GPT-5-mini. Nessuna difesa specifica.
-  - [Verificato] sugli abstract. **Cosa consiglio:** regola 12. [Inferenza]
-- **Superficie in Claude Code.** 2.1.284 neutralizza tag che imitano il markup nel caricamento dell'auto memory. [Verificato] T1 · changelog.
-- **Bug recenti.** Issue chiuse su github.com/anthropics: memoria claude.ai non iniettata dopo il rollout "one Claude" (#100205, 10-ott); `AGENTS.md` non caricato alla prima sessione su 2.1.296 (#101732). [Verificato] come esistenza, il fix non è riverificato · [issue chiuse](https://github.com/anthropics/claude-code/issues?q=is%3Aissue+memory+is%3Aclosed)
-
-### I. Novità ultimi 90 giorni (21-lug - 19-ott-2026)
-- **claude.ai.** 07-09 riepilogo mensile (beta, richiede memoria). 07-10 memoria per voci. 08-25 memoria in Cowork cloud, topic modificabili, opzione per i temi sensibili. 09-16 Cowork in ogni conversazione. [Verificato] T1.
-- **API.** 07-22 webhook memory store. 07-24 Opus 5 e tool modificabili senza perdere la cache. 08-01 Dreams su Opus 5. 08-19 memory stores self-hosted. 09-01 Fable 5.1, Mythos 5.1 e system message per turno. 09-14 compaction on demand. 09-22 Opus 5.5. 09-23 cache diagnostics GA. 09-28 Sonnet 5.5. 10-01 Dreams sui modelli 5.5 e 5.1. 10-07 Haiku 5.5. [Verificato] T1.
-- **Claude Code.** Da 2.1.274 a 2.1.303: voci in B. [Verificato] T1.
-
-## Raccordo con i report precedenti
-Fonti: [collegare_claude_app_a_code.md](../precedenti/collegare_claude_app_a_code.md) e [istruzioni_per_progetti.md](../precedenti/istruzioni_per_progetti.md), entrambi del 18-10-2026.
-| Affermazione del 18 ottobre | Stato al 19 ottobre | Fonte |
+| Pattern | Fonte e Tier | Stato |
 |---|---|---|
-| Memoria claude.ai = "riassunto ogni 24 h" | **Cambiata**: voci per categoria dal 10-lug-2026; le 24 h valgono solo per la legacy residua | release notes; help 11817273 |
-| Cowork usa la memoria claude.ai | **Ancora vera solo in cloud**: Cowork locale non la usa | help 11817273 |
-| Code tab: memoria claude.ai "non documentata" | **Ancora vera**; nessuna prova trovata nemmeno per le sessioni cloud | sez. D |
-| `AGENTS.md` letto da 2.1.277 senza `CLAUDE.md`, altrimenti `@AGENTS.md` | **Ancora vera**; in più 2.1.281 (Bedrock, Vertex, Foundry) e l'opzione `claude-md-and-agents-md` | changelog; memory |
-| Cursor legge `AGENTS.md`: "non verificato" | **Ora verificata**: root e sottocartelle | Cursor rules |
-| Skill dell'account sincronizzate in Code | **Coerente**: le sessioni cloud caricano le skill abilitate su claude.ai | cloud-environments |
-| `claude mcp serve` su Windows/MSIX | **Non riesaminato** (fuori tema memoria) | — |
-| Istruzioni dei Projects beta: tetto di 16.000 caratteri | **Ancora vera** | claude-projects |
-| `CLAUDE.md` sotto 200 righe | **Ancora vera** | memory |
-| Chat lunghe: nuova chat più handoff = consenso Reddit | **Parzialmente ufficiale**: sintesi automatica e consiglio di aprire una nuova chat, senza soglia | usage limits |
-| Precedenza tra istruzioni, profilo e memoria: nessuna regola | **Non riesaminato**; nessuna contraddizione trovata | — |
-| Server memory MCP "più povero del Markdown"; mem0 e basic-memory | **Coerente**; stelle e attività aggiornate in F | GitHub |
+| `AGENTS.md` più appunti nel repo | docs, T1 | costo 0, non vincolante |
+| Server MCP `memory` ufficiale | [servers](https://github.com/modelcontextprotocol/servers), 91,4k stelle, T2 | file in chiaro |
+| mem0 | [mem0](https://github.com/mem0ai/mem0), 67,4k stelle; ultimo commit 2026-10-14, T2 | dati verso terzi se si usa il cloud |
+| basic-memory | [basic-memory](https://github.com/basicmachines-co/basic-memory), 4,3k stelle; ultimo commit 2026-10-18, T2 | licenza AGPL-3.0 |
+Gli anni dei commit di mem0 e basic-memory sono ora letti da [mem0 commits](https://github.com/mem0ai/mem0/commits/main) e [basic-memory commits](https://github.com/basicmachines-co/basic-memory/commits/main): l'etichetta "anno dedotto" è caduta.
+
+### G. Concorrenti (solo ciò che cambia una decisione)
+- **Copilot (M365).** Spegnere la memoria "doesn't remove saved memories"; le memorie stanno nella mailbox Exchange. [Verificato] T1 · [Learn](https://learn.microsoft.com/en-us/microsoft-365/copilot/copilot-personalization-memory)
+- **Gemini.** Memoria delle chat solo per account personali con Keep Activity attivo. [Verificato] T1 · [help Gemini](https://support.google.com/gemini/answer/16598469?hl=en&co=GENIE.Platform%3DDesktop)
+- **ChatGPT.** Pagine OpenAI ancora 403. Dagli snippet delle pagine OpenAI: spegnere "Reference saved memories" spegne anche "Reference chat history"; con le memorie salvate attive, la cronologia si gestisce a parte; cancellare una chat non cancella una memoria salvata. [Inferenza] T2 · [snippet](https://help.openai.com/en/articles/8590148-memory-in-chatgpt-remembering-what-you-chat-about)
+- **Cursor.** Rules e `AGENTS.md` (root e sottocartelle); Memories assenti dalle docs e dal changelog ufficiale (pagine dal 17-lug al 16-ott-2026 e release 2.1 del 21-nov-2025). La rimozione dalla 2.1.17 resta solo nel forum. [Verificato] T2 per l'assenza · [rules](https://cursor.com/docs/context/rules) · [2.1](https://cursor.com/changelog/2-1); rimozione [Segnale T3]
+- `AGENTS.md` è comune a Claude Code (con import), Cursor, Copilot e Codex.
+
+### H. Rischi e avvelenamento della memoria
+- **Privacy.** Temi sensibili esclusi di default, Incognito non salva. [Verificato] T1 · help 11817273
+- [2606.04329](https://arxiv.org/pdf/2606.04329) (preprint, 18-giu-2026, testo completo): quattro canali di scrittura, nove vulnerabilità, sei classi di attacco, benchmark MPBench su due agenti (HERMES, OpenClaw) con un solo modello open (GPT-OSS-120B), non Claude. ASR medio 66,67% su HERMES e 34,25% su OpenClaw. Quattro difese anti-injection pronte all'uso: rilevazione tra 28,86% e 84,44% sugli attacchi forti, tra 10,74% e 42,50% su quelli deboli; la migliore ha 67,67% di rilevazione e 1,00% di falsi positivi. Gli autori propongono isolamento delle fonti, provenienza delle scritture, filtri nella compaction e monitoraggio dopo la scrittura (proposte, non testate qui). [Verificato] sul testo
+- [2512.16962](https://arxiv.org/pdf/2512.16962) (MemoryGraft, preprint, dic-2025): agente MetaGPT DataInterpreter con GPT-4o; 23 dei 48 record recuperati erano avvelenati (47,9%). Propone firme crittografiche e un reranking di coerenza, ma sono proposte non testate. Correzione di v2: la difesa c'è, solo teorica. [Verificato] sul testo
+- [2604.02623](https://arxiv.org/pdf/2604.02623) (eTAMP, preprint, apr-2026): agenti web; attacco fino a 32,5% su GPT-5-mini, 23,4% su GPT-5.2, 19,5% su GPT-OSS-120B; sotto stress sale fino a 8 volte. Le difese non sono valutate (limite dichiarato). [Verificato] sul testo
+- [2607.14611](https://arxiv.org/abs/2607.14611) (preprint, 16-lug-2026, solo abstract): su Claude Code e Codex (Haiku 4.5, Opus 4.7, GPT-5.2, GPT-5.5) è difficile far riscrivere i file di memoria con contenuto esterno non fidato, ma payload già presenti nei file attaccano le sessioni. [Verificato] sull'abstract
+- **Cosa fa Anthropic.** Nessuna difesa specifica per la memoria di claude.ai: la pagina dice solo "We apply safeguards and conduct evaluations to memory" (help 11817273). Per Claude Code: 2.1.284 neutralizza caratteri invisibili e tag che imitano il markup nell'auto memory; permessi, WebFetch con chiamata separata e, in cloud, VM isolate e rete limitata ([security](https://code.claude.com/docs/en/security)). Nel post [How we contain Claude](https://www.anthropic.com/engineering/how-we-contain-claude) (25-mag-2026) Anthropic indica l'avvelenamento della memoria come rischio in crescita e dice che la protezione a livello di modello non basta da sola. [Verificato] T1. Cisco riferisce una correzione nella 2.1.50 che toglie le memorie utente dal prompt di sistema e la posizione di Anthropic che l'utente locale è fidato ([Cisco](https://blogs.cisco.com/ai/identifying-and-remediating-a-persistent-memory-compromise-in-claude-code), 1-apr-2026). [Segnale T3]
+- Bug recenti (issue chiuse #100205 e #101732 su github.com/anthropics): esistenza verificata in v2, fix non riverificato.
+
+### I. Novità dopo il 19 ottobre e ultimi 90 giorni
+- Dopo il 19-ott-2026: nessuna voce nuova nel changelog di Claude Code (ultima 2.1.303), nelle release notes di claude.ai (ultima 2026-10-07), né in quelle API (ultima 2026-10-15). Nessuna cambia le regole.
+- Da v2: 2.1.299 (compaction da inattività), 2.1.296 (memoria di workspace e canale in Claude Tag), 2.1.302 (correzioni alle routine), 2026-10-15 (Compliance API restituisce "Instructions for Claude" e "Global instructions", beta Enterprise), 2026-10-07 (Haiku 5.5, 1M di contesto). [Verificato] T1 · changelog; [release notes API](https://platform.claude.com/docs/en/release-notes/overview)
+
+## Raccordo con i report: v2 e precedenti/
+| Punto | v1/v2 e report del 18 ottobre | Stato v3 |
+|---|---|---|
+| Memoria claude.ai = "riassunto ogni 24 h" | Cambiata il 10-lug-2026 (v2) | Confermata |
+| Memoria account nel cloud | "Nessuna prova trovata" | Ancora nessuna prova nelle docs; la prova su me: nessun blocco |
+| Eredità della project memory nelle routine | Non scritto da nessuna parte | Dedotta dalle docs: routine = thread del Project [Inferenza] |
+| Precedenza tra istruzioni | "Non riesaminata" | Nessuna regola ufficiale; concatenazione in Claude Code |
+| Preprint "letti solo nell'abstract" | Abstract | Testo completo; MemoryGraft ha difese proposte |
+| `AGENTS.md` e `@AGENTS.md` | Verificato | Confermato (memory) |
+| Project con GitHub | Non indagato | Sync manuale |
+| Istruzioni dei Projects beta: 16.000 caratteri | Vera | Confermata |
+| Chat lunghe: consenso Reddit | Parzialmente ufficiale | Ufficiale: sintesi automatica, nessuna soglia |
+| Cursor Memories, ChatGPT, mem0, basic-memory | Aperti o con anno dedotto | Vedi G e F |
+| `claude mcp serve` su Windows | Fuori tema | Non riesaminato |
 
 ## Tabella conflitti
-| Tema | Fonte A (data, Tier) | Fonte B (data, Tier) | Stato |
+| Tema | Fonte A | Fonte B | Stato |
 |---|---|---|---|
-| Scadenza export memoria legacy | help 11817273 ("Updated this week", T1): "until September 9, 2026" | help 12123587 ("Updated this week", T1): nessuna scadenza; release notes: nessuna voce | **Risolto**: non è un conflitto ma un silenzio; vale 11817273 e la data è passata |
-| Dreams / Auto Dream | docs Dreams (corrente, T1): API Managed Agents | implicator.ai, claudefa.st (2026, T3): funzione di Claude Code | **Risolto** a favore della T1 |
-| Memories di Cursor | docs e changelog Cursor (ott-2026, T2): nessuna menzione | forum Cursor (fine 2025, T3): rimosse dalla 2.1.x | **Non risolto**: changelog vecchio non letto |
-| Toggle di ChatGPT | snippet help.openai.com (s.d., T2): collegati | annunci OpenAI più vecchi (snippet, T2): indipendenti | **Non risolto**: pagine 403 |
-| Memoria account e Claude Code cloud | 6 pagine T1 (correnti): nessuna menzione | — | **Non risolto**: assenza di prova |
+| Scadenza export legacy | help 11817273: fino al 2026-09-09 (T1) | help 12123587: silenzio (T1) | Risolto: data passata |
+| Dreams / Auto Dream | docs Dreams: API Managed Agents (T1) | blog terzi: funzione di Code (T3) | Risolto a favore della T1 |
+| Memories di Cursor | docs e changelog ufficiale: assenti (T2) | forum, 2.1.17 (T3) | Parziale: il changelog tace, la rimozione non è confermata |
+| Toggle di ChatGPT | v2: "collegati" (snippet) | v3: dipendenza a senso unico (snippet) | Raffinato, non confermato: 403 |
+| Memoria account e Code cloud | 7 pagine T1: nessuna menzione | prova su di me: nessun blocco | Coerente: va trattata come assente |
+| MemoryGraft: difese | v2: "nessuna difesa proposta" | testo completo: due difese proposte | Risolto: v2 sbagliata |
 
-## Cosa non è stato verificato
-- Memoria chat dell'account nelle sessioni Claude Code cloud. Pagine controllate: help 11817273, cloud-environments, claude-code-on-the-web, routines, claude-projects, memory. Nessuna prova in un senso o nell'altro.
-- Eredità della project memory nelle routine create da un Project.
-- Help center OpenAI (403); Reddit e Stack Overflow rifiutati dallo strumento; Reddit visto solo da mirror.
-- Date complete dei commit di mem0 e basic-memory: GitHub mostra la data senza anno.
-- Changelog di Claude Code letto da 2.1.269 a 2.1.303 (400k caratteri su 1,1 MB); le versioni precedenti sono fuori finestra.
-- I preprint letti solo nell'abstract, non nel testo completo.
-- `claude mcp serve` e la precedenza tra istruzioni non sono stati riesaminati.
+## Cosa non è stato verificato (resta aperto)
+- Se una routine creata da un Project legga davvero la project memory: manca una frase esplicita; si può provare creandone una con una nota nella memoria.
+- La prova sul contesto vale per una sessione; non è stata ripetuta su Desktop Code tab né sulla CLI (le docs consultate non dicono nulla).
+- Help center e blog OpenAI (403), Reddit e Stack Overflow (bloccati dallo strumento).
+- Rimozione delle Memories di Cursor: il changelog ufficiale è stato letto per le pagine 1-3 e la release 2.1, non per le 2.1.x intermedie.
+- Il preprint 2607.14611 è letto solo nell'abstract. Del changelog di Claude Code la v3 ha riletto solo i primi 100K caratteri (le versioni più recenti); la finestra 2.1.269-2.1.303 è quella di v2.
+- Le voci "Instructions for Claude" non sono state messe a confronto con la memoria in un test.
 
 ## Fonti per Tier
-**Tier 1.** code.claude.com: [memory](https://code.claude.com/docs/en/memory) · [cloud-environments](https://code.claude.com/docs/en/cloud-environments) · [routines](https://code.claude.com/docs/en/routines) · [claude-projects](https://code.claude.com/docs/en/claude-projects) · [claude-code-on-the-web](https://code.claude.com/docs/en/claude-code-on-the-web) · [changelog](https://code.claude.com/docs/en/changelog) · [llms.txt](https://code.claude.com/docs/llms.txt). platform.claude.com: [memory tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool) · [context editing](https://platform.claude.com/docs/en/build-with-claude/context-editing) · [compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) · [prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) · [context windows](https://platform.claude.com/docs/en/build-with-claude/context-windows) · [dreams](https://platform.claude.com/docs/en/managed-agents/dreams) · [release notes](https://platform.claude.com/docs/en/release-notes/overview). support.claude.com: [11817273](https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context) · [12138966](https://support.claude.com/en/articles/12138966-release-notes) · [12123587](https://support.claude.com/en/articles/12123587-importing-and-exporting-your-memory-from-claude) · [9519177](https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects) · [11647753](https://support.claude.com/en/articles/11647753-understanding-usage-and-length-limits). GitHub: [issue chiuse](https://github.com/anthropics/claude-code/issues?q=is%3Aissue+memory+is%3Aclosed). arXiv (preprint): [2606.04329](https://arxiv.org/abs/2606.04329) · [2512.16962](https://arxiv.org/abs/2512.16962) · [2604.02623](https://arxiv.org/abs/2604.02623). Microsoft: [Learn](https://learn.microsoft.com/en-us/microsoft-365/copilot/copilot-personalization-memory). Google: [help Gemini](https://support.google.com/gemini/answer/16598469?hl=en&co=GENIE.Platform%3DDesktop)
-**Tier 2.** [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) · [mem0](https://github.com/mem0ai/mem0) · [basic-memory](https://github.com/basicmachines-co/basic-memory) · [Cursor rules](https://cursor.com/docs/context/rules) (provvisorio) · [help.openai.com](https://help.openai.com/en/articles/8590148-memory-in-chatgpt) (solo snippet)
-**Tier 3.** [mirror Reddit](https://reddit.sentinel-team.org/posts/1rfwxr2/snapshots/2026-02-27T16%3A40%3A54.76432Z) · [forum Cursor](https://forum.cursor.com/t/are-my-memories-gone/144057) · [implicator.ai](https://www.implicator.ai/anthropic-adds-auto-dream-to-claude-code-fixing-memory-decay-between-sessions) · [claudefa.st](https://claudefa.st/blog/guide/mechanics/auto-dream)
+**Tier 1.** code.claude.com: [memory](https://code.claude.com/docs/en/memory) · [cloud-environments](https://code.claude.com/docs/en/cloud-environments) · [routines](https://code.claude.com/docs/en/routines) · [claude-projects](https://code.claude.com/docs/en/claude-projects) · [claude-code-on-the-web](https://code.claude.com/docs/en/claude-code-on-the-web) · [changelog](https://code.claude.com/docs/en/changelog) · [desktop](https://code.claude.com/docs/en/desktop) · [security](https://code.claude.com/docs/en/security). platform.claude.com: [memory tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool) · [context editing](https://platform.claude.com/docs/en/build-with-claude/context-editing) · [compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) · [prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) · [context windows](https://platform.claude.com/docs/en/build-with-claude/context-windows) · [dreams](https://platform.claude.com/docs/en/managed-agents/dreams) · [release notes](https://platform.claude.com/docs/en/release-notes/overview). support.claude.com: [11817273](https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context) · [12138966](https://support.claude.com/en/articles/12138966-release-notes) · [12123587](https://support.claude.com/en/articles/12123587-importing-and-exporting-your-memory-from-claude) · [9519177](https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects) · [11647753](https://support.claude.com/en/articles/11647753-understanding-usage-and-length-limits) · [10167454](https://support.claude.com/en/articles/10167454-using-the-github-integration) · [10185728](https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features). anthropic.com: [How we contain Claude](https://www.anthropic.com/engineering/how-we-contain-claude). arXiv (preprint): [2606.04329](https://arxiv.org/abs/2606.04329) · [2512.16962](https://arxiv.org/abs/2512.16962) · [2604.02623](https://arxiv.org/abs/2604.02623) · [2607.14611](https://arxiv.org/abs/2607.14611). Microsoft: [Learn](https://learn.microsoft.com/en-us/microsoft-365/copilot/copilot-personalization-memory). Google: [help Gemini](https://support.google.com/gemini/answer/16598469?hl=en&co=GENIE.Platform%3DDesktop)
+**Tier 2.** [servers](https://github.com/modelcontextprotocol/servers) · [mem0](https://github.com/mem0ai/mem0) · [basic-memory](https://github.com/basicmachines-co/basic-memory) · [Cursor rules](https://cursor.com/docs/context/rules) · [Cursor 2.1](https://cursor.com/changelog/2-1) · [snippet OpenAI](https://help.openai.com/en/articles/8590148-memory-in-chatgpt-remembering-what-you-chat-about)
+**Tier 3.** [Cisco](https://blogs.cisco.com/ai/identifying-and-remediating-a-persistent-memory-compromise-in-claude-code) · [forum Cursor](https://forum.cursor.com/t/are-my-memories-gone/144057) · [implicator.ai](https://www.implicator.ai/anthropic-adds-auto-dream-to-claude-code-fixing-memory-decay-between-sessions) · [claudefa.st](https://claudefa.st/blog/guide/mechanics/auto-dream) · [mirror Reddit](https://reddit.sentinel-team.org/posts/1rfwxr2/snapshots/2026-02-27T16%3A40%3A54.76432Z)
+
+## Guida semplice
+Questa parte è per chi non è un informatico. Ogni risposta ha un esempio.
+
+**1. Che differenza c'è tra i tre CLAUDE.md?**
+Un CLAUDE.md è un foglio di istruzioni che Claude Code legge all'inizio. Cambia chi lo trova.
+- Nel repo su GitHub, ad esempio `D:\Workspace\best_practice\CLAUDE.md` dopo il push: lo legge Code sul PC, Code nel cloud e le routine, perché il cloud copia il repo.
+- Dentro la cartella di un progetto: è lo stesso file, finché non lo mandi su GitHub. Se resta solo sul PC, il cloud non lo vede.
+- Nella cartella utente, `C:\Users\Tommi\.claude\CLAUDE.md`: lo legge solo Code sul tuo PC, in tutti i progetti. Il cloud e le routine non lo vedono.
+- La chat dell'app non legge nessuno dei tre come istruzioni.
+Perché: il cloud parte con una copia pulita del repo e nient'altro.
+
+**2. Dove vanno le regole di comportamento?**
+Dipende da chi deve seguirle. Per Code: in CLAUDE.md. Per tutte le chat dell'app: nelle istruzioni del profilo. Per le chat di un solo Project: nelle istruzioni di quel Project. Per un Project di Code: nelle sue istruzioni (fino a 16.000 caratteri).
+Esempio: «rispondi in italiano» per ogni chat va nel profilo; «usa sempre il branch claude/...» va in CLAUDE.md.
+Perché: ogni strumento legge solo il proprio foglio.
+
+**3. Dove vanno memoria e conoscenze valide per qualsiasi strumento?**
+In un file del repo, scritto in modo neutro, ad esempio `D:\Workspace\best_practice\notte_01_memoria\memoria.md`. Gli altri posti lo richiamano. Se la chat dell'app deve conoscerlo, caricalo nella knowledge del Project e premi "Sync now" dopo ogni modifica.
+Perché: un file nel repo lo leggono tutti gli strumenti e ha una storia delle modifiche.
+
+**4. Perché non fare tre copie della stessa regola?**
+Perché le copie si scostano. Dopo un mese una dice «sì» e l'altra «no». Claude Code, con due istruzioni opposte, ne segue una a caso. Regola: una casa per ogni informazione, gli altri posti la richiamano.
+Esempio: la regola vive in `AGENTS.md`; `CLAUDE.md` contiene solo `@AGENTS.md`.
+
+**5. Cos'è AGENTS.md?**
+È un foglio di istruzioni letto da molti strumenti (Cursor, Codex, Copilot). Claude Code legge CLAUDE.md. Se hai solo AGENTS.md, Code lo legge; se hai anche CLAUDE.md, no. Allora scrivi dentro CLAUDE.md la riga `@AGENTS.md`: significa «copia qui quel file». Serve solo se usi più strumenti sullo stesso repo.
+
+**6. Cosa ricorda la chat e cosa ricorda Code?**
+La memoria della chat sta nell'account: ricorda le tue preferenze nelle chat dell'app (e in Cowork cloud). L'auto memory di Code è fatta di appunti che Claude scrive da solo, ad esempio in `C:\Users\Tommi\.claude\projects\`. Stanno sul PC. Dall'una all'altra non passa nulla, e nel cloud non c'è l'auto memory.
+Perché: sono due archivi diversi, e nessuna pagina ufficiale dice che si parlino.
+
+**7. Schema finale: dove va cosa**
+| Cosa | Dove | Chi lo legge |
+|---|---|---|
+| Regole del repo | `CLAUDE.md` del repo (richiama `AGENTS.md` se serve) | Code PC, cloud, routine |
+| Preferenze personali di Code | `C:\Users\Tommi\.claude\CLAUDE.md` | Code sul PC |
+| Preferenze per tutte le chat | Istruzioni del profilo | Chat dell'app |
+| Regole di un lavoro in chat | Istruzioni del Project | Chat di quel Project |
+| Conoscenze valide per tutti | File nel repo | Tutti, se richiamato |
+| Contesto di una routine | Nel prompt della routine e nel repo | La routine |
+
+**8. Tre errori comuni**
+- Mettere le regole solo in `C:\Users\Tommi\.claude\CLAUDE.md` e aspettarsi che le routine le seguano.
+- Copiare la stessa regola in profilo, Project e CLAUDE.md, e poi correggerne una sola.
+- Credere che la memoria obblighi Claude: è un promemoria, non un divieto. Per un divieto servono gli hook.
