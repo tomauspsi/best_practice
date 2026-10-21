@@ -10,7 +10,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-root = Path(sys.argv[1] if len(sys.argv) > 1 else "notte_01_memoria")
+root = Path(sys.argv[1] if len(sys.argv) > 1 else "ricerche")
 errors, warns = [], []
 
 

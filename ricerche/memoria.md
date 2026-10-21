@@ -105,7 +105,7 @@ Gli anni dei commit di mem0 e basic-memory sono ora letti da [mem0 commits](http
 - Dopo il 19-ott-2026: nessuna voce nuova nel changelog di Claude Code (ultima 2.1.303), nelle release notes di claude.ai (ultima 2026-10-07), né in quelle API (ultima 2026-10-15). Nessuna cambia le regole.
 - Da v2: 2.1.299 (compaction da inattività), 2.1.296 (memoria di workspace e canale in Claude Tag), 2.1.302 (correzioni alle routine), 2026-10-15 (Compliance API restituisce "Instructions for Claude" e "Global instructions", beta Enterprise), 2026-10-07 (Haiku 5.5, 1M di contesto). [Verificato] T1 · changelog; [release notes API](https://platform.claude.com/docs/en/release-notes/overview)
 
-## Raccordo con i report: v2 e precedenti/
+## Raccordo con i report: v2 e report del 18 ottobre (ora in ricerche)
 | Punto | v1/v2 e report del 18 ottobre | Stato v3 |
 |---|---|---|
 | Memoria claude.ai = "riassunto ogni 24 h" | Cambiata il 10-lug-2026 (v2) | Confermata |
@@ -160,7 +160,7 @@ Esempio: «rispondi in italiano» per ogni chat va nel profilo; «usa sempre il 
 Perché: ogni strumento legge solo il proprio foglio.
 
 **3. Dove vanno memoria e conoscenze valide per qualsiasi strumento?**
-In un file del repo, scritto in modo neutro, ad esempio `D:\Workspace\best_practice\notte_01_memoria\memoria.md`. Gli altri posti lo richiamano. Se la chat dell'app deve conoscerlo, caricalo nella knowledge del Project e premi "Sync now" dopo ogni modifica.
+In un file del repo, scritto in modo neutro, ad esempio `D:\Workspace\best_practice\ricerche\memoria.md`. Gli altri posti lo richiamano. Se la chat dell'app deve conoscerlo, caricalo nella knowledge del Project e premi "Sync now" dopo ogni modifica.
 Perché: un file nel repo lo leggono tutti gli strumenti e ha una storia delle modifiche.
 
 **4. Perché non fare tre copie della stessa regola?**

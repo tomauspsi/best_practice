@@ -13,14 +13,14 @@ Un set di README di best practice su come usare Claude, da usare come fonte di v
 Ogni README è datato, con regole operative brevi in testa e prove sotto, e va rivalutato quando esce un nuovo modello (ad esempio Opus 5.6).
 
 ## Stato (19 ottobre 2026)
-- Tema 4 (memoria): v3 conclusiva unita in `main` il 19 ottobre (PR #3, `notte_01_memoria/`). v1 con 4 sottoagenti (circa 3 USD, 55 letture); v2 con un solo agente (2 USD, 33 letture); v3 con un solo agente (27 letture, 4 ricerche, circa 10 minuti; costo non separabile dal resto della chat). `memoria.md` è a 190 righe: 15 regole operative, stato dell'arte, raccordo, conflitti e Guida semplice per l'utente. Da rivalutare con un nuovo modello Claude (ad esempio Opus 5.6), con release notes che toccano la memoria, o il 2026-12-18.
+- Tema 4 (memoria): v3 conclusiva unita in `main` il 19 ottobre (PR #3, file in `ricerche/`). v1 con 4 sottoagenti (circa 3 USD, 55 letture); v2 con un solo agente (2 USD, 33 letture); v3 con un solo agente (27 letture, 4 ricerche, circa 10 minuti; costo non separabile dal resto della chat). `memoria.md` è a 190 righe: 15 regole operative, stato dell'arte, raccordo, conflitti e Guida semplice per l'utente. Da rivalutare con un nuovo modello Claude (ad esempio Opus 5.6), con release notes che toccano la memoria, o il 2026-12-18.
 - Restano aperte dopo la v3: se le routine create da un Project ereditino la project memory (dedotta, non scritta); memoria di ChatGPT (pagine OpenAI in 403, solo snippet); rimozione delle Memories di Cursor (solo forum, [Segnale T3]).
-- Temi 2 e collegamento app-Code: esistono due report del 18 ottobre in `precedenti/`, scritti con un metodo diverso e non ancora riverificati con il metodo delle notti.
+- Temi 2 e collegamento app-Code: esistono due report del 18 ottobre in `ricerche/` (`collegare_claude_app_a_code.md` e `istruzioni_per_progetti.md`), scritti con un metodo diverso e non ancora riverificati con il metodo delle notti.
 - Temi 1, 3, 5: da fare.
 
 ## Repo
 `tomauspsi/best_practice`, privato. Cartella locale: `D:\Workspace\best_practice`.
-- `main`: branch di integrazione e fonte di verità (notte 01 v1+v2+v3, `precedenti/`, `tools/validate_notte.py`, questo file). Ogni run lavora su un branch `claude/...` creato da `main` e apre una PR in bozza verso `main`; la unisce l'utente.
+- `main`: branch di integrazione e fonte di verità (la ricerca sulla memoria e i due report vecchi in `ricerche/`, `guida_memoria.md`, `tools/validate_notte.py`, questo file). Ogni run lavora su un branch `claude/...` creato da `main` e apre una PR in bozza verso `main`; la unisce l'utente.
 - `claude/determined-hamilton-m6vkag` e `claude/correzione-notte-01`: storici, già assorbiti in `main`; si possono cancellare.
 - `main` è il branch predefinito del repo (impostato dall'utente il 19 ottobre). Le routine clonano quel branch.
 
@@ -33,7 +33,7 @@ Ogni README è datato, con regole operative brevi in testa e prove sotto, e va r
 - Un claim su cosa FA un prodotto richiede Tier 1 corrente. Solo Tier 3 resta [Segnale T3]. Tag: [Verificato] [Inferenza] [Obsoleto/Conflitto] [Segnale T3]. [Verificato] solo dopo lettura reale.
 - Siti rifiutati dagli strumenti (Reddit, Stack Overflow; 403 su openai.com, help.openai.com, Medium, api.github.com; Discord vuoto): non si aggirano con proxy, cache o mirror. Si registra il blocco e si passa a una fonte equivalente.
 - Un'attività pianificata parte con i connettori che l'utente seleziona nell'interfaccia (nella v3 erano presenti GitHub e Google Drive). L'agente usa solo GitHub, per branch e pull request.
-- Ogni notte produce `notte_NN_tema/` con `README`, `registro_fonti.csv` (vocabolario chiuso), `calibrazione.md`, `log_run.md`. Si chiude con `tools/validate_notte.py`; oggi è legato alla notte 01 (voci C1-C12) e va generalizzato prima della notte 02.
+- Ogni ricerca produce quattro file in `ricerche/`: il testo del tema (oggi `memoria.md`), `registro_fonti.csv` (vocabolario chiuso), `calibrazione.md`, `log_run.md`. Con più temi i nomi si scontrano: prima della notte 02 va deciso se usare una sottocartella per tema (`ricerche/memoria/`). Si chiude con `tools/validate_notte.py` (lo legge da `ricerche/`); oggi è legato alla notte 01 (voci C1-C12) e va generalizzato prima della notte 02.
 - Si scrive solo su branch `claude/...`, con PR in bozza.
 
 ## Scoperte che cambiano il modo di lavorare
@@ -68,6 +68,6 @@ Fatti il 19 ottobre: PR #1, #2 e #3 unite; brief salvato come `CLAUDE.md`; `main
 1. L'utente, se vuole, cancella i branch storici su GitHub.
 2. Riordinare nomi e posizione dei file del repo (nomi in snake_case di due o tre parole, minuscoli) e i quattro file di prompt e report vecchi: proposta da approvare.
 3. Generalizzare `tools/validate_notte.py`: oggi controlla le voci C1-C12 della notte 01 e "Sottoagenti: 0", quindi dà 12 errori su una run diversa.
-4. Notte 02, tema 1 (comportamento: AGENTS.md e CLAUDE.md), come v1, partendo dall'elenco domini in `notte_01_memoria/calibrazione.md` e dalle regole di questo file.
+4. Notte 02, tema 1 (comportamento: AGENTS.md e CLAUDE.md), come v1, partendo dall'elenco domini in `ricerche/calibrazione.md` e dalle regole di questo file.
 5. Ogni run si programma come attività cloud una tantum, con notifica push, dopo la revisione della precedente; titolo e prompt li prepara Claude.
 6. A README stabili, copiarli nel Project "Istruzioni Claude" per le chat dell'app e premere "Sync now" dopo ogni versione nuova.

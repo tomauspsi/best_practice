@@ -23,7 +23,7 @@
 - 78 righe: T1 38 · T2 26 · T3 14.
 - Esiti: ok 54, ok parziale 4, snippet 7, 403 6, bloccato dallo strumento 3, redirect 2, 404 1, vuoto 1.
 - Metodo: fetch 71, snippet 7.
-Comando: `python3 -I -c "import csv,collections; r=list(csv.DictReader(open('notte_01_memoria/registro_fonti.csv'))); print(collections.Counter(x['tier'] for x in r))"`
+Comando: `python3 -I -c "import csv,collections; r=list(csv.DictReader(open('ricerche/registro_fonti.csv'))); print(collections.Counter(x['tier'] for x in r))"`
 
 ## Nuove osservazioni della v3
 - **PDF di arXiv.** WebFetch restituisce i byte del PDF, non il testo; il file viene salvato in locale. Si converte con `pdftotext -layout` (presente nell'ambiente) in una cartella a parte e si legge il testo: così i preprint sono letti per intero. L'abstract da solo (v2) aveva portato a un errore: MemoryGraft propone difese.
