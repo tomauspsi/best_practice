@@ -37,20 +37,31 @@ Come funziona il connettore Drive, secondo la guida ufficiale:
 
 - Claude legge un file di Drive solo quando glielo chiedi o glielo alleghi, e legge la versione più recente.
 - Dentro un Project, un documento Google resta aggiornato da solo. Funziona però solo nei Project privati, non in quelli condivisi.
-- Claude può anche creare e salvare file su Drive.
+- Claude può anche creare e salvare file nuovi su Drive. Che possa modificare un documento già esistente non è scritto nelle pagine ufficiali che ho letto: va provato.
 - Un connettore che aggiungi su claude.ai compare anche in Claude Code, se ti sei collegato con l'abbonamento. La pagina di Drive non nomina Claude Code, ma una routine di prova ha visto il connettore.
 
 Il punto da tenere a mente: non è una memoria. È un file che Claude va a leggere quando qualcuno gli dice di farlo. Non entra nel contesto da solo.
 
 La mia valutazione, non una regola ufficiale (nessuna fonte confronta Drive e repo):
 
-- **Per i file che servono agli agenti** (regole, ricerche, istruzioni): meglio il repo `D:\Workspace\best_practice`. Ha la storia delle modifiche, lo legge Code ovunque, anche nel cloud, e un Project della chat può collegarlo con "Sync now".
+- **Per i file che servono agli agenti** (regole, ricerche, istruzioni): meglio il repo `D:\Workspace\best_practice`. Ha la storia delle modifiche, lo legge Code ovunque, anche nel cloud, e un Project della chat può collegarlo e leggerlo con "Sync now" (solo lettura, vedi sotto).
 - **Drive ha senso** per un documento che vuoi modificare a mano dal telefono o dal browser e far leggere alle chat, e che non è sensibile.
 - **Non fare le due cose insieme sullo stesso testo.** Due copie si scostano, e Claude può seguire quella sbagliata.
 - **Attenzione alle attività programmate.** Partono con tutti i connettori del tuo account e, secondo la guida ufficiale, usano anche gli strumenti di scrittura senza chiedere. Se Drive è collegato, una routine potrebbe creare o modificare file lì. Il divieto di usarlo va scritto in ogni prompt, oppure si toglie il connettore dall'attività.
 - **Per sapere dove guardare:** il file di Drive va richiamato nelle istruzioni, per esempio "all'inizio leggi il file X su Drive". Senza questa riga nessuno lo apre.
 
 Conclusione pratica: un unico file su Drive "condiviso da tutte le chat" funziona solo se ogni chat ha l'istruzione di aprirlo e Drive è collegato. Meglio la regola semplice: la verità sta nel repo, gli altri posti la richiamano.
+
+## La chat può scrivere nei file del repo?
+
+No. Il collegamento tra la chat (o un Project) e un repo GitHub è solo di lettura: Claude legge i nomi e il contenuto dei file, non vede cronologia, pull request né issue. Per modificare file e aprire pull request serve Claude Code.
+
+Conseguenza pratica, se non vuoi usare Code né fare copia e incolla:
+- La memoria tra le chat di uno stesso Project esiste già, e si aggiorna da sola: è la memoria del Project. Parti da lì.
+- Un file nel repo collegato al Project serve solo se qualcuno lo aggiorna: tu, oppure Claude Code.
+- Un documento Google su Drive può essere letto dal Project; se la chat riesca anche ad aggiornarlo non è scritto, va provato.
+
+Una prova semplice, in un Project privato: scrivi «Ricorda per questo Project: rispondi sempre in italiano e parti dalla conclusione». Poi apri una chat nuova nello stesso Project e guarda se la regola viene seguita, e se compare la voce in Impostazioni > Memoria.
 
 ## Dove mettere cosa
 
@@ -89,11 +100,12 @@ Tienili brevi: più sono lunghi, meno Claude li segue. Ciò che vale solo per un
 - Non far scrivere in memoria testo preso da pagine web senza rileggerlo: dei testi avvelenati possono finire nella memoria di un agente. Le ricerche lo mostrano su altri modelli, non su Claude, ma il rischio vale per qualsiasi agente.
 - Dati sensibili: non metterli nella memoria della chat né nei file del repo. Cancellare una chat non cancella le memorie che ne sono derivate.
 - Le chat molto lunghe peggiorano: Claude riassume i messaggi vecchi e perde dettagli. Meglio aprire una chat nuova dentro lo stesso Project e passargli un breve riassunto del punto a cui eri arrivato.
-- Un Project della chat collegato a GitHub non si aggiorna da solo: premi "Sync now" dopo ogni modifica.
+- Un Project della chat collegato a GitHub non si aggiorna da solo: premi "Sync now" dopo ogni modifica. E il collegamento è solo di lettura.
 
 ## Cosa non sappiamo ancora
 
 - Se una routine creata da un Project legga la memoria di quel Project: le guide dicono che parte come un thread del Project, ma non lo scrivono.
+- Se la chat riesca a modificare un documento Google già esistente su Drive: le pagine ufficiali parlano solo di leggere e creare file.
 - Come funziona la memoria di ChatGPT in dettaglio: le pagine ufficiali non erano leggibili.
 - Se Cursor abbia davvero tolto la sua funzione Memories: lo dice solo un forum.
 
@@ -101,7 +113,7 @@ Tienili brevi: più sono lunghi, meno Claude li segue. Ciò che vale solo per un
 
 1. Tieni il testo vero nel repo, in file brevi e neutri.
 2. Metti nel `CLAUDE.md` del repo le regole per gli agenti, e richiama i file lunghi invece di copiarli.
-3. Nel Project della chat, scrivi poche istruzioni di comportamento e collega il repo, o carica i file; poi premi "Sync now" a ogni novità.
+3. Nel Project della chat, scrivi poche istruzioni di comportamento e lascia lavorare la memoria del Project. Se ti serve un file di riferimento, collega il repo o carica il file; poi premi "Sync now" a ogni novità.
 4. Lascia Drive per i documenti che modifichi a mano e che non sono sensibili, e richiamali per nome.
 5. Controlla ogni tanto cosa ha salvato Claude da solo, in Impostazioni > Memoria e nella cartella `C:\Users\Tommi\.claude\projects\`, e cancella ciò che è sbagliato o vecchio.
 
