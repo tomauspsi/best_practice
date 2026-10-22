@@ -16,7 +16,6 @@ Ultimo aggiornamento: 22 ottobre 2026. Ogni documento è datato e va rivalutato 
 | `ricerche/registro_fonti.csv` | Fonti lette, con livello di affidabilità (Tier) ed esito |
 | `ricerche/calibrazione.md` | Quali siti si leggono, quali sono bloccati, soglie |
 | `ricerche/log_run.md` | Diario dell'ultima run |
-| `tools/validate_notte.py` | Controllo automatico dei file di una run (da generalizzare) |
 
 ## Temi
 
