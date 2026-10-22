@@ -160,7 +160,7 @@ Esempio: «rispondi in italiano» per ogni chat va nel profilo; «usa sempre il 
 Perché: ogni strumento legge solo il proprio foglio.
 
 **3. Dove vanno memoria e conoscenze valide per qualsiasi strumento?**
-In un file del repo, scritto in modo neutro, ad esempio `D:\Workspace\best_practice\notte_01_memoria\memoria.md`. Gli altri posti lo richiamano. Se la chat dell'app deve conoscerlo, caricalo nella knowledge del Project e premi "Sync now" dopo ogni modifica.
+In un file del repo, scritto in modo neutro, ad esempio `D:\Workspace\best_practice\ricerche\memoria.md`. Gli altri posti lo richiamano. Se la chat dell'app deve conoscerlo, caricalo nella knowledge del Project e premi "Sync now" dopo ogni modifica.
 Perché: un file nel repo lo leggono tutti gli strumenti e ha una storia delle modifiche.
 
 **4. Perché non fare tre copie della stessa regola?**
