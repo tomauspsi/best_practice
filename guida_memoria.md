@@ -72,7 +72,7 @@ Una prova semplice, in un Project privato: scrivi «Ricorda per questo Project: 
 | Le tue preferenze personali, solo per Code | `C:\Users\Tommi\.claude\CLAUDE.md` | Code sul PC |
 | Come vuoi che Claude si comporti in ogni chat | Istruzioni del profilo in claude.ai | Le chat dell'app |
 | Come comportarsi in un lavoro di chat | Istruzioni del Project | Le chat di quel Project |
-| Conoscenza valida per qualsiasi strumento | Un file neutro nel repo, per esempio `D:\Workspace\best_practice\notte_01_memoria\memoria.md` | Tutti, se richiamato |
+| Conoscenza valida per qualsiasi strumento | Un file neutro nel repo, per esempio `D:\Workspace\best_practice\ricerche\memoria.md` | Tutti, se richiamato |
 | Cosa deve sapere una routine | Nel prompt della routine e nel repo | La routine |
 | Stato di un lavoro tra una sessione e l'altra | Un file di appunti nel repo, aggiornato a fine lavoro | La sessione successiva |
 
