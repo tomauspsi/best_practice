@@ -1,6 +1,6 @@
 # Memoria di Claude: guida semplice
 
-Valida al 19 ottobre 2026. Da rivedere quando esce un nuovo modello di Claude o quando le novità ufficiali toccano la memoria.  
+Scritta il 19 ottobre 2026, corretta il 25 ottobre 2026. Da rivedere quando esce un nuovo modello di Claude o quando le novità ufficiali toccano la memoria.  
 Le prove, le fonti e il dettaglio tecnico, per gli agenti, stanno in `ricerche`. Questo file è per te.
 
 ## In una frase
@@ -20,7 +20,26 @@ Non esiste una memoria unica di Claude. Esistono più "quaderni" separati, e ogn
 | Memoria automatica di Code | Appunti che Claude Code scrive da solo | Claude Code | `C:\Users\Tommi\.claude\projects\` sul tuo PC | Claude Code sul PC |
 | Memoria di un Project di Code | Appunti del lavoro di un Project di Claude Code (ancora in prova) | Claude Code | Nel Project, nel cloud | I thread cloud di quel Project |
 
-La memoria della chat è poca per scelta: Claude non salva da solo i temi sensibili (salute, religione, politica) e non salva mai documenti d'identità o conti. La vedi e la modifichi in Impostazioni > Memoria.
+La memoria della chat è poca per scelta: Claude non salva da solo i temi sensibili (salute, religione, politica) e non salva mai documenti d'identità o conti. La vedi in **Impostazioni > Il tuo Claude** (in inglese Settings > Your Claude), cliccando **Gestisci** (Manage) accanto a "La tua memoria" (Your memory). I nomi in italiano possono variare: vale la voce inglese ufficiale. Nella versione più vecchia del menu era Impostazioni > Memoria.
+
+Come si cancella e si modifica:
+- La pagina ufficiale dice che la memoria è fatta di singoli argomenti, ciascuno modificabile o cancellabile. **Nel tuo menu, il 25 ottobre, potevi cancellare solo per categoria**, non una voce alla volta. Vale quello che vedi tu.
+- In chat puoi sempre chiedere a Claude di ricordare, cambiare o dimenticare una cosa precisa. Vale dalla chat successiva.
+- Cancellando una categoria togli tutte le voci di quella categoria, comprese quelle che avevi chiesto di tenere. Prima di cancellare, rileggile.
+- Ogni Project ha la sua memoria. Per tenerla separata da quella generale, spegni "Usa la memoria dell'account" nella pagina del Project.
+- Nelle chat in incognito non si salva niente.
+
+## Regole sempre valide: Istruzioni, non memoria
+
+Prova fatta da te il 25 ottobre con Haiku 5.5. La regola «ogni risposta comincia con Conclusione:»:
+- salvata **solo nella memoria del Project**: una chat aperta subito dopo non l'ha seguita;
+- scritta nelle **Istruzioni del Project**: è stata seguita.
+
+Una sola prova, ma la scelta pratica è chiara:
+- **Istruzioni** (del profilo o del Project): le regole che devono valere sempre, come il formato delle risposte o la lingua.
+- **Memoria**: i fatti, cioè cosa stai facendo, cosa hai deciso, cosa ti piace.
+- La memoria è un promemoria che Claude può usare o no, e può arrivare con ritardo. Le Istruzioni le legge ogni volta.
+- Non scrivere la stessa regola in tutti e due i posti.
 
 ## Cosa NON si parlano
 
@@ -68,7 +87,7 @@ Conseguenza pratica, se non vuoi usare Code né fare copia e incolla:
 - Un file nel repo collegato al Project serve solo se qualcuno lo aggiorna: tu, oppure Claude Code.
 - Un documento Google su Drive, invece, la chat lo può anche modificare (vedi la sezione sopra). Per la memoria della chat è la strada più comoda.
 
-Una prova semplice, in un Project privato: scrivi «Ricorda per questo Project: rispondi sempre in italiano e parti dalla conclusione». Poi apri una chat nuova nello stesso Project e guarda se la regola viene seguita, e se compare la voce in Impostazioni > Memoria.
+Una prova semplice, in un Project privato: scrivi «Ricorda per questo Project: rispondi sempre in italiano e parti dalla conclusione». Poi apri una chat nuova nello stesso Project e guarda se la regola viene seguita, e se compare la voce in Impostazioni > Il tuo Claude > Gestisci. Se non viene seguita, spostala nelle Istruzioni del Project (vedi la sezione sopra).
 
 ## Dove mettere cosa
 
@@ -112,6 +131,8 @@ Tienili brevi: più sono lunghi, meno Claude li segue. Ciò che vale solo per un
 
 ## Cosa non sappiamo ancora
 
+- Se la cancellazione di una voce alla volta esista nel tuo menu: la pagina ufficiale la descrive, il tuo menu il 25 ottobre mostrava solo la cancellazione per categoria. Può dipendere dal tipo di piano o dalla versione dell'app.
+
 - Se una routine creata da un Project legga la memoria di quel Project: le guide dicono che parte come un thread del Project, ma non lo scrivono.
 - Se la modifica di un documento Google dalla chat funzioni davvero nel tuo caso: le pagine ufficiali la descrivono, ma una di esse la chiama "in prova" e un'altra no. Prova: crea un documento privato `passaggio` con tre righe, aggiungilo a un Project privato, incolla il link in chat e scrivi «aggiungi in fondo questa decisione: usiamo il metodo X». Guarda se la modifica compare nel pannello. Poi apri una chat nuova nello stesso Project e chiedi «cosa c'è scritto in passaggio?».
 - Come funziona la memoria di ChatGPT in dettaglio: le pagine ufficiali non erano leggibili.
@@ -121,13 +142,13 @@ Tienili brevi: più sono lunghi, meno Claude li segue. Ciò che vale solo per un
 
 1. Tieni il testo vero nel repo, in file brevi e neutri.
 2. Metti nel `CLAUDE.md` del repo le regole per gli agenti, e richiama i file lunghi invece di copiarli.
-3. Nel Project della chat, scrivi poche istruzioni di comportamento e lascia lavorare la memoria del Project.
+3. Nel Project della chat, scrivi nelle Istruzioni le poche regole che devono valere sempre, e lascia lavorare la memoria del Project per i fatti.
 4. Se ti serve più controllo, aggiungi al Project un documento Google privato come memoria, e chiedi a Claude di aggiornarlo a fine lavoro. Per i file di riferimento che non cambiano, puoi invece collegare il repo (sola lettura) e premere "Sync now" a ogni novità.
-5. Controlla ogni tanto cosa ha salvato Claude da solo, in Impostazioni > Memoria e nella cartella `C:\Users\Tommi\.claude\projects\`, e cancella ciò che è sbagliato o vecchio.
+5. Controlla ogni tanto cosa ha salvato Claude da solo, in Impostazioni > Il tuo Claude > Gestisci e nella cartella `C:\Users\Tommi\.claude\projects\`, e cancella ciò che è sbagliato o vecchio.
 
 ## Dove controllare
 
-- [Memoria e ricerca nelle chat](https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context)
+- [Memoria e ricerca nelle chat](https://support.claude.com/en/articles/11817273)
 - [Come Claude Code ricorda un progetto](https://code.claude.com/docs/en/memory)
 - [Cosa vede una sessione cloud](https://code.claude.com/docs/en/cloud-environments)
 - [Connettori Google](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors)
