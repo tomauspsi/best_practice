@@ -12,16 +12,17 @@ Un set di README di best practice su come usare Claude, da usare come fonte di v
 5. programmazione delle attività
 Ogni README è datato, con regole operative brevi in testa e prove sotto, e va rivalutato quando esce un nuovo modello (ad esempio Opus 5.6).
 
-## Stato (19 ottobre 2026)
+## Stato (aggiornato il 25 ottobre 2026)
 - Tema 4 (memoria): v3 conclusiva unita in `main` il 19 ottobre (PR #3, oggi in `ricerche/`). v1 con 4 sottoagenti (circa 3 USD, 55 letture); v2 con un solo agente (2 USD, 33 letture); v3 con un solo agente (27 letture, 4 ricerche, circa 10 minuti; costo non separabile dal resto della chat). `memoria.md` è a 190 righe: 15 regole operative, stato dell'arte, raccordo, conflitti e Guida semplice per l'utente. Da rivalutare con un nuovo modello Claude (ad esempio Opus 5.6), con release notes che toccano la memoria, o il 2026-12-18.
 - Restano aperte dopo la v3: se le routine create da un Project ereditino la project memory (dedotta, non scritta); memoria di ChatGPT (pagine OpenAI in 403, solo snippet); rimozione delle Memories di Cursor (solo forum, [Segnale T3]).
 - Temi 2 e collegamento app-Code: esistono due report del 18 ottobre in `ricerche/` (`istruzioni_per_progetti.md`, `collegare_claude_app_a_code.md`), scritti con un metodo diverso e non ancora riverificati con il metodo delle notti.
 - Temi 1, 3, 5: da fare.
+- Dal 19 al 25 ottobre (lavoro in chat, senza spesa di run): `guida_memoria.md` scritta in italiano semplice; `tools/validate_notte.py` rimosso da `main` il 22 ottobre; il Project "Istruzioni Claude" ripulito il 25 ottobre (nessun documento, restano solo i file di memoria del Project); prova sulla memoria fatta dall'utente (vedi "Scoperte").
 
 ## Repo
 `tomauspsi/best_practice`, privato. Cartella locale: `D:\Workspace\best_practice`.
-- `main`: branch di integrazione e fonte di verità (`ricerche/`, `guida_memoria.md`, `tools/validate_notte.py`, questo file). Ogni run lavora su un branch `claude/...` creato da `main` e apre una PR in bozza verso `main`; la unisce l'utente.
-- `claude/determined-hamilton-m6vkag` e `claude/correzione-notte-01`: storici, già assorbiti in `main`; si possono cancellare.
+- `main`: branch di integrazione e fonte di verità (`ricerche/`, `guida_memoria.md`, `README.md`, questo file). Ogni run lavora su un branch `claude/...` creato da `main` e apre una PR in bozza verso `main`; la unisce l'utente.
+- Branch storici, si possono cancellare su GitHub (decide l'utente): `claude/determined-hamilton-m6vkag` e `claude/correzione-notte-01` (contenuto già in `main` tramite PR), `claude/guida-drive`, `claude/guida-sola-lettura`, `claude/readme-fedele` (nessun commit fuori da `main`). `claude/sistema-riferimenti` ha 1 commit non unito (21 ottobre, nomi nuovi nei riferimenti, tocca anche il validatore ormai rimosso): da guardare prima di cancellarlo.
 - `main` è il branch predefinito del repo (impostato dall'utente il 19 ottobre). Le routine clonano quel branch.
 
 ## Metodo confermato dalle run
@@ -33,13 +34,16 @@ Ogni README è datato, con regole operative brevi in testa e prove sotto, e va r
 - Un claim su cosa FA un prodotto richiede Tier 1 corrente. Solo Tier 3 resta [Segnale T3]. Tag: [Verificato] [Inferenza] [Obsoleto/Conflitto] [Segnale T3]. [Verificato] solo dopo lettura reale.
 - Siti rifiutati dagli strumenti (Reddit, Stack Overflow; 403 su openai.com, help.openai.com, Medium, api.github.com; Discord vuoto): non si aggirano con proxy, cache o mirror. Si registra il blocco e si passa a una fonte equivalente.
 - Un'attività pianificata parte con i connettori che l'utente seleziona nell'interfaccia (nella v3 erano presenti GitHub e Google Drive). L'agente usa solo GitHub, per branch e pull request.
-- Ogni notte produce `notte_NN_tema/` con `README`, `registro_fonti.csv` (vocabolario chiuso), `calibrazione.md`, `log_run.md`. Si chiude con `tools/validate_notte.py`; oggi è legato alla notte 01 (voci C1-C12) e va generalizzato prima della notte 02.
+- Ogni notte produce un README del tema, `registro_fonti.csv` (vocabolario chiuso), `calibrazione.md` e `log_run.md`. Oggi i file della notte 01 stanno in `ricerche/`; dove mettere quelli delle notti successive (per esempio una sottocartella per tema) si decide nel prompt della notte 02, con l'utente. Il validatore `tools/validate_notte.py` non c'è più in `main` (legato alla notte 01): rifarne uno solo se serve davvero.
 - Si scrive solo su branch `claude/...`, con PR in bozza.
 
 ## Scoperte che cambiano il modo di lavorare
 - Una sessione cloud fresca vede solo il repo (`CLAUDE.md`, `.claude/rules/`, skill del repo). Non vede `~/.claude` né l'auto memory locale. Nessuna prova che la memoria chat dell'account arrivi nelle sessioni Code cloud.
 - Confermato dalla v3 con una prova su una sessione cloud fresca: nessun blocco di memoria dell'account e nessuna istruzione del profilo nel contesto. Resta [Inferenza]: nessuna pagina ufficiale dice il contrario.
 - Quindi le regole permanenti vanno in questo `CLAUDE.md` (sotto 200 righe) e i prompt delle attività restano brevi.
+- Prova dell'utente del 25 ottobre (chat dell'app, Haiku 5.5): una regola di formato salvata solo nella memoria del Project non è stata applicata in una chat aperta subito dopo; la stessa regola scritta nelle Istruzioni del Project è stata applicata. Una sola prova, ma basta per la scelta pratica: le regole che devono valere sempre vanno nelle Istruzioni (o in `CLAUDE.md` per Code), la memoria serve per i fatti.
+- Nell'interfaccia dell'utente le voci di memoria della chat si cancellano solo per categoria, non una per una; modificarle a voce singola può farlo Claude con gli strumenti di memoria. Il percorso ufficiale dei menu è Settings > Your Claude > Manage (più vecchio: Settings > Memory): `guida_memoria.md` va corretta di conseguenza.
+- Un piccolo modello può sbagliare un dettaglio pur seguendo la regola (Haiku 5.5 ha scritto che novembre è il decimo mese): per ricerche e controlli serve un modello più forte.
 - Per un Project di chat collegato a un repo GitHub, la knowledge si aggiorna solo con "Sync now": va premuto dopo ogni modifica ai README.
 - Una sola casa per ogni informazione: se la stessa regola sta in profilo, Project e `CLAUDE.md`, Claude può seguirne una a caso. Con Cursor o Codex serve `AGENTS.md`; con entrambi i file presenti, `@AGENTS.md` dentro `CLAUDE.md`.
 
@@ -64,10 +68,14 @@ Lettura dei dati: il costo segue letture, chiamate e strumenti (circa 0,06 USD a
 - Tono calmo e caldo, qualche immagine sobria; con numeri, percorsi e comandi precisione asciutta. Controlla a campione alla fonte prima di scrivere "verificato".
 
 ## Prossimi passi (ciascuno chiede l'OK dell'utente)
-Fatti il 19 ottobre: PR #1, #2 e #3 unite; brief salvato come `CLAUDE.md`; `main` creato; tema 4 (memoria) chiuso in v3.
-1. L'utente, se vuole, cancella i branch storici su GitHub.
-2. Riordinare nomi e posizione dei file del repo (nomi in snake_case di due o tre parole, minuscoli) e i quattro file di prompt e report vecchi: proposta da approvare.
-3. Generalizzare `tools/validate_notte.py`: oggi controlla le voci C1-C12 della notte 01 e "Sottoagenti: 0", quindi dà 12 errori su una run diversa.
-4. Notte 02, tema 1 (comportamento: AGENTS.md e CLAUDE.md), come v1, partendo dall'elenco domini in `ricerche/calibrazione.md` e dalle regole di questo file.
-5. Ogni run si programma come attività cloud una tantum, con notifica push, dopo la revisione della precedente; titolo e prompt li prepara Claude.
-6. A README stabili, copiarli nel Project "Istruzioni Claude" per le chat dell'app e premere "Sync now" dopo ogni versione nuova.
+Fatti: PR #1, #2 e #3 (19 ottobre); tema 4 (memoria) chiuso in v3; `guida_memoria.md`; validatore rimosso; Project ripulito (25 ottobre); questo file aggiornato (25 ottobre, PR in bozza).
+1. Correggere `guida_memoria.md`: nome dei menu (Settings > Your Claude > Manage), voci cancellabili solo per categoria, Istruzioni al posto della memoria per le regole sempre valide.
+2. Prova dell'utente con un documento Google separato da "Memoria condivisa" (quella è della finanza, da non mischiare): verificare se una chat nuova nel Project lo legge e lo aggiorna.
+3. `AGENTS.md` solo se l'utente lavora anche con Cursor o Codex: in quel caso `@AGENTS.md` dentro `CLAUDE.md`.
+4. Se un documento Google fa da memoria, togliere il connettore Drive dalle attività di ricerca (restano solo GitHub e gli strumenti web).
+5. L'utente, se vuole, cancella i branch storici su GitHub (vedi sopra).
+6. Notte 02, tema 1 (comportamento: AGENTS.md e CLAUDE.md), come v1, partendo dall'elenco domini in `ricerche/calibrazione.md` e dalle regole di questo file. Prima, scegliere la posizione dei file (vedi "Metodo").
+7. Ogni run si programma come attività cloud una tantum, con notifica push, dopo la revisione della precedente; titolo e prompt li prepara Claude.
+8. Il testo da incollare nelle Istruzioni del Project si scrive alla fine, quando nomi dei file e regole sono stabili. Le Istruzioni oggi sono vuote per scelta dell'utente.
+9. A README stabili, copiarli nel Project "Istruzioni Claude" per le chat dell'app (oggi il Project non ha documenti) e premere "Sync now" dopo ogni versione nuova.
+10. Rivalutare tutto quando escono Opus 5.6 e Sonnet 5.6 (non ancora usciti al 25 ottobre) o il 2026-12-18.
