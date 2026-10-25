@@ -38,6 +38,7 @@ Ogni README è datato, con regole operative brevi in testa e prove sotto, e va r
 - Si scrive solo su branch `claude/...`, con PR in bozza.
 
 ## Scoperte che cambiano il modo di lavorare
+- Prova del 25 ottobre con un documento Google privato aggiunto a un Project privato: il Project lo legge, una chat con il link incollato lo modifica, una chat nuova vede la modifica subito (circa sei minuti al massimo; attese più lunghe non misurate). Le righe aggiunte vanno a capo solo se lo si chiede. Le Istruzioni del Project restano vuote, quindi nessuna chat lo legge da sola: va nominato.
 - Una sessione cloud fresca vede solo il repo (`CLAUDE.md`, `.claude/rules/`, skill del repo). Non vede `~/.claude` né l'auto memory locale. Nessuna prova che la memoria chat dell'account arrivi nelle sessioni Code cloud.
 - Confermato dalla v3 con una prova su una sessione cloud fresca: nessun blocco di memoria dell'account e nessuna istruzione del profilo nel contesto. Resta [Inferenza]: nessuna pagina ufficiale dice il contrario.
 - Quindi le regole permanenti vanno in questo `CLAUDE.md` (sotto 200 righe) e i prompt delle attività restano brevi.
@@ -68,14 +69,12 @@ Lettura dei dati: il costo segue letture, chiamate e strumenti (circa 0,06 USD a
 - Tono calmo e caldo, qualche immagine sobria; con numeri, percorsi e comandi precisione asciutta. Controlla a campione alla fonte prima di scrivere "verificato".
 
 ## Prossimi passi (ciascuno chiede l'OK dell'utente)
-Fatti: PR #1, #2 e #3 (19 ottobre); tema 4 (memoria) chiuso in v3; `guida_memoria.md`; validatore rimosso; Project ripulito (25 ottobre); questo file aggiornato (25 ottobre, PR in bozza).
-1. Correggere `guida_memoria.md`: nome dei menu (Settings > Your Claude > Manage), voci cancellabili solo per categoria, Istruzioni al posto della memoria per le regole sempre valide.
-2. Prova dell'utente con un documento Google separato da "Memoria condivisa" (quella è della finanza, da non mischiare): verificare se una chat nuova nel Project lo legge e lo aggiorna.
-3. `AGENTS.md` solo se l'utente lavora anche con Cursor o Codex: in quel caso `@AGENTS.md` dentro `CLAUDE.md`.
-4. Se un documento Google fa da memoria, togliere il connettore Drive dalle attività di ricerca (restano solo GitHub e gli strumenti web).
-5. L'utente, se vuole, cancella i branch storici su GitHub (vedi sopra).
-6. Notte 02, tema 1 (comportamento: AGENTS.md e CLAUDE.md), come v1, partendo dall'elenco domini in `ricerche/calibrazione.md` e dalle regole di questo file. Prima, scegliere la posizione dei file (vedi "Metodo").
-7. Ogni run si programma come attività cloud una tantum, con notifica push, dopo la revisione della precedente; titolo e prompt li prepara Claude.
-8. Il testo da incollare nelle Istruzioni del Project si scrive alla fine, quando nomi dei file e regole sono stabili. Le Istruzioni oggi sono vuote per scelta dell'utente.
-9. A README stabili, copiarli nel Project "Istruzioni Claude" per le chat dell'app (oggi il Project non ha documenti) e premere "Sync now" dopo ogni versione nuova.
-10. Rivalutare tutto quando escono Opus 5.6 e Sonnet 5.6 (non ancora usciti al 25 ottobre) o il 2026-12-18.
+Fatti: PR #1, #2 e #3 (19 ottobre); tema 4 (memoria) chiuso in v3; `guida_memoria.md`; validatore rimosso; Project ripulito (25 ottobre); questo file aggiornato (PR #10); guida corretta (PR #11); prova del documento Google `passaggio` riuscita (25 ottobre).
+1. `AGENTS.md` solo se l'utente lavora anche con Cursor o Codex: in quel caso `@AGENTS.md` dentro `CLAUDE.md`.
+2. Il documento Google `passaggio` ora fa da memoria del Project (separato da "Memoria condivisa", che è della finanza): togliere il connettore Drive dalle attività di ricerca, oppure ripetere in ogni prompt il divieto di toccarlo. Restano GitHub e gli strumenti web.
+3. L'utente, se vuole, cancella i branch storici su GitHub (vedi sopra).
+4. Notte 02, tema 1 (comportamento: AGENTS.md e CLAUDE.md), come v1, partendo dall'elenco domini in `ricerche/calibrazione.md` e dalle regole di questo file. Prima, scegliere la posizione dei file (vedi "Metodo").
+5. Ogni run si programma come attività cloud una tantum, con notifica push, dopo la revisione della precedente; titolo e prompt li prepara Claude.
+6. Il testo da incollare nelle Istruzioni del Project si scrive alla fine, quando nomi dei file e regole sono stabili. Le Istruzioni oggi sono vuote per scelta dell'utente.
+7. A README stabili, copiarli nel Project "Istruzioni Claude" per le chat dell'app (oggi il Project ha solo il documento Google `passaggio`) e premere "Sync now" dopo ogni versione nuova.
+8. Rivalutare tutto quando escono Opus 5.6 e Sonnet 5.6 (non ancora usciti al 25 ottobre) o il 2026-12-18.
