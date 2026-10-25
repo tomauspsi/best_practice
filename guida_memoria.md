@@ -70,7 +70,7 @@ Limiti:
 - **Non è automatico.** Claude lo aggiorna solo quando glielo chiedi, in quella chat.
 - **Il Project lo rilegge ogni tanto,** non subito.
 - **Va richiamato.** Meglio scrivere nelle istruzioni del Project: «all'inizio leggi il documento passaggio».
-- **Questo punto va provato da te.** Le pagine ufficiali non sono del tutto concordi su un dettaglio (se la modifica dal pannello sia "in prova" o no), e non l'ho potuto provare. La prova è in fondo, in "Cosa non sappiamo ancora".
+- **Provato il 25 ottobre.** Le pagine ufficiali non sono del tutto concordi su un dettaglio (se la modifica dal pannello sia "in prova" o no). Nel tuo caso funziona: vedi "Cosa abbiamo provato" in fondo.
 - **Attenzione alle attività programmate.** Partono con tutti i connettori del tuo account e, secondo la guida ufficiale, usano anche gli strumenti di scrittura senza chiedere. Se Drive è collegato, una routine potrebbe modificare i tuoi documenti. Il divieto va scritto in ogni prompt, oppure si toglie il connettore dall'attività.
 - **Dati personali:** il documento è tuo e privato, ma sta su Google. Tieni dentro solo ciò che accetti di avere lì.
 
@@ -129,12 +129,19 @@ Tienili brevi: più sono lunghi, meno Claude li segue. Ciò che vale solo per un
 - Le chat molto lunghe peggiorano: Claude riassume i messaggi vecchi e perde dettagli. Meglio aprire una chat nuova dentro lo stesso Project e passargli un breve riassunto del punto a cui eri arrivato.
 - Un Project della chat collegato a GitHub non si aggiorna da solo: premi "Sync now" dopo ogni modifica. E il collegamento è solo di lettura.
 
+## Cosa abbiamo provato
+
+Prova del 25 ottobre 2026, con un documento Google privato `passaggio` aggiunto a un Project privato:
+1. Il Project legge il documento da Drive: sì.
+2. Una chat del Project, con il link incollato, scrive nel documento: sì. Le righe aggiunte sono finite sulla stessa riga del testo precedente, perché Claude non è andato a capo: se serve, chiedilo.
+3. Una chat nuova vede la modifica: sì, subito (entro circa sei minuti).
+
 ## Cosa non sappiamo ancora
 
 - Se la cancellazione di una voce alla volta esista nel tuo menu: la pagina ufficiale la descrive, il tuo menu il 25 ottobre mostrava solo la cancellazione per categoria. Può dipendere dal tipo di piano o dalla versione dell'app.
 
 - Se una routine creata da un Project legga la memoria di quel Project: le guide dicono che parte come un thread del Project, ma non lo scrivono.
-- Se la modifica di un documento Google dalla chat funzioni davvero nel tuo caso: le pagine ufficiali la descrivono, ma una di esse la chiama "in prova" e un'altra no. Prova: crea un documento privato `passaggio` con tre righe, aggiungilo a un Project privato, incolla il link in chat e scrivi «aggiungi in fondo questa decisione: usiamo il metodo X». Guarda se la modifica compare nel pannello. Poi apri una chat nuova nello stesso Project e chiedi «cosa c'è scritto in passaggio?».
+- Quanto tempo ci mette il Project a rileggere il documento dopo una modifica: nella prova una chat nuova ha visto la modifica dopo circa sei minuti al massimo. Attese più lunghe o molte modifiche non sono state misurate.
 - Come funziona la memoria di ChatGPT in dettaglio: le pagine ufficiali non erano leggibili.
 - Se Cursor abbia davvero tolto la sua funzione Memories: lo dice solo un forum.
 
