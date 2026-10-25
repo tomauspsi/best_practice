@@ -24,3 +24,7 @@ https://claude.com/blog/steering-claude-code-skills-hooks-rules-subagents-and-mo
 https://pillar.security/blog/new-vulnerability-in-github-copilot-and-cursor-how-hackers-can-weaponize-code-agents,pillar.security,3,blog di fornitore di sicurezza,2025-03-18,ok,fetch,intero,parafrasi,,Rules File Backdoor; risposta dei vendor secondo l'autore
 https://arxiv.org/abs/2601.17548,arxiv.org,1,preprint,2026-01-24,ok,fetch,parziale,parafrasi,,"solo abstract (SoK, 42 tecniche, oltre 85% con attacchi adattivi)"
 https://arxiv.org/abs/2605.25871,arxiv.org,1,preprint,senza data (ID 2605),ok,fetch,parziale,parafrasi,,"abstract e riassunto della pagina; CVE citati nel testo, non verificati"
+https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects,support.claude.com,1,,,bloccato dallo strumento,fetch,no,na,,PROVENANCE_REQUIRED: permesso non concesso in tempo; non aggirato. Raggiungibilità da riprovare nella notte 03 (letta in v3 della notte 01)
+https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features,support.claude.com,1,,,bloccato dallo strumento,fetch,no,na,,PROVENANCE_REQUIRED: permesso non concesso in tempo; non aggirato
+https://code.claude.com/docs/en/claude-projects,code.claude.com,1,,corrente,ok,fetch,parziale,parafrasi,,"verifica di raggiungibilità per il tema 2: pagina leggibile (59 KB salvati), beta Pro e Max"
+https://claude.com/blog/using-claude-projects,claude.com,1,,,404,fetch,no,na,,"indirizzo ipotizzato, non trovato: non è una fonte per il tema 2"
