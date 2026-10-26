@@ -16,7 +16,8 @@ Ogni README è datato, con regole operative brevi in testa e prove sotto, e va r
 - Tema 4 (memoria): v3 conclusiva unita in `main` il 19 ottobre (PR #3, oggi in `ricerche/`). v1 con 4 sottoagenti (circa 3 USD, 55 letture); v2 con un solo agente (2 USD, 33 letture); v3 con un solo agente (27 letture, 4 ricerche, circa 10 minuti; costo non separabile dal resto della chat). `memoria.md` è a 190 righe: 15 regole operative, stato dell'arte, raccordo, conflitti e Guida semplice per l'utente. Da rivalutare con un nuovo modello Claude (ad esempio Opus 5.6), con release notes che toccano la memoria, o il 2026-12-18.
 - Restano aperte dopo la v3: se le routine create da un Project ereditino la project memory (dedotta, non scritta); memoria di ChatGPT (pagine OpenAI in 403, solo snippet); rimozione delle Memories di Cursor (solo forum, [Segnale T3]).
 - Temi 2 e collegamento app-Code: esistono due report del 18 ottobre in `ricerche/` (`istruzioni_per_progetti.md`, `collegare_claude_app_a_code.md`), scritti con un metodo diverso e non ancora riverificati con il metodo delle notti.
-- Temi 1, 3, 5: da fare.
+- Tema 1 (comportamento: `AGENTS.md`, `CLAUDE.md` e simili): v1 unita in `main` il 25 ottobre (PR #15). `ricerche/comportamento.md` è a 157 righe con 15 regole operative, sette strumenti confrontati e una guida semplice; un solo agente, 29 letture, 8 ricerche, circa 16 minuti. Aperti: guide di prompting di Sonnet 5.5 e Haiku 5.5; Windows e symlink per `AGENTS.md`; testo integrale dei preprint (letti solo come abstract). Due pagine di support.claude.com furono bloccate dallo strumento e sono da rileggere nella notte 03.
+- Temi 3 e 5: da fare. Tema 2: report del 18 ottobre da riverificare (notte 03).
 - Dal 19 al 25 ottobre (lavoro in chat, senza spesa di run): `guida_memoria.md` scritta in italiano semplice; `tools/validate_notte.py` rimosso da `main` il 22 ottobre; il Project "Istruzioni Claude" ripulito il 25 ottobre (nessun documento, restano solo i file di memoria del Project); prova sulla memoria fatta dall'utente (vedi "Scoperte").
 
 ## Repo
@@ -34,7 +35,7 @@ Ogni README è datato, con regole operative brevi in testa e prove sotto, e va r
 - Un claim su cosa FA un prodotto richiede Tier 1 corrente. Solo Tier 3 resta [Segnale T3]. Tag: [Verificato] [Inferenza] [Obsoleto/Conflitto] [Segnale T3]. [Verificato] solo dopo lettura reale.
 - Siti rifiutati dagli strumenti (Reddit, Stack Overflow; 403 su openai.com, help.openai.com, Medium, api.github.com; Discord vuoto): non si aggirano con proxy, cache o mirror. Si registra il blocco e si passa a una fonte equivalente.
 - Un'attività pianificata parte con i connettori che l'utente seleziona nell'interfaccia (nella v3 erano presenti GitHub e Google Drive). L'agente usa solo GitHub, per branch e pull request.
-- Ogni notte produce un README del tema, `registro_fonti.csv` (vocabolario chiuso), `calibrazione.md` e `log_run.md`. Oggi i file della notte 01 stanno in `ricerche/`; dove mettere quelli delle notti successive (per esempio una sottocartella per tema) si decide nel prompt della notte 02, con l'utente. Il validatore `tools/validate_notte.py` non c'è più in `main` (legato alla notte 01): rifarne uno solo se serve davvero.
+- Ogni notte produce un README del tema, `registro_fonti.csv` (vocabolario chiuso), `calibrazione.md` e `log_run.md`. I file stanno tutti in `ricerche/`: quelli della notte 01 senza suffisso, quelli della notte 02 con suffisso `_comportamento` (scelta dell'utente del 25 ottobre; per le notti successive lo stesso schema). Il validatore `tools/validate_notte.py` non c'è più in `main` (legato alla notte 01): rifarne uno solo se serve davvero.
 - Si scrive solo su branch `claude/...`, con PR in bozza.
 
 ## Scoperte che cambiano il modo di lavorare
@@ -45,16 +46,20 @@ Ogni README è datato, con regole operative brevi in testa e prove sotto, e va r
 - Prova dell'utente del 25 ottobre (chat dell'app, Haiku 5.5): una regola di formato salvata solo nella memoria del Project non è stata applicata in una chat aperta subito dopo; la stessa regola scritta nelle Istruzioni del Project è stata applicata. Una sola prova, ma basta per la scelta pratica: le regole che devono valere sempre vanno nelle Istruzioni (o in `CLAUDE.md` per Code), la memoria serve per i fatti.
 - Nell'interfaccia dell'utente le voci di memoria della chat si cancellano solo per categoria, non una per una; modificarle a voce singola può farlo Claude con gli strumenti di memoria. Il percorso ufficiale dei menu è Settings > Your Claude > Manage (più vecchio: Settings > Memory): `guida_memoria.md` va corretta di conseguenza.
 - Un piccolo modello può sbagliare un dettaglio pur seguendo la regola (Haiku 5.5 ha scritto che novembre è il decimo mese): per ricerche e controlli serve un modello più forte.
+- Permessi web nelle run non presidiate (notte 02): lo strumento ha rifiutato due pagine con `PROVENANCE_REQUIRED` perché il permesso non è arrivato in tempo. Due rimedi: scrivere nel prompt gli URL esatti che servono, e pre-approvare i domini ufficiali con regole `WebFetch(domain:...)` in `.claude/settings.json` del repo ([permessi](https://code.claude.com/docs/en/permissions), [strumenti](https://code.claude.com/docs/en/tools-reference)). Le regole `allow` del progetto valgono solo dopo la conferma di fiducia della cartella: se una sessione cloud avviata da un'attività le rispetti è [Inferenza], da provare con la notte 03 (se compaiono ancora richieste di permesso, non funziona).
 - Per un Project di chat collegato a un repo GitHub, la knowledge si aggiorna solo con "Sync now": va premuto dopo ogni modifica ai README.
 - Una sola casa per ogni informazione: se la stessa regola sta in profilo, Project e `CLAUDE.md`, Claude può seguirne una a caso. Con Cursor o Codex serve `AGENTS.md`; con entrambi i file presenti, `@AGENTS.md` dentro `CLAUDE.md`.
 
 ## Costi
+Aggiornamento 25 ottobre: la v1 del tema 1 (notte 02) è costata 3 USD (saldo da 26 a 23 USD). Il saldo era sceso da 40 a 26 USD per le chat lunghe di lavoro con Code, non per le run: ogni messaggio rimanda tutta la cronologia. Le chat con Code vanno limitate.
+
 Crediti regalati: 57 USD prima della run 1, 54 dopo; v2 costata 2 USD (saldo 52 USD). Saldo dopo v3 e la lunga chat di lavoro: 40 USD; la chat, che rimanda tutta la cronologia a ogni messaggio, ha pesato più delle run.
 | Run | Costo | Letture | Ricerche | Sottoagenti | Durata |
 |---|---|---|---|---|---|
 | v1 | circa 3 USD | circa 55 | circa 8 | 4 | circa 5 min |
 | v2 | 2 USD | 33 | 4 | 0 | circa 7 min |
 | v3 | non separabile | 27 | 4 | 0 | circa 10 min |
+| tema 1 v1 (notte 02) | 3 USD | 29 | 8 | 0 | circa 16 min |
 Lettura dei dati: il costo segue letture, chiamate e strumenti (circa 0,06 USD a lettura in entrambe), non il tempo. La v2 girava in una sessione già lunga, quindi probabilmente sovrastima il costo di una sessione fresca [Inferenza]. Dentro la sessione i dollari non sono visibili: l'utente confronta il saldo prima e dopo ogni notte e te lo riporta. Registra letture, ricerche e durata nel log.
 
 ## Perimetro e sicurezza
@@ -69,11 +74,11 @@ Lettura dei dati: il costo segue letture, chiamate e strumenti (circa 0,06 USD a
 - Tono calmo e caldo, qualche immagine sobria; con numeri, percorsi e comandi precisione asciutta. Controlla a campione alla fonte prima di scrivere "verificato".
 
 ## Prossimi passi (ciascuno chiede l'OK dell'utente)
-Fatti: PR #1, #2 e #3 (19 ottobre); tema 4 (memoria) chiuso in v3; `guida_memoria.md`; validatore rimosso; Project ripulito (25 ottobre); questo file aggiornato (PR #10); guida corretta (PR #11); prova del documento Google `passaggio` riuscita (25 ottobre).
+Fatti: PR #1, #2 e #3 (19 ottobre); tema 4 (memoria) chiuso in v3; `guida_memoria.md`; validatore rimosso; Project ripulito (25 ottobre); questo file aggiornato (PR #10); guida corretta (PR #11); prova del documento Google riuscita; notte 02 (tema 1, v1) unita con la PR #15; costo registrato e domini web pre-approvati in `.claude/settings.json`.
 1. `AGENTS.md` solo se l'utente lavora anche con Cursor o Codex: in quel caso `@AGENTS.md` dentro `CLAUDE.md`.
 2. Il documento Google `Memoria Istruzioni Claude` (già `passaggio`) ora fa da memoria del Project (separato da "Memoria condivisa", che è della finanza): togliere il connettore Drive dalle attività di ricerca, oppure ripetere in ogni prompt il divieto di toccarlo. Restano GitHub e gli strumenti web.
 3. L'utente, se vuole, cancella i branch storici su GitHub (vedi sopra).
-4. Notte 02, tema 1 (comportamento: AGENTS.md e CLAUDE.md), come v1, partendo dall'elenco domini in `ricerche/calibrazione.md` e dalle regole di questo file. Prima, scegliere la posizione dei file (vedi "Metodo").
+4. Notte 03, tema 2 (istruzioni di un Project), come v1, partendo dai domini in `ricerche/calibrazione_comportamento.md` e dalle regole di questo file. Nel prompt, gli URL esatti da leggere (soprattutto support.claude.com). File in `ricerche/` con suffisso del tema, come la notte 02.
 5. Ogni run si programma come attività cloud una tantum, con notifica push, dopo la revisione della precedente; titolo e prompt li prepara Claude.
 6. Le Istruzioni del Project oggi contengono solo la riga che fa leggere il documento di memoria. Le regole di comportamento si aggiungono alla fine, quando nomi dei file e regole sono stabili.
 7. A README stabili, copiarli nel Project "Istruzioni Claude" per le chat dell'app (oggi il Project ha solo il documento Google `passaggio`) e premere "Sync now" dopo ogni versione nuova.
