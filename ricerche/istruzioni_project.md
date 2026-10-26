@@ -147,7 +147,7 @@ Le regole di questo Project valgono per tutta la conversazione.             (13)
 | Project con GitHub: «Sync now» | memoria.md | Ancora vero (10167454); aggiunto: solo un branch, solo file |
 | Memoria per Project, mai quella di altri Project | memoria.md | Ancora vero; nuovo: la memoria di Project può comparire fuori dai Project |
 | Haiku 5.5 e Sonnet 5.5: guide non lette | [comportamento.md](comportamento.md) | Ora lette (F) |
-| Reddit (snapshot di aggregatore), Hacker News, blog, esempio «piante e bonsai» | istruzioni_per_progetti.md | Non riverificati: fonti di Tier 3 o inaccessibili; l'esempio privato non è stato ripreso |
+| Reddit (snapshot di aggregatore), Hacker News, blog, esempio privato del report | istruzioni_per_progetti.md | Non riverificati: fonti di Tier 3 o inaccessibili; l'esempio privato non è stato ripreso |
 
 ## Tabella conflitti
 | Tema | Fonte A | Fonte B | Stato |
