@@ -69,7 +69,7 @@ Come usarlo:
 Limiti:
 - **Non è automatico.** Claude lo aggiorna solo quando glielo chiedi, in quella chat.
 - **Il Project lo rilegge ogni tanto,** non subito.
-- **Va richiamato.** Scrivilo nelle Istruzioni del Project. Dal 25 ottobre le Istruzioni di questo Project dicono: «Prima di ogni risposta, leggi il documento nel contesto: Memoria Istruzioni Claude», seguito dal link. Il documento si chiamava `passaggio` durante la prova.
+- **Va richiamato.** Scrivilo nelle Istruzioni del Project. Dal 25 ottobre le Istruzioni di questo Project dicono: «Prima di ogni risposta, leggi il documento nel contesto: Memoria Istruzioni Claude», seguito dal link. Durante la prova il documento si chiamava `passaggio`; dal 26 ottobre si chiama `memoria_best_practice` (aggiorna il nome nelle Istruzioni quando lo rinomini).
 - **Provato il 25 ottobre.** Le pagine ufficiali non sono del tutto concordi su un dettaglio (se la modifica dal pannello sia "in prova" o no). Nel tuo caso funziona: vedi "Cosa abbiamo provato" in fondo.
 - **Attenzione alle attività programmate.** Partono con tutti i connettori del tuo account e, secondo la guida ufficiale, usano anche gli strumenti di scrittura senza chiedere. Se Drive è collegato, una routine potrebbe modificare i tuoi documenti. Il divieto va scritto in ogni prompt, oppure si toglie il connettore dall'attività.
 - **Dati personali:** il documento è tuo e privato, ma sta su Google. Tieni dentro solo ciò che accetti di avere lì.
