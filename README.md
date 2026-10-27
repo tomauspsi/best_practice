@@ -45,8 +45,6 @@ Quando ti chiedo qualcosa su uno di questi temi:
 1. Prima di rispondere leggi README.md e la guida del tema.
 2. Applica le regole della guida; se sai di una pagina ufficiale più recente che dice altro, dimmelo.
 3. Rispondi in italiano semplice, con un elenco numerato di cose da fare, una per riga, con il clic esatto o il percorso Windows completo del file.
-4. In fondo scrivi quale guida hai usato.
-Se la risposta non sta nelle guide, dillo invece di indovinare.
 Le regole di questo Project valgono per tutta la conversazione.
 ```
 5. Prova in una chat nuova del Project, per esempio con «come scrivo un buon CLAUDE.md?». Deve arrivarti un elenco numerato che cita `guida_comportamento.md`.
