@@ -5,9 +5,9 @@ Ultimo aggiornamento: 27 ottobre 2026, sera. Se hai letto solo questo file, hai 
 ## A che punto siamo (27 ottobre)
 
 - **Fatti 4 temi su 5.** Comportamento, istruzioni di un Project, contesto, memoria.
-- **Manca solo il tema 5**, le attività programmate. Il suo prompt non c'è ancora.
+- **Manca solo il tema 5**, le attività programmate. Il suo prompt è pronto: `prompt/notte_05_attivita_v1.md`.
 - **Poi la ripassata finale:** una run che rilegge tutti i rapporti, li confronta con le pagine ufficiali del giorno e corregge ciò che è cambiato.
-- **Ultima run:** notte 04 (contesto), unita in `main` con la PR #23. 31 pagine lette, circa 12 minuti, utilizzo del piano da 53% a 57%.
+- **Ultima run:** notte 04 (contesto), unita in `main` con la PR #23. 31 pagine lette, circa 12 minuti, utilizzo del piano da 53% a 57%, crediti fermi a 23 USD (una run locale pesa sul piano, non sui crediti).
 
 ## Come lanciare una run (passo per passo)
 
