@@ -2,7 +2,7 @@
 
 Archivio privato di ricerca (autunno 2026) su come si usa Claude. Serve da fonte di verità per gli agenti, così nessuno deve cercare di nuovo come si scrive un `CLAUDE.md` o come funziona la memoria.
 
-Ultimo aggiornamento: 27 ottobre 2026. Ogni documento è datato e va rivalutato quando esce un nuovo modello Claude (ad esempio Opus 5.6).
+Ultimo aggiornamento: 27 ottobre 2026 (temi 1 e 2 chiusi in v1). Ogni documento è datato e va rivalutato quando esce un nuovo modello Claude (ad esempio Opus 5.6).
 
 ## Da dove cominciare
 
@@ -10,12 +10,12 @@ Se vuoi capire un tema, apri la **guida semplice** (qui nella cartella principal
 
 ## I cinque temi, a colpo d'occhio
 
-«Chiuso» vuol dire: nessuna revisione prevista, si riapre solo se esce un modello nuovo o cambiano le regole ufficiali. «Aperto» vuol dire: c'è una prima versione ma resta da decidere con te se basta. «Da fare» vuol dire: nessuna ricerca ancora.
+«Chiuso» vuol dire: nessuna revisione prevista, si riapre solo se esce un modello nuovo, cambiano le regole ufficiali o si fa la ripassata generale finale. «Aperto» vuol dire: c'è una prima versione ma resta da decidere con te se basta. «Da fare» vuol dire: nessuna ricerca ancora.
 
 | N. | Tema | Stato | Versione | Data | Guida semplice (per te) | Rapporto (per gli agenti) |
 |---|---|---|---|---|---|---|
-| 1 | Comportamento: `CLAUDE.md`, `AGENTS.md` | Aperto | v1 | 25 ott 2026 | `guida_comportamento.md` | `ricerche/comportamento.md` |
-| 2 | Istruzioni di un Project | Aperto | v1 | 26 ott 2026 | `guida_istruzioni_project.md` | `ricerche/istruzioni_project.md` |
+| 1 | Comportamento: `CLAUDE.md`, `AGENTS.md` | Chiuso | v1 | 25 ott 2026 | `guida_comportamento.md` | `ricerche/comportamento.md` |
+| 2 | Istruzioni di un Project | Chiuso | v1 | 26 ott 2026 | `guida_istruzioni_project.md` | `ricerche/istruzioni_project.md` |
 | 3 | Contesto | Da fare | n/d | n/d | n/d | n/d |
 | 4 | Memoria tra una chat e l'altra | Chiuso | v3 | 19 ott 2026 | `guida_memoria.md` | `ricerche/memoria.md` |
 | 5 | Programmazione delle attività | Da fare | n/d | n/d | n/d | n/d |
