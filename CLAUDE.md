@@ -20,7 +20,8 @@ Ogni README è datato, con regole operative brevi in testa e prove sotto, e va r
 - 26 ottobre: documento di memoria ridotto all'essenziale e rinominato `memoria_best_practice`; prompt della notte 03 pronto in `prompt/notte_03_istruzioni_project_v1.md`; saldo 23 USD.
 - Tema 2 (istruzioni di un Project): v1 unita in `main` il 27 ottobre (PR #18, notte 03). `ricerche/istruzioni_project.md` è a 190 righe con 15 regole operative, sezioni A–H e una guida semplice di 14 passi; un solo agente, 35 letture, 8 ricerche, circa 16 minuti. Esiti: nessun limite ufficiale di lunghezza per i Project classici (16.000 caratteri solo nei Projects beta di Code); nessuna precedenza dichiarata tra Istruzioni, profilo, memoria e stili; nessuna prova che le Istruzioni di un Project di chat arrivino a Code; Opus 5.6 e Sonnet 5.6 non risultano usciti. Aperti: testo intero dei preprint, limite di lunghezza dei Project classici, eredità dei Project di chat in Code. Per la regola del 26 ottobre (v1 basta se non manca nulla) si decide con l'utente se serve una revisione.
 - 27 ottobre: l'utente dichiara CHIUSI i temi 1 (comportamento, v1) e 2 (istruzioni di un Project, v1); a fine giro, se Code funziona, si fa una ripassata generale di ogni tema. Per usare i 23 USD di crediti le run passano da Code (attività pianificate cloud).
-- Temi 3 (contesto) e 5 (attività programmate): da fare. Prompt della notte 04 (tema 3, v1) pronto in `prompt/notte_04_contesto_v1.md`, da programmare dopo l'OK dell'utente.
+- Tema 3 (contesto): v1 unita in `main` il 27 ottobre (PR #23, notte 04). `ricerche/contesto.md` è a 188 righe con 15 regole operative, sezioni A–H e una guida semplice di 16 passi; un solo agente, 31 letture, 7 ricerche, circa 12 minuti, run locale su Windows in una chat nuova di Code (non attività cloud), 0 `PROVENANCE_REQUIRED`. Aperti: elenco ufficiale di cosa entra nel contesto di una chat dell'app, soglia del riassunto automatico nell'app, preprint letti come abstract, versione di `idleCompaction` in conflitto, `send_later` senza pagina ufficiale.
+- Tema 5 (attività programmate): da fare; prompt della notte 05 non ancora scritto. Dal 27 ottobre l'utente lancia ogni run aprendo una chat nuova in Code (Opus 5.5, effort Alto) con il messaggio tipo del `README.md`.
 - Dal 19 al 25 ottobre (lavoro in chat, senza spesa di run): `guida_memoria.md` scritta in italiano semplice; `tools/validate_notte.py` rimosso da `main` il 22 ottobre; il Project "Istruzioni Claude" ripulito il 25 ottobre (nessun documento, restano solo i file di memoria del Project); prova sulla memoria fatta dall'utente (vedi "Scoperte").
 
 ## Repo
@@ -54,6 +55,8 @@ Ogni README è datato, con regole operative brevi in testa e prove sotto, e va r
 - Una sola casa per ogni informazione: se la stessa regola sta in profilo, Project e `CLAUDE.md`, Claude può seguirne una a caso. Con Cursor o Codex serve `AGENTS.md`; con entrambi i file presenti, `@AGENTS.md` dentro `CLAUDE.md`.
 
 ## Costi
+Aggiornamento 27 ottobre, sera: la notte 04 (tema 3 v1, chat locale di Code) ha portato l'utilizzo del piano da 53% a 57% (dichiarato dall'utente); saldo dei crediti dopo la run non comunicato.
+
 Aggiornamento 27 ottobre: la notte 03 (tema 2 v1) non ha ridotto il saldo dei crediti (23 USD prima e dopo), ma l'utente segnala un aumento dell'utilizzo normale del piano: l'attività programmata sembra girare come una chat normale e non come sessione Code cloud con crediti [osservazione dell'utente, non verificata]. Da confrontare alla prossima run, guardando sia il saldo dei crediti sia l'utilizzo del piano.
 
 Aggiornamento 25 ottobre: la v1 del tema 1 (notte 02) è costata 3 USD (saldo da 26 a 23 USD). Il saldo era sceso da 40 a 26 USD per le chat lunghe di lavoro con Code, non per le run: ogni messaggio rimanda tutta la cronologia. Le chat con Code vanno limitate.
@@ -66,6 +69,7 @@ Crediti regalati: 57 USD prima della run 1, 54 dopo; v2 costata 2 USD (saldo 52 
 | v3 | non separabile | 27 | 4 | 0 | circa 10 min |
 | tema 1 v1 (notte 02) | 3 USD | 29 | 8 | 0 | circa 16 min |
 | tema 2 v1 (notte 03) | 0 USD di crediti (saldo 23 → 23); uso del piano in aumento | 35 | 8 | 0 | circa 16 min |
+| tema 3 v1 (notte 04) | uso del piano 53% → 57%; crediti dopo: n/d | 31 | 7 | 0 | circa 12 min |
 Lettura dei dati: il costo segue letture, chiamate e strumenti (circa 0,06 USD a lettura in entrambe), non il tempo. La v2 girava in una sessione già lunga, quindi probabilmente sovrastima il costo di una sessione fresca [Inferenza]. Dentro la sessione i dollari non sono visibili: l'utente confronta il saldo prima e dopo ogni notte e te lo riporta. Registra letture, ricerche e durata nel log.
 
 ## Perimetro e sicurezza
@@ -84,7 +88,7 @@ Fatti: PR #1, #2 e #3 (19 ottobre); tema 4 (memoria) chiuso in v3; `guida_memori
 1. `AGENTS.md` solo se l'utente lavora anche con Cursor o Codex: in quel caso `@AGENTS.md` dentro `CLAUDE.md`.
 2. Il documento Google `memoria_best_practice` fa da memoria del Project (separato da `memoria_finanza`, già "Memoria condivisa", che è della finanza; l'utente la rinomina): togliere il connettore Drive dalle attività di ricerca, oppure ripetere in ogni prompt il divieto di toccarlo. Restano GitHub e gli strumenti web.
 3. L'utente, se vuole, cancella i branch storici su GitHub (vedi sopra).
-4. Notte 04, tema 3 (contesto), come v1: prompt pronto in `prompt/notte_04_contesto_v1.md` (con URL esatti, riprova una volta su `PROVENANCE_REQUIRED`, file con suffisso `_contesto`). Va unito in `main` prima della run; l'attività una tantum si crea dopo l'OK dell'utente («Ok notte 04»). Poi tema 5 e, alla fine, la ripassata generale.
+4. Notte 04 fatta (PR #23). Prossima: notte 05, tema 5 (attività programmate), v1; il prompt si scrive dopo l'OK dell'utente, partendo dai domini in `ricerche/calibrazione_contesto.md`. Alla fine, la ripassata generale di tutti i temi.
 5. Ogni run si programma come attività cloud una tantum, con notifica push, dopo la revisione della precedente; titolo e prompt li prepara Claude.
 6. Le Istruzioni del Project oggi contengono solo la riga che fa leggere il documento di memoria. Le regole di comportamento si aggiungono alla fine, quando nomi dei file e regole sono stabili.
 7. A README stabili, copiarli nel Project "Istruzioni Claude" per le chat dell'app (oggi il Project ha solo il documento Google `memoria_best_practice`) e premere "Sync now" dopo ogni versione nuova.
