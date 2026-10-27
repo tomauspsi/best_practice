@@ -1,0 +1,32 @@
+url,dominio,tier,nota_tier,data_fonte,esito,metodo,letto,verbatim,alternativa_usata,note
+https://platform.claude.com/docs/en/build-with-claude/context-windows,platform.claude.com,1,,n/d (docs correnti),ok,fetch,intero,si,,finestre per modello; context rot; thinking; context awareness; overflow
+https://code.claude.com/docs/en/context-window,code.claude.com,1,,n/d (docs correnti; cita v2.1.304),ok,fetch,intero,si,,cosa si carica e cosa sopravvive alla compattazione
+https://platform.claude.com/docs/en/build-with-claude/context-editing,platform.claude.com,1,,n/d (docs correnti),ok parziale,fetch,parziale,parafrasi,,primi 100000 di 103379 caratteri; beta context-management-2025-06-27
+https://platform.claude.com/docs/en/build-with-claude/compaction,platform.claude.com,1,,n/d (docs correnti),ok,fetch,intero,si,,panoramica: on demand e a soglia
+https://platform.claude.com/docs/en/build-with-claude/compaction-threshold,platform.claude.com,1,,n/d (docs correnti),ok parziale,fetch,parziale,parafrasi,,primi 100000 di 114607 caratteri (resto: esempi di codice); compact_20260112; 150000 default; minimo 50000
+https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand,platform.claude.com,1,,n/d (beta compact-2026-09-04),ok,fetch,intero,si,,istruzioni fino a 16384 caratteri; immagini e documenti persi dopo il riassunto
+https://code.claude.com/docs/en/how-claude-code-works,code.claude.com,1,,n/d (docs correnti),ok,fetch,intero,si,,sessioni indipendenti; When context fills up; Compact Instructions
+https://code.claude.com/docs/en/model-config,code.claude.com,1,,n/d (cita fino a v2.1.311),ok parziale,fetch,parziale,parafrasi,,lettura 1 di 2: caratteri 0-100000
+https://code.claude.com/docs/en/model-config,code.claude.com,1,,n/d (cita fino a v2.1.311),ok,fetch,parziale,si,,lettura 2 di 2: offset 100000 fino alla fine; soglie auto-compact (circa 967K); insieme alla lettura 1 copre la pagina
+https://code.claude.com/docs/en/costs,code.claude.com,1,,n/d (cita fino a v2.1.305),ok,fetch,intero,si,,Reduce token usage; Why usage climbs in a long session
+https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work,support.claude.com,1,,aggiornata oltre 2 settimane prima del 2026-10-27,ok,fetch,intero,parafrasi,,gestione automatica del contesto con esecuzione di codice attiva; consigli per chat lunghe
+https://support.claude.com/en/articles/8606394-how-large-is-the-context-window-on-paid-claude-plans,support.claude.com,1,,aggiornata oltre 2 settimane prima del 2026-10-27,ok,fetch,intero,parafrasi,,tabelle chat / Code / Cowork per modello
+https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents,www.anthropic.com,1,,2025-09-29,ok,fetch,intero,si,,oltre 12 mesi: verificato contro context-windows e how-claude-code-works correnti
+https://arxiv.org/abs/2510.05381,arxiv.org,1,preprint,2025-10-06,ok,fetch,parziale,si,,solo abstract; Findings EMNLP 2025; calo 13.9%-85%
+https://arxiv.org/abs/2605.28079,arxiv.org,1,preprint,2026-05-27,ok,fetch,parziale,si,,ATLAS; solo abstract; 26 modelli 8K-1M
+https://arxiv.org/abs/2602.07962,arxiv.org,1,preprint,2026-02-08,ok,fetch,parziale,parafrasi,,LOCA-bench; abstract
+https://arxiv.org/html/2602.07962,arxiv.org,1,preprint,2026-02-08,ok,fetch,intero,parafrasi,,testo completo senza figure; Claude-4.5-Opus 96.0% -> 14.7% da 8K a 256K
+https://arxiv.org/abs/2307.03172,arxiv.org,1,preprint,2023-07-06 (v3 2023-11-20),ok,fetch,parziale,si,,Lost in the Middle; solo abstract; TACL 2023; oltre 12 mesi
+https://arxiv.org/abs/2507.11538,arxiv.org,1,preprint,2025-07-15,ok,fetch,parziale,si,,IFScale; solo abstract; 68% a 500 istruzioni
+https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects,support.claude.com,1,,2026-09-10,ok,fetch,intero,parafrasi,,RAG automatico fino a 10x; piani a pagamento; tace sulle Istruzioni
+https://code.claude.com/docs/en/best-practices,code.claude.com,1,,n/d (docs correnti),ok parziale,fetch,parziale,si,,pagina salvata su file (50.9KB) e letta a sezioni con grep: Keep cost and context down; Steer the session; What you can stop doing
+https://support.claude.com/en/articles/8606394-how-large-is-the-context-window-on-paid-claude-plans,support.claude.com,1,,aggiornata oltre 2 settimane prima del 2026-10-27,ok,fetch,intero,si,,seconda lettura mirata: frasi verbatim sulla gestione automatica del contesto e sull'uso
+https://code.claude.com/docs/en/prompt-caching,code.claude.com,1,,n/d (cita fino a v2.1.283),ok,fetch,intero,si,,TTL 1h abbonamento / 5m API; azioni che invalidano la cache; compattazione e cache
+https://support.claude.com/en/articles/12138966-release-notes,support.claude.com,1,,ultima voce 2026-10-21,ok,fetch,parziale,parafrasi,,voci fino al 2026-09-01; nessun Opus 5.6 o Sonnet 5.6
+https://platform.claude.com/docs/en/release-notes/overview,platform.claude.com,1,,ultima voce 2026-10-23,ok parziale,fetch,parziale,parafrasi,,primi 100000 di 133491 caratteri; nessun Opus 5.6 o Sonnet 5.6
+https://code.claude.com/docs/en/changelog,code.claude.com,1,,ultima versione 2.1.311 del 2026-10-26,ok parziale,fetch,parziale,si,,primi 100000 di 1118241 caratteri (versioni 2.1.300-2.1.311)
+https://platform.claude.com/docs/en/about-claude/models/overview,platform.claude.com,1,,n/d (docs correnti),ok,fetch,intero,si,,tabella modelli; 1M token circa 555k parole; nessun Opus 5.6
+https://code.claude.com/docs/en/scheduled-tasks,code.claude.com,1,,n/d (docs correnti),ok,fetch,intero,si,,raggiungibilita per il tema 5: /loop e confronto cloud / desktop / sessione
+https://code.claude.com/docs/en/desktop-scheduled-tasks,code.claude.com,1,,n/d (docs correnti),ok,fetch,intero,si,,raggiungibilita per il tema 5: attivita locali di Desktop
+https://code.claude.com/docs/en/routines,code.claude.com,1,,n/d (research preview),ok,fetch,parziale,si,,raggiungibilita per il tema 5: pagina salvata su file (49KB) letta solo nell'anteprima
+https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork,support.claude.com,1,,aggiornata nella settimana del 2026-10-27,ok,fetch,parziale,parafrasi,,raggiungibilita per il tema 5: nessuna menzione di send_later
