@@ -36,7 +36,7 @@ La memoria dell'app non basta a tenere queste regole: quello che Claude rilegge 
 1. Apri il Project «Istruzioni Claude» nell'app.
 2. Togli dalla knowledge il vecchio documento `memoria_best_practice`, ora nel cestino di Drive. Dalle Istruzioni togli la riga «Prima di ogni risposta, leggi il documento nel contesto».
 3. Nella knowledge clicca **+**:
-   - se compare **GitHub**: scegli `tomauspsi/best_practice` e seleziona solo `README.md` e i cinque file `guida_*.md`. Dopo ogni modifica al repo, usa l'icona di sincronizzazione (**Sync**) sul repository nella knowledge;
+   - se compare **GitHub**: scegli `tomauspsi/best_practice` e seleziona solo `README.md` e i cinque file `guida_*.md`. Dopo ogni modifica al repo, premi l'icona **Sync** nella sezione knowledge del Project, accanto a «Configure files»;
    - se GitHub non compare (succede nella nuova app unificata, dove «aggiungi da GitHub» non è supportato): carica a mano i sei file dalla cartella `D:\Workspace\best_practice` e dalle sottocartelle dei temi. Quando una guida cambia, togli la vecchia e carica la nuova.
 4. Nelle **Istruzioni** del Project incolla questo testo:
 ```text

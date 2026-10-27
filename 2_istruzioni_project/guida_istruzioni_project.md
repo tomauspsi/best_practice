@@ -20,7 +20,7 @@ Per Claude. Usa questa guida quando l'utente vuole scrivere o correggere le Istr
 - Nessuna pagina ufficiale dice chi vince tra Istruzioni del Project, istruzioni del profilo, memoria e stili.
 - Una prova dell'utente (25 ottobre, una sola) ha mostrato che una regola salvata solo nella memoria non è stata seguita; la stessa nelle Istruzioni sì.
 - Nessun limite ufficiale di lunghezza per i Project dell'app; 16.000 caratteri valgono solo per i Projects di Claude Code.
-- Documenti collegati: un documento Google si aggiorna da solo (Project privati), ma Claude non lo scrive se non gli viene chiesto. Un repository GitHub si aggiorna solo con il comando di sincronizzazione; nella nuova esperienza unificata di chat e Cowork «aggiungi da GitHub» non è supportato, quindi i file si caricano a mano.
+- Documenti collegati: un documento Google si aggiorna da solo (Project privati), ma Claude non lo scrive se non gli viene chiesto. Un repository GitHub si aggiorna solo premendo l'icona **Sync** nella sezione knowledge del Project, accanto a «Configure files»; nella nuova esperienza unificata di chat e Cowork «aggiungi da GitHub» non è supportato, quindi i file si caricano a mano.
 - Le Istruzioni di un Project dell'app non arrivano a Claude Code.
 - Haiku 5.5 con molte regole tende a saltare passi: per ricerche e controlli serve un modello più forte.
 
@@ -59,7 +59,7 @@ Elenco tipo, da adattare al caso:
 6. Se una regola non viene seguita, riscrivila più chiara con il motivo, invece di aggiungerne un'altra.
 
 ## Cosa non sappiamo
-- In quale pannello stia esattamente l'icona di sincronizzazione di GitHub: la pagina ufficiale non lo dice.
+- Se la nuova esperienza unificata tornerà a permettere «aggiungi da GitHub», e quando.
 - Se le Istruzioni rientrino nel RAG quando la knowledge è grande.
 - Chi vince tra profilo, Project, memoria e stili.
 
