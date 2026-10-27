@@ -1,6 +1,6 @@
 # Calibrazione — Notte 04, contesto (v1)
 
-Run del 2026-10-27, 21:15-21:30 circa (Europe/Rome), locale su Windows (`D:\Workspace\best_practice`, PowerShell), un solo agente.
+Run del 2026-10-27, 21:15-21:27 circa (Europe/Rome), locale su Windows (`D:\Workspace\best_practice`, PowerShell), un solo agente.
 
 ## Cosa ha funzionato
 - Gli URL esatti nel prompt: tutte le 12 letture iniziali riuscite al primo tentativo.
@@ -46,6 +46,6 @@ Trovati con due ricerche; ciascuno con una lettura di raggiungibilità.
 
 ## Costo
 - Letture di pagina: 31 (nessuna rifiutata). Ricerche web: 7. Sottoagenti: 0.
-- Durata: circa 15 minuti (21:15-21:30, Europe/Rome).
+- Durata: circa 12 minuti (21:15-21:27, Europe/Rome).
 - Il consumo in dollari non è visibile all'agente: confrontare il saldo dei crediti prima e dopo (saldo prima di questa run: 23 USD, dichiarato dall'utente il 27 ottobre) e anche l'utilizzo del piano (prima della run: 53%, dichiarato dall'utente il 27 ottobre).
 - Nota: la run gira in una sessione locale del desktop, non come attività cloud: il confronto con la notte 03 va letto con questa differenza.

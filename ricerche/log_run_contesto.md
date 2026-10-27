@@ -10,7 +10,7 @@ Numero di agenti: UN SOLO agente, perché il tema si chiude leggendo a fondo e t
 - **F2 domande A-D** 21:16-21:18. 12 URL del prompt, poi 2 ricerche e 6 letture su arXiv. Registro aggiornato, commit.
 - **F3 domande E-H** 21:18-21:22. Help RAG, best practices, prompt caching, release notes app e API, changelog, models overview; ricerche su Opus 5.6 e sui domini del tema 5 con quattro letture di raggiungibilità. Registro aggiornato, commit.
 - **F4 scrittura** 21:22-21:26. `contesto.md` (188 righe), `calibrazione_contesto.md`, questo log.
-- **F5 controlli** 21:26-21:30. Script PowerShell in `$env:TEMP` (fuori dal repo); esiti in «Autocontrollo». Commit finale, push, PR in bozza.
+- **F5 controlli** 21:25-21:27. Script PowerShell in `$env:TEMP` (fuori dal repo); esiti in «Autocontrollo». Commit finale, push, PR in bozza.
 
 ## Incidenti
 - Un comando PowerShell con here-string per aggiungere righe al registro è stato bloccato dallo strumento («Remove-Item on system path '/' is blocked»), senza effetti sul file; righe aggiunte con lo strumento di modifica dei file. Nessun altro incidente.
@@ -28,7 +28,7 @@ Numero di agenti: UN SOLO agente, perché il tema si chiude leggendo a fondo e t
 | Regola | Evidenza |
 | --- | --- |
 | 0.1 un solo agente | nessuna chiamata Agent, Task, fork o sessione parallela; solo chiamate indipendenti nello stesso turno |
-| 0.2 tetti | 31 letture su 120, 7 ricerche su 30, circa 15 minuti su 150 |
+| 0.2 tetti | 31 letture su 120, 7 ricerche su 30, circa 12 minuti su 150 |
 | 0.3 lettura a sezioni | `offset` su model-config; best-practices e routines salvate su file e lette con Grep/Read; righe `parziale` e `parafrasi` nel registro dove serve |
 | 0.4 permessi | 0 `PROVENANCE_REQUIRED`, nessun aggiramento |
 | 0.5 nessuna domanda | scelte annotate qui (file `.gitattributes` non toccato; `Get-Date` al posto di `TZ=Europe/Rome date`) |
@@ -43,4 +43,4 @@ Numero di agenti: UN SOLO agente, perché il tema si chiude leggendo a fondo e t
 Sottoagenti: 0
 Letture: 31
 Ricerche: 7
-Durata: circa 15 minuti (21:15-21:30, Europe/Rome)
+Durata: circa 12 minuti (21:15-21:27, Europe/Rome)
