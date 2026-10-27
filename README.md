@@ -4,10 +4,9 @@ Ultimo aggiornamento: 27 ottobre 2026, sera. Se hai letto solo questo file, hai 
 
 ## A che punto siamo (27 ottobre)
 
-- **Fatti 4 temi su 5.** Comportamento, istruzioni di un Project, contesto, memoria.
-- **Manca solo il tema 5**, le attività programmate. Il suo prompt è pronto: `prompt/notte_05_attivita_v1.md`.
-- **Poi la ripassata finale:** una run che rilegge tutti i rapporti, li confronta con le pagine ufficiali del giorno e corregge ciò che è cambiato.
-- **Ultima run:** notte 04 (contesto), unita in `main` con la PR #23. 31 pagine lette, circa 12 minuti, utilizzo del piano da 53% a 57%, crediti fermi a 23 USD (una run locale pesa sul piano, non sui crediti).
+- **Fatti 5 temi su 5.** Comportamento, istruzioni di un Project, contesto, memoria, attività programmate.
+- **Manca la ripassata finale:** una run che rilegge tutti i rapporti, li confronta con le pagine ufficiali del giorno e corregge ciò che è cambiato. Il suo prompt è pronto: `prompt/notte_06_ripassata_v1.md`.
+- **Ultima run:** notte 05 (attività programmate), unita in `main` con la PR #26. 36 pagine lette, circa 15 minuti, utilizzo del piano da 57% a 59%, crediti fermi a 23 USD. I crediti si usano solo oltre il limite del piano, sia in locale sia nel cloud.
 
 ## Come lanciare una run (passo per passo)
 
@@ -63,12 +62,12 @@ Per ogni tema c'è una **guida semplice** (scritta per te) e un **rapporto** (sc
 | 2 | Istruzioni di un Project | Chiuso | v1, 26 ott | `guida_istruzioni_project.md` | `ricerche/istruzioni_project.md` |
 | 3 | Contesto | Chiuso | v1, 27 ott | in fondo al rapporto («Guida semplice per l'utente») | `ricerche/contesto.md` |
 | 4 | Memoria tra una chat e l'altra | Chiuso | v3, 19 ott | `guida_memoria.md` | `ricerche/memoria.md` |
-| 5 | Programmazione delle attività | Da fare | n/d | n/d | n/d |
+| 5 | Programmazione delle attività | Chiuso | v1, 27 ott | in fondo al rapporto («Guida semplice per l'utente») | `ricerche/attivita.md` |
 
 Gli altri file in breve:
 - `CLAUDE.md`: il foglio di istruzioni per gli agenti, con lo stato dei lavori e i costi.
 - `prompt/`: le istruzioni date a ogni «notte» di ricerca, una per tema.
-- `ricerche/`: per ogni tema quattro file, con il nome del tema in fondo (`_comportamento`, `_istruzioni_project`, `_contesto`): il rapporto, il registro delle fonti (`.csv`), la calibrazione e il diario della run (`log_run`). Per la memoria i nomi non hanno il suffisso.
+- `ricerche/`: per ogni tema quattro file, con il nome del tema in fondo (`_comportamento`, `_istruzioni_project`, `_contesto`, `_attivita`): il rapporto, il registro delle fonti (`.csv`), la calibrazione e il diario della run (`log_run`). Per la memoria i nomi non hanno il suffisso.
 - Due rapporti più vecchi, del 18 ottobre, scritti con un altro metodo: `ricerche/istruzioni_per_progetti.md` e `ricerche/collegare_claude_app_a_code.md`. Se c'è un dubbio, vale il più recente.
 
 ## Piccolo dizionario
