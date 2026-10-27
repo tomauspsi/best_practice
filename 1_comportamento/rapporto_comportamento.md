@@ -3,10 +3,10 @@ tema: comportamento degli agenti con file di istruzioni (CLAUDE.md, AGENTS.md, r
 versione: 1
 base: a2d1a0c
 verificato_il: 2026-10-25
-aggiornato_il: 2026-10-27 (correzioni verificate dalle notti 03 e 04, riordino del repo)
+aggiornato_il: 2026-10-27 (ripassata finale: regole rilette; best practices di Code riscritte, enfasi e contenuto di CLAUDE.md aggiornati; Windows e link simbolici; correzioni delle notti 03 e 04)
 rivalutare_se: "nuovo modello Claude, per esempio Opus 5.6; release notes di Claude Code che toccano CLAUDE.md, AGENTS.md, rules o hook; oppure 2026-12-18"
 versioni_rilevate:
-  claude_code: "2.1.310 del 2026-10-23 (changelog, primi 100.000 caratteri su 126.198; nessuna voce su AGENTS.md o prompt-audit dopo la 2.1.303)"
+  claude_code: "2.1.312 del 2026-10-27 (changelog riletto il 27-ott: 2.1.312 non sovrascrive più un CLAUDE.md molto grande letto solo in parte; 2.1.311 corregge blocchi con voci di elenco molto lunghe; `/doctor prompt-audit` da 2.1.283)"
   modelli: "claude-fable-5-1, claude-opus-5-5, claude-sonnet-5-5, claude-haiku-5-5 (pagina models overview, senza date di rilascio; Opus 5.6 e Sonnet 5.6 non compaiono)"
   standard_agents_md: "agents.md: nessun numero di versione né data sulla pagina"
   altri_strumenti: "Codex, Copilot, Cursor, Gemini CLI, VS Code: documentazione corrente, senza numero di versione letto"
@@ -27,15 +27,15 @@ Prima passata del tema 1. Parte da `main` (`a2d1a0c`). Non rifà il tema memoria
 ## REGOLE OPERATIVE PER AGENTI
 1. Scrivi istruzioni abbastanza concrete da poterle verificare («Run `npm test` before committing», non «Test your changes»). [Verificato] · T1 · <https://code.claude.com/docs/en/memory>
 2. Tieni ogni `CLAUDE.md` sotto le 200 righe; sposta ciò che vale per una parte del codice in `.claude/rules/` con `paths`. Gli import `@` organizzano ma non riducono il costo di contesto. [Verificato] · T1 · <https://code.claude.com/docs/en/memory>
-3. Includi ciò che Claude non può dedurre dal codice (comandi, stile diverso dal default, etichetta dei branch, trappole d'ambiente); escludi documentazione API, tutorial, descrizioni file per file. Test per ogni riga: toglierla farebbe sbagliare Claude? Se no, cancellala. [Verificato] · T1 · <https://code.claude.com/docs/en/best-practices>
-4. Non scrivere due istruzioni che si contraddicono: i file sono concatenati e Claude può seguirne una a caso (regole utente e di progetto: nessuna prevale). Controlla con `/doctor prompt-audit`. [Verificato] · T1 · <https://code.claude.com/docs/en/memory>
+3. Metti solo ciò che Claude non ricava dal codice: i comandi esatti di test, typecheck e lint (e come lanciare un solo test), i punti in cui il codice inganna, le decisioni che non stanno nel repo, ciò che hai già dovuto correggere due volte. Non descrivere architettura e struttura dei file: è tra i consigli superati, Claude legge il repo da solo. Pagina riscritta, riletta il 27-ott. [Verificato] · T1 · <https://code.claude.com/docs/en/best-practices>
+4. Non scrivere due istruzioni che si contraddicono: i file sono concatenati e Claude può seguirne una a caso (regole utente e di progetto: nessuna prevale; un'altra pagina dice che Claude «uses judgment to reconcile them», vedi conflitti). Controlla con `/doctor prompt-audit` (da 2.1.283). [Verificato] · T1 · <https://code.claude.com/docs/en/memory>
 5. Con `AGENTS.md` e `CLAUDE.md` insieme, metti `@AGENTS.md` nel `CLAUDE.md` (oppure imposta `claude-md-and-agents-md` in `/config`). Attenzione: un `CLAUDE.local.md` conta come `CLAUDE.md` e spegne la lettura di `AGENTS.md`. Serve Claude Code 2.1.277 o successivo. [Verificato] · T1 · <https://code.claude.com/docs/en/memory>
 6. Per ciò che deve accadere sempre o non accadere mai usa un hook `PreToolUse` o i permessi, non `CLAUDE.md` né una skill: sono una richiesta, non una garanzia. [Verificato] · T1 · <https://code.claude.com/docs/en/features-overview>
 7. Fatti e convenzioni sempre valide in `CLAUDE.md`; procedure e materiale di consultazione in una skill (`SKILL.md` sotto 500 righe; il corpo si carica solo all'uso). Se una sezione di `CLAUDE.md` è diventata una procedura, trasformala in skill. [Verificato] · T1 · <https://code.claude.com/docs/en/skills>
 8. Un sottoagente carica `CLAUDE.md` (tranne Explore e Plan, e i custom con `omitClaudeMd: true`) ma non vede la conversazione: ripeti nel prompt di delega le regole che gli servono. [Verificato] · T1 · <https://code.claude.com/docs/en/sub-agents>
-9. Nei prompt: di' cosa fare, non cosa evitare; dai il motivo; esempi diversi tra loro; tag XML coerenti; niente «CRITICAL: MUST» (i modelli recenti reagiscono troppo). Se una sola regola viene saltata, dai enfasi a quella riga soltanto. [Verificato] · T1 · <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices>
+9. Nei prompt: di' cosa fare, non cosa evitare; dai il motivo; esempi diversi tra loro; tag XML coerenti; niente «CRITICAL: MUST» (i modelli recenti reagiscono troppo). Se una riga viene ignorata, non aggiungere «IMPORTANT»: o il file è troppo lungo o la regola va in un hook (best practices di Code, rilette il 27-ott). [Verificato] · T1 · <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices>
 10. A ogni cambio di modello rileggi le istruzioni: quelle scritte per modelli vecchi possono essere inutili (Opus 5.5: «Re-evaluate model-specific prompt instructions»). Esegui `/doctor prompt-audit` e rimuovi impalcature come «riassumi ogni 3 chiamate». [Verificato] · T1 · <https://platform.claude.com/docs/en/models/opus-5-5/migration-guide.md>
-11. Non generare `AGENTS.md`/`CLAUDE.md` in automatico e lasciarli: in uno studio i file scritti da un LLM non hanno migliorato il successo e hanno aumentato il costo di circa il 20%. Tieni solo istruzioni non standard, assenti dal README, e misura l'effetto di ogni modifica. [Inferenza] sul preprint (un solo studio, un solo tipo di compito) · T1 (preprint) · <https://arxiv.org/pdf/2602.11988>
+11. Non generare `AGENTS.md`/`CLAUDE.md` in automatico e lasciarli: in uno studio i file di contesto, generati da un LLM e anche scritti da sviluppatori, non hanno migliorato il successo in generale e hanno aumentato il costo in media di oltre il 20% (abstract della v3 del 29-set, riletto il 27-ott). Tieni solo istruzioni non standard, assenti dal README, e misura l'effetto di ogni modifica. [Inferenza] sul preprint (un solo studio, un solo tipo di compito) · T1 (preprint) · <https://arxiv.org/pdf/2602.11988>
 12. Tratta i file di istruzioni di repo di terzi come codice non fidato: rivedili prima di aprirli con un agente, non aggirare il dialogo di fiducia, ricorda che una sessione `-p` non lo mostra, e preferisci sandbox o VM. [Verificato] · T1 · <https://code.claude.com/docs/en/security>
 13. Per più strumenti sullo stesso repo tieni una sola casa: `AGENTS.md` come file principale (letto da Codex, Cursor, Copilot, Gemini CLI con impostazione, VS Code), `CLAUDE.md` che lo importa; evita copie della stessa regola. [Verificato] per l'elenco di strumenti · T2 · <https://agents.md/>
 14. Per Codex tieni la catena di `AGENTS.md` sotto 32 KiB (`project_doc_max_bytes`) e dividi in sottocartelle: oltre il limite il caricamento si ferma. [Verificato] · T2 · <https://learn.chatgpt.com/docs/agent-configuration/agents-md>
@@ -57,7 +57,7 @@ Prima passata del tema 1. Parte da `main` (`a2d1a0c`). Non rifà il tema memoria
 ### B. Scrivere un buon CLAUDE.md
 - Ambiti in ordine di caricamento, dal più ampio: gestito, utente (`~/.claude/CLAUDE.md`), progetto (`./CLAUDE.md` o `./.claude/CLAUDE.md`), locale (`./CLAUDE.local.md`, da mettere in `.gitignore`). `/init` genera una bozza e, se il file esiste, propone miglioramenti. Il `claudeMdExcludes` salta file di monorepo ma non quello gestito. I commenti HTML a blocco sono tolti prima dell'iniezione. [Verificato] T1 · [memory](https://code.claude.com/docs/en/memory)
 - `.claude/rules/` senza `paths` si carica all'avvio; con `paths` solo quando Claude usa Read, Write o Edit su file corrispondenti. Le regole utente caricano prima di quelle di progetto. [Verificato] T1 · memory
-- Anthropic: «Keep it concise»; i `CLAUDE.md` troppo lunghi fanno ignorare le istruzioni; trattalo come codice (rivedilo quando qualcosa va storto, potalo). Per una regola saltata: enfasi su quella riga sola. `/context` conferma il caricamento, `/doctor` propone tagli. [Verificato] T1 · [best-practices](https://code.claude.com/docs/en/best-practices)
+- Anthropic, pagina riscritta (riletta il 27-ott): ogni riga di `CLAUDE.md` prende un po' di attenzione a ogni compito, quindi il file va tenuto corto e con ciò che il codice non dice. Se Claude ignora una riga, «adding IMPORTANT probably won't fix it»: il file è troppo lungo o la regola va in un hook. Nella tabella «What you can stop doing» compaiono ora sia l'enfasi in maiuscolo sia la descrizione di architettura e file. Le preferenze personali vanno in `CLAUDE.local.md`, fuori da git. `/context` conferma il caricamento, `/doctor` propone tagli. [Verificato] T1 · [best-practices](https://code.claude.com/docs/en/best-practices)
 - Il `CLAUDE.md` è caricato in anticipo, mentre altri file arrivano con glob e grep: approccio ibrido. Il post è del 2025-09-29 (più vecchio di 12 mesi) ma coerente con la pagina memory corrente. [Verificato] T1 · [context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
 - Una nota nuova rispetto a `memoria.md`: un `CLAUDE.md` annidato oltre il limite di dimensione ne carica solo l'inizio (2.1.309). [Verificato] T1 · [changelog](https://code.claude.com/docs/en/changelog)
 
@@ -84,7 +84,7 @@ Prima passata del tema 1. Parte da `main` (`a2d1a0c`). Non rifà il tema memoria
 ### E. Prove e studi
 | Fonte | Cosa dimostra | Cosa non dimostra | Tag |
 |---|---|---|---|
-| [arXiv 2602.11988](https://arxiv.org/pdf/2602.11988) (preprint, 2026-02) | I file di contesto «do not generally improve» il successo e alzano il costo oltre il 20% (LLM: −0,5% su SWE-bench, −2% su CTXBench, non significativi; costo +20% e +23%); i file scritti da sviluppatori +2,4% su CTXBench, non significativo (p = 0,21) e meglio di quelli LLM (p = 0,038) | Non misura `CLAUDE.md` di Claude Code né modelli 5.x; con ogni altra documentazione rimossa i file LLM migliorano di circa il 2,7% | [Verificato] sul testo, via riassunto |
+| [arXiv 2602.11988](https://arxiv.org/pdf/2602.11988) (preprint, v1 2026-02-12, v3 2026-09-29; abstract della v3: vale «for both LLM-generated and developer-committed context files») | I file di contesto «do not generally improve» il successo e alzano il costo oltre il 20% (LLM: −0,5% su SWE-bench, −2% su CTXBench, non significativi; costo +20% e +23%); i file scritti da sviluppatori +2,4% su CTXBench, non significativo (p = 0,21) e meglio di quelli LLM (p = 0,038) | Non misura `CLAUDE.md` di Claude Code né modelli 5.x; con ogni altra documentazione rimossa i file LLM migliorano di circa il 2,7% | [Verificato] sul testo, via riassunto |
 | [arXiv 2507.11538](https://arxiv.org/abs/2507.11538) (IFScale, preprint, 2025-07-15) | 20 modelli, 500 istruzioni di inclusione di parole: il migliore arriva al 68%; c'è un favore per le istruzioni iniziali | Compito sintetico, non agenti di codice; modelli vecchi | [Verificato] sull'abstract |
 - Il consiglio «meno righe» di Anthropic è un consiglio; le due misure sopra lo sostengono in modo indiretto. [Inferenza]
 
@@ -98,7 +98,8 @@ Prima passata del tema 1. Parte da `main` (`a2d1a0c`). Non rifà il tema memoria
 ### G. Un file solo per più strumenti
 - Strategia documentata: `AGENTS.md` principale; per rinominare un file esistente, rinomina e crea un link simbolico col vecchio nome ([agents.md](https://agents.md/)). Claude Code: `@AGENTS.md` in `CLAUDE.md`, oppure impostazione `claude-md-and-agents-md`; un `AGENTS.md` già importato o linkato non è letto due volte. [Verificato] T2/T1 · [memory](https://code.claude.com/docs/en/memory)
 - Limiti noti: Claude Code non segue link verso percorsi di rete e in sessioni Cowork salta un `~/.claude/CLAUDE.md` che sia un link simbolico; non legge `AGENTS.override.md`, `AGENTS.local.md` né `.agents/`. [Verificato] T1 · memory
-- Gemini CLI e Aider richiedono configurazione; Cursor e Copilot leggono `AGENTS.md`; VS Code legge anche `CLAUDE.md` se abilitato. Windows e link simbolici: nessuna prova trovata.
+- Gemini CLI e Aider richiedono configurazione; Cursor e Copilot leggono `AGENTS.md`; VS Code legge anche `CLAUDE.md` se abilitato.
+- Windows: se qualcuno lavora sul repo da Windows, usa l'import `@AGENTS.md`, non un `CLAUDE.md` collegato con link simbolico. Su Windows il link richiede privilegi di amministratore o la modalità sviluppatore, e git lo scarica come file di testo di una riga se `core.symlinks` è spento. [Verificato] T1 · [memory](https://code.claude.com/docs/en/memory) (riletta il 27-ott)
 - Raccomandazione per chi usa Claude Code con Cursor o Codex: un `AGENTS.md` con le regole comuni; un `CLAUDE.md` con la sola riga `@AGENTS.md` più le note specifiche di Claude; niente `CLAUDE.local.md` senza impostare `claude-md-and-agents-md`. [Inferenza] sui fatti citati
 
 ### H. Cosa cambia con un nuovo modello
@@ -123,7 +124,8 @@ Vedi la sezione seguente.
 | Tema | Fonte A | Fonte B | Stato |
 |---|---|---|---|
 | Generare file con `/init` | memory: `/init` crea una bozza da rifinire (T1, corrente) | arXiv 2602.11988 (T1 preprint, 2026-02): omettere i file LLM | Non risolto: l'articolo misura `AGENTS.md` generati e lasciati com'erano, `/init` propone di rifinirli |
-| Enfasi | prompting best practices: ammorbidire «CRITICAL» (T1) | best-practices: aggiungere «IMPORTANT» a una sola riga (T1) | Conciliabile: enfasi solo su una riga, mai diffusa |
+| Enfasi | prompting best practices: ammorbidire «CRITICAL» (T1) | best-practices: il 25-ott consigliava «IMPORTANT» su una riga; riletta il 27-ott la mette tra i consigli superati (T1) | Risolto: niente enfasi; riga ignorata = file più corto o hook |
+| Istruzioni in conflitto | memory: Claude «may pick one arbitrarily» (corrente, T1) | features-overview: Claude «uses judgment to reconcile them» (corrente, T1) | Non risolto; la pratica non cambia: non scrivere regole opposte |
 | Precedenza | agents.md, Codex, Cursor: il più vicino/specifico prevale (T2) | Claude Code: concatenazione, nessuna precedenza (T1) | Divergenza reale tra strumenti, non risolta: non scrivere regole opposte |
 | `AGENTS.md` e `copilot-instructions.md` | docs.github (T2): precedenza non indicata | VS Code (T1): fonti additive, non affidarsi all'ordine | Concordano: nessuna precedenza dichiarata |
 | Risposta di Cursor al Rules File Backdoor | Pillar 2025-03-18 (T3): «non una vulnerabilità» | nessuna fonte vendor letta | Non risolto [Segnale T3] |
@@ -131,7 +133,8 @@ Vedi la sezione seguente.
 ## Cosa non è stato verificato
 - Il changelog di Claude Code è stato letto solo nei primi 100.000 caratteri (la pagina è più lunga); `skills` e `sub-agents` sono stati letti per 100.000 caratteri su circa 114.000; `hooks-guide` e `migration guide` con grep.
 - I tre preprint sulla sicurezza e IFScale: solo abstract o riassunto; i CVE citati da 2605.25871 non sono stati controllati.
-- Reddit, Stack Overflow e help.openai.com non sono stati interrogati; nessun dato su Windows e link simbolici per `AGENTS.md`.
+- Reddit, Stack Overflow e help.openai.com non sono stati interrogati.
+- Ripassata del 27-ott: il preprint 2602.11988 è stato riletto solo nell'abstract (il PDF non era leggibile dallo strumento); `skills` e `sub-agents` per i primi 100.000 caratteri.
 - Rimando a memoria.md per la sessione cloud fresca; non ripetuta.
 - Le istruzioni dei Project (tema 2) e il report del 18 ottobre sui Project non sono stati riverificati.
 
