@@ -28,7 +28,7 @@ Un set di guide di best practice su Claude, stato dell'arte al 27 ottobre 2026, 
 ## Costi
 - Run locali, sessioni cloud e attività programmate consumano tutte il limite del piano, come una chat. I crediti d'uso si usano solo dopo aver esaurito il limite incluso (cinque ore o settimanale) e solo se sono attivi: locale o cloud non cambia il conto finché si resta sotto il limite (`D:\Workspace\best_practice\5_attivita\rapporto_attivita.md`, sezione C).
 - I dollari non sono visibili all'agente: l'utente legge utilizzo del piano e saldo dei crediti in Settings > Usage prima e dopo ogni run e li scrive in chat; l'agente li annota qui e registra letture, ricerche e durata nel corpo della PR.
-- Ultimi valori: 27 ottobre 2026, prima della ripassata finale, utilizzo del piano 62%, crediti 23 USD (dichiarati dall'utente nel messaggio di avvio); i valori dopo la run li scrive l'utente.
+- Ultimi valori: 27 ottobre 2026, dopo la ripassata finale (51 letture, circa 8 minuti), utilizzo del piano da 62% a 65%, crediti fermi a 23 USD (dichiarati dall'utente).
 
 ## Come parlare con l'utente
 - Italiano, link diretti, nessuna domanda finale, mai video YouTube. Percorsi Windows completi.
