@@ -14,7 +14,7 @@ versioni_rilevate:
 
 # Contesto di Claude: stato al 27 ottobre 2026 (v1)
 
-Prima passata del tema 3. Temi già chiusi, non rifatti qui: [1_comportamento/rapporto.md](../1_comportamento/rapporto.md) (tema 1), [2_istruzioni_project/rapporto.md](../2_istruzioni_project/rapporto.md) (tema 2), [4_memoria/rapporto.md](../4_memoria/rapporto.md) (tema 4).
+Prima passata del tema 3. Temi già chiusi, non rifatti qui: [1_comportamento/rapporto_comportamento.md](../1_comportamento/rapporto_comportamento.md) (tema 1), [2_istruzioni_project/rapporto_istruzioni_project.md](../2_istruzioni_project/rapporto_istruzioni_project.md) (tema 2), [4_memoria/rapporto_memoria.md](../4_memoria/rapporto_memoria.md) (tema 4).
 
 ## Risposta breve
 - Il contesto è tutto ciò che Claude ha davanti in una richiesta: prompt di sistema, istruzioni, strumenti, file, cronologia e la risposta stessa, ragionamento compreso. I quattro modelli correnti hanno 1M token (circa 555.000 parole).
@@ -79,7 +79,7 @@ Prima passata del tema 3. Temi già chiusi, non rifatti qui: [1_comportamento/ra
 - **Skill.** Si vedono nome e descrizione; il corpo entra solo quando servono. `disable-model-invocation: true` toglie anche la descrizione finché non le chiami. Le procedure di un flusso pesano meno in una skill che in `CLAUDE.md`. [Verificato] T1 · how it works; [costs](https://code.claude.com/docs/en/costs)
 - **MCP.** Definizioni rinviate di default (tool search): fino all'uso entrano solo nomi e istruzioni del server; le CLI come `gh` restano più leggere. [Verificato] T1 · costs
 - **Sottoagenti.** Finestra propria, tornano con un riassunto (Anthropic parla di 1.000-2.000 token nel post del 2025). Le best practices correnti però: «Running out of context is rarely the problem anymore», ogni sottoagente costa token e non migliora la risposta. [Verificato] T1 · context engineering; best practices
-- **Project dell'app.** Il RAG parte da sé vicino al limite e porta fino a 10 volte la capacità; la pagina non dice se le Istruzioni ci rientrino. [Verificato] T1 · [RAG](https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects). Fatti già verificati su `CLAUDE.md`, skill e Istruzioni: [1_comportamento/rapporto.md](../1_comportamento/rapporto.md), [2_istruzioni_project/rapporto.md](../2_istruzioni_project/rapporto.md).
+- **Project dell'app.** Il RAG parte da sé vicino al limite e porta fino a 10 volte la capacità; la pagina non dice se le Istruzioni ci rientrino. [Verificato] T1 · [RAG](https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects). Fatti già verificati su `CLAUDE.md`, skill e Istruzioni: [1_comportamento/rapporto_comportamento.md](../1_comportamento/rapporto_comportamento.md), [2_istruzioni_project/rapporto_istruzioni_project.md](../2_istruzioni_project/rapporto_istruzioni_project.md).
 
 ### E. Chat e sessioni lunghe
 - **App, consigli ufficiali.** Vicino al limite d'uso apri una conversazione nuova; usa i Project; Istruzioni brevi; togli i file inutili; spegni ragionamento esteso, connettori e ricerca web quando non servono; abbassa l'effort per i compiti di routine. [Verificato] T1 · help 11647753
@@ -117,23 +117,23 @@ Per chi usa Code:
 9. `/compact` con un fuoco alle pause naturali, non a metà; `/rewind` per abbandonare una strada (C, E).
 10. Dopo due correzioni fallite: `/clear` e un prompt nuovo che contiene ciò che hai imparato (E).
 11. Output rumorosi (test, log) filtrati da un hook o mandati a un sottoagente, sapendo che il sottoagente costa (D).
-12. Run lunghe come sessioni a sé, con il contesto nel prompt e nel repo (E; [4_memoria/rapporto.md](../4_memoria/rapporto.md)).
+12. Run lunghe come sessioni a sé, con il contesto nel prompt e nel repo (E; [4_memoria/rapporto_memoria.md](../4_memoria/rapporto_memoria.md)).
 13. `/context` e `/usage` quando i consumi salgono senza motivo (A, E).
 14. A ogni modello nuovo, rileggere numeri e regole (F).
 
 ## Raccordo con i report precedenti
 | Punto | Report | Stato al 27-ott |
 | --- | --- | --- |
-| Chat lunghe: sintesi automatica, cronologia conservata, nessuna soglia | [4_memoria/rapporto.md](../4_memoria/rapporto.md) regola 15 ed E | Ancora vero. In più: solo piani a pagamento con esecuzione di codice attiva; le chat lunghe consumano più limite. L'articolo 11647753 ha cambiato titolo e indirizzo («how-do-usage-and-length-limits-work») |
+| Chat lunghe: sintesi automatica, cronologia conservata, nessuna soglia | [4_memoria/rapporto_memoria.md](../4_memoria/rapporto_memoria.md) regola 15 ed E | Ancora vero. In più: solo piani a pagamento con esecuzione di codice attiva; le chat lunghe consumano più limite. L'articolo 11647753 ha cambiato titolo e indirizzo («how-do-usage-and-length-limits-work») |
 | `CLAUDE.md` della radice sopravvive a `/compact` | memoria.md B | Ancora vero; ora c'è la tabella completa (auto memory, skill, cinque file) |
 | Compattazione da inattività (2.1.299, oltre 200K, circa 54 minuti) | memoria.md B | Cambiato nella forma: le docs ora la legano alla cache di un'ora; versione del controllo in conflitto (vedi tabella) |
 | Cache con TTL di 5 minuti (API) | memoria.md C | Ancora vero per chiave API; in Code con abbonamento la conversazione principale ha un'ora |
 | Compaction on demand dal 2026-09-14 | memoria.md C | Ancora vero (release notes API) |
 | Claude Code 2.1.303 | memoria.md intestazione | Superato: 2.1.311 del 2026-10-26 |
 | Context rot: accuratezza e richiamo calano con i token | memoria.md C; istruzioni_project.md C | Ancora vero, stessa pagina |
-| `CLAUDE.md` sotto 200 righe; gli import non riducono il costo | [1_comportamento/rapporto.md](../1_comportamento/rapporto.md) regola 2 | Ancora vero (costs: «under 200 lines») |
+| `CLAUDE.md` sotto 200 righe; gli import non riducono il costo | [1_comportamento/rapporto_comportamento.md](../1_comportamento/rapporto_comportamento.md) regola 2 | Ancora vero (costs: «under 200 lines») |
 | Sottoagente come contesto separato | comportamento.md (tabella) | Ancora vero, ma «usali per proteggere il contesto» è ora un consiglio superato |
-| Context rot non misurato su Claude 5.5 | [2_istruzioni_project/rapporto.md](../2_istruzioni_project/rapporto.md) C | Ancora vero: i preprint arrivano a Opus 4.6 |
+| Context rot non misurato su Claude 5.5 | [2_istruzioni_project/rapporto_istruzioni_project.md](../2_istruzioni_project/rapporto_istruzioni_project.md) C | Ancora vero: i preprint arrivano a Opus 4.6 |
 | RAG nei Project fino a 10x; Istruzioni dentro o fuori: ignoto | istruzioni_project.md A | Ancora vero; ancora ignoto |
 | Documenti lunghi in alto, domanda in fondo (+30%) | istruzioni_project.md C | Non riletto qui; coerente con 2307.03172 |
 | README, punto 11: le chat molto lunghe peggiorano | [README](../README.md) | Coerente con context rot e consigli dell'app |
@@ -163,4 +163,4 @@ Per chi usa Code:
 **Tier 3.** Nessuna fonte letta; il documento di passaggio resta [Segnale T3] senza fonte citata.
 
 ## Guida
-Le istruzioni d'uso per Claude e i passi per l'utente stanno in `D:\Workspace\best_practice\3_contesto\guida.md`.
+Le istruzioni d'uso per Claude e i passi per l'utente stanno in `D:\Workspace\best_practice\3_contesto\guida_contesto.md`.

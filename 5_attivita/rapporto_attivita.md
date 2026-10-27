@@ -13,7 +13,7 @@ versioni_rilevate:
 
 # Attività programmate con Claude: stato al 27 ottobre 2026 (v1)
 
-Prima passata del tema 5, l'ultimo. Temi chiusi, non rifatti qui: [1_comportamento/rapporto.md](../1_comportamento/rapporto.md) (1), [2_istruzioni_project/rapporto.md](../2_istruzioni_project/rapporto.md) (2), [3_contesto/rapporto.md](../3_contesto/rapporto.md) (3), [4_memoria/rapporto.md](../4_memoria/rapporto.md) (4).
+Prima passata del tema 5, l'ultimo. Temi chiusi, non rifatti qui: [1_comportamento/rapporto_comportamento.md](../1_comportamento/rapporto_comportamento.md) (1), [2_istruzioni_project/rapporto_istruzioni_project.md](../2_istruzioni_project/rapporto_istruzioni_project.md) (2), [3_contesto/rapporto_contesto.md](../3_contesto/rapporto_contesto.md) (3), [4_memoria/rapporto_memoria.md](../4_memoria/rapporto_memoria.md) (4).
 
 ## Risposta breve
 - Le vie sono sei: **attività cloud** (le vecchie routine, su claude.ai), **attività locali di Desktop**, **`/loop` e attività di sessione**, **attività di Cowork e della nuova app unificata**, **GitHub Actions** con `claude-code-action`, **scheduled deployments** di Managed Agents via API. Le prime quattro pesano sull'abbonamento; Actions e Managed Agents di norma sulla chiave API.
@@ -65,7 +65,7 @@ Fonti: [scheduled-tasks](https://code.claude.com/docs/en/scheduled-tasks) (tabel
 - **Desktop.** La cartella scelta così com'è, modifiche non committate comprese (oppure un worktree se lo si seleziona); le regole `allow` di `~/.claude/settings.json`; la modalità dei permessi scelta per l'attività. Desktop legge le stesse impostazioni della CLI. [Verificato] T1 · desktop-scheduled-tasks; [desktop](https://code.claude.com/docs/en/desktop)
 - **`/loop`.** Eredita tutto dalla sessione (MCP, permessi, contesto); scatta solo tra un turno e l'altro. [Verificato] T1 · scheduled-tasks
 - **Cowork.** Connettori, skill, plugin installati e i file salvati nell'account; memoria delle chat nella nuova esperienza. [Verificato] (parafrasi) T1 · help 13854387; help 16761823
-- **Memoria.** Fatti già verificati in [4_memoria/rapporto.md](../4_memoria/rapporto.md) (sezione D): nessuna prova che la memoria chat dell'account arrivi a una sessione cloud.
+- **Memoria.** Fatti già verificati in [4_memoria/rapporto_memoria.md](../4_memoria/rapporto_memoria.md) (sezione D): nessuna prova che la memoria chat dell'account arrivi a una sessione cloud.
 
 ### C. Costi e limiti
 - Attività cloud: consumano l'uso dell'abbonamento come le sessioni interattive; a limite raggiunto, con crediti d'uso attivi continuano a consumo, senza vengono rifiutate fino al reset; con l'abbonamento in pausa restano ferme. [Verificato] T1 · routines. Una sessione cloud conta sul limite del piano insieme al resto dell'uso di Claude, senza costo separato per la VM. [Verificato] T1 · [claude-code-on-the-web](https://code.claude.com/docs/en/claude-code-on-the-web). Le sessioni avviate da `/fire` si pagano sull'abbonamento, non sulla Claude Platform. [Verificato] T1 · [routines-fire](https://platform.claude.com/docs/en/api/claude-code/routines-fire)
@@ -73,7 +73,7 @@ Fonti: [scheduled-tasks](https://code.claude.com/docs/en/scheduled-tasks) (tabel
 - **Osservazione dell'utente del 27 ottobre.** Notte 03 (attività cloud): piano su, crediti fermi a 23 USD. Notte 04 (chat locale): piano da 53% a 57%, crediti fermi. Entrambe coerenti con le pagine: nessuna delle due vie tocca i crediti finché il limite non è raggiunto. La premessa in `CLAUDE.md` («sessione Code cloud con crediti») non trova appoggio: anche le sessioni cloud pagano col piano. [Inferenza] su fatti T1. Le discese del saldo di ottobre (da 40 a 26 USD) non si spiegano con queste pagine: «nessuna prova trovata».
 - GitHub Actions: minuti di Actions più token; con `CLAUDE_CODE_OAUTH_TOKEN` le run usano l'abbonamento invece della fatturazione API; un token OAuth è legato all'abbonamento di chi l'ha generato. Consigli ufficiali: `--max-turns`, timeout del workflow, controlli di concorrenza. [Verificato] T1 · github-actions
 - Managed Agents: richieste con `x-api-key` (Claude Platform); `budget` copiato su ogni sessione, quindi vale per ogni run e non in totale (nell'esempio della pagina, `"2000"` corrisponde a circa 20 USD per run). [Verificato] T1 · scheduled-deployments
-- `/loop` e attività di sessione: scattano anche a sessione ferma e rimandano tutto il contesto; `/usage` ha una riga Loops con token per run (da 2.1.243). Cache, sessioni lunghe e `/compact`: vedi [3_contesto/rapporto.md](../3_contesto/rapporto.md) (sezione E). [Verificato] T1 · [costs](https://code.claude.com/docs/en/costs); [changelog](https://code.claude.com/docs/en/changelog)
+- `/loop` e attività di sessione: scattano anche a sessione ferma e rimandano tutto il contesto; `/usage` ha una riga Loops con token per run (da 2.1.243). Cache, sessioni lunghe e `/compact`: vedi [3_contesto/rapporto_contesto.md](../3_contesto/rapporto_contesto.md) (sezione E). [Verificato] T1 · [costs](https://code.claude.com/docs/en/costs); [changelog](https://code.claude.com/docs/en/changelog)
 - Un thread di Project avviato da un'attività non aspetta il reset del limite: il turno si ferma con un errore. [Verificato] T1 · claude-projects
 
 ### D. Affidabilità
@@ -138,12 +138,12 @@ Lista di controllo prima di attivarla (A-E):
 ## Raccordo con i report precedenti
 | Punto | Report | Stato al 27-ott |
 | --- | --- | --- |
-| Prompt della routine autosufficiente; ogni run è una sessione nuova | [4_memoria/rapporto.md](../4_memoria/rapporto.md) regola 2 | Ancora vero; in più: nei Project una run può continuare un thread |
+| Prompt della routine autosufficiente; ogni run è una sessione nuova | [4_memoria/rapporto_memoria.md](../4_memoria/rapporto_memoria.md) regola 2 | Ancora vero; in più: nei Project una run può continuare un thread |
 | Il cloud vede `CLAUDE.md`, regole e skill del repo, non `~/.claude` | memoria.md D, regola 3 | Ancora vero; in più: plugin non installati, `.mcp.json` e settings solo con un repo |
 | Nel cloud `/compact` funziona, `/clear` no | memoria.md D | Contraddetto: oggi anche `/clear` funziona (nuova conversazione nella stessa sessione cloud) |
 | Routine del Project nella scheda «Routines» | memoria.md D | Cambiato: la scheda si chiama Scheduled tasks; la routine gira come thread del Project |
 | Routine = prompt, repo e connettori; account individuale | memoria.md D | Ancora vero; le azioni risultano fatte a nome dell'utente |
-| Attività di sessione consumano a sessione ferma; cache di un'ora con abbonamento | [3_contesto/rapporto.md](../3_contesto/rapporto.md) E | Ancora vero; `/loop 5m` è tarato sulla cache di cinque minuti (parte 15 secondi prima) |
+| Attività di sessione consumano a sessione ferma; cache di un'ora con abbonamento | [3_contesto/rapporto_contesto.md](../3_contesto/rapporto_contesto.md) E | Ancora vero; `/loop 5m` è tarato sulla cache di cinque minuti (parte 15 secondi prima) |
 | Cowork desktop richiede l'app aperta | report del 18 ottobre su app e Code (rimosso il 27 ottobre; resta nella storia del repo) | Cambiato per le attività: ora girano nel cloud (spostamento avviato a settembre); l'app aperta serve solo per file, browser, computer use |
 | Il report del 18 ottobre non tratta le attività programmate | report del 18 ottobre su app e Code | Ancora vero: nulla da riverificare oltre la riga sopra |
 | Attività con TUTTI i connettori e approvazione automatica | [CLAUDE.md](../CLAUDE.md) «Perimetro e sicurezza» | Ancora vero per il cloud (connettori di default, auto mode) e per Cowork dal 1-ott |
@@ -177,4 +177,4 @@ Lista di controllo prima di attivarla (A-E):
 **Tier 3.** [issue 40124](https://github.com/anthropics/claude-code/issues/40124) e [issue 103724](https://github.com/anthropics/claude-code/issues/103724): segnalazioni di utenti sul repo di Anthropic, senza risposta né correzione; classificate T3 perché il contenuto non è di Anthropic.
 
 ## Guida
-Le istruzioni d'uso per Claude e i passi per l'utente stanno in `D:\Workspace\best_practice\5_attivita\guida.md`.
+Le istruzioni d'uso per Claude e i passi per l'utente stanno in `D:\Workspace\best_practice\5_attivita\guida_attivita.md`.

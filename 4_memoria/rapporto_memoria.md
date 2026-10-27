@@ -18,7 +18,7 @@ v3 chiude le domande aperte di v2 (base `f1d5d1e`) e v1. Parte da `d0a1c7c` (mai
 
 ## Risposta breve
 - Le memorie sono cinque e separate: memoria di claude.ai (account e Project), ricerca nelle chat passate, `CLAUDE.md`/`AGENTS.md`, auto memory locale di Claude Code, memory tool dell'API. In più la project memory dei Projects di Claude Code (beta).
-- Una sessione cloud fresca (anche da routine) vede il clone del repo, non `C:\Users\Tommi\.claude\CLAUDE.md` né l'auto memory locale. La memoria chat dell'account: nessuna prova nelle docs e, nella prova su questa sessione, nessun blocco di memoria nel contesto. Trattala come assente.
+- Una sessione cloud fresca (anche da routine) vede il clone del repo, non `C:\Users\<utente>\.claude\CLAUDE.md` né l'auto memory locale. La memoria chat dell'account: nessuna prova nelle docs e, nella prova su questa sessione, nessun blocco di memoria nel contesto. Trattala come assente.
 - Non esiste una regola ufficiale di precedenza tra profilo, Project, memoria e `CLAUDE.md`. In Claude Code i file sono concatenati, non sovrascritti: se si contraddicono, Claude può seguirne uno a caso.
 - Un Project di chat con GitHub resta aggiornato solo se premi "Sync now".
 - La memoria è contesto, non vincolo: per bloccare un'azione servono gli hook.
@@ -104,7 +104,7 @@ Gli anni dei commit di mem0 e basic-memory sono ora letti da [mem0 commits](http
 
 ### I. Novità dopo il 19 ottobre e ultimi 90 giorni
 - Al 19-ott-2026: nessuna voce nuova nel changelog di Claude Code (ultima 2.1.303), nelle release notes di claude.ai (ultima 2026-10-07), né in quelle API (ultima 2026-10-15).
-- Al 27-ott-2026 (letture delle notti 04 e 05): Claude Code 2.1.312; release notes dell'app fino al 2026-10-21, dell'API fino al 2026-10-23. Le voci sulla memoria non cambiano le regole sopra; quelle su contesto e attività sono in [3_contesto/rapporto.md](../3_contesto/rapporto.md) e [5_attivita/rapporto.md](../5_attivita/rapporto.md).
+- Al 27-ott-2026 (letture delle notti 04 e 05): Claude Code 2.1.312; release notes dell'app fino al 2026-10-21, dell'API fino al 2026-10-23. Le voci sulla memoria non cambiano le regole sopra; quelle su contesto e attività sono in [3_contesto/rapporto_contesto.md](../3_contesto/rapporto_contesto.md) e [5_attivita/rapporto_attivita.md](../5_attivita/rapporto_attivita.md).
 - Da v2: 2.1.299 (compaction da inattività), 2.1.296 (memoria di workspace e canale in Claude Tag), 2.1.302 (correzioni alle routine), 2026-10-15 (Compliance API restituisce "Instructions for Claude" e "Global instructions", beta Enterprise), 2026-10-07 (Haiku 5.5, 1M di contesto). [Verificato] T1 · changelog; [release notes API](https://platform.claude.com/docs/en/release-notes/overview)
 
 ## Raccordo con i report: v2 e precedenti/
@@ -146,4 +146,4 @@ Gli anni dei commit di mem0 e basic-memory sono ora letti da [mem0 commits](http
 **Tier 3.** [Cisco](https://blogs.cisco.com/ai/identifying-and-remediating-a-persistent-memory-compromise-in-claude-code) · [forum Cursor](https://forum.cursor.com/t/are-my-memories-gone/144057) · [implicator.ai](https://www.implicator.ai/anthropic-adds-auto-dream-to-claude-code-fixing-memory-decay-between-sessions) · [claudefa.st](https://claudefa.st/blog/guide/mechanics/auto-dream) · [mirror Reddit](https://reddit.sentinel-team.org/posts/1rfwxr2/snapshots/2026-02-27T16%3A40%3A54.76432Z)
 
 ## Guida
-Le istruzioni d'uso per Claude e i passi per l'utente stanno in `D:\Workspace\best_practice\4_memoria\guida.md`.
+Le istruzioni d'uso per Claude e i passi per l'utente stanno in `D:\Workspace\best_practice\4_memoria\guida_memoria.md`.
