@@ -3,6 +3,7 @@ tema: comportamento degli agenti con file di istruzioni (CLAUDE.md, AGENTS.md, r
 versione: 1
 base: a2d1a0c
 verificato_il: 2026-10-25
+aggiornato_il: 2026-10-27 (correzioni verificate dalle notti 03 e 04, riordino del repo)
 rivalutare_se: "nuovo modello Claude, per esempio Opus 5.6; release notes di Claude Code che toccano CLAUDE.md, AGENTS.md, rules o hook; oppure 2026-12-18"
 versioni_rilevate:
   claude_code: "2.1.310 del 2026-10-23 (changelog, primi 100.000 caratteri su 126.198; nessuna voce su AGENTS.md o prompt-audit dopo la 2.1.303)"
@@ -13,7 +14,7 @@ versioni_rilevate:
 
 # Comportamento degli agenti: file di istruzioni, stato al 25 ottobre 2026 (v1)
 
-Prima passata del tema 1. Parte da `main` (`a2d1a0c`). Non rifà il tema memoria: rimanda a [memoria.md](memoria.md). Tag: [Verificato] [Inferenza] [Obsoleto/Conflitto] [Segnale T3]. Le docs di Anthropic non hanno date: la data è quella della lettura (2026-10-25), salvo dove indicato.
+Prima passata del tema 1. Parte da `main` (`a2d1a0c`). Non rifà il tema memoria: rimanda a [4_memoria/rapporto_memoria.md](../4_memoria/rapporto_memoria.md). Tag: [Verificato] [Inferenza] [Obsoleto/Conflitto] [Segnale T3]. Le docs di Anthropic non hanno date: la data è quella della lettura (2026-10-25), salvo dove indicato.
 
 ## Risposta breve
 - Claude Code legge `CLAUDE.md`, non `AGENTS.md`; legge `AGENTS.md` solo se non c'è nessun `CLAUDE.md` (né `.claude/CLAUDE.md`, né `CLAUDE.local.md`) nella cartella di lavoro o sopra. Con entrambi i file: `@AGENTS.md` dentro `CLAUDE.md`.
@@ -66,7 +67,7 @@ Prima passata del tema 1. Parte da `main` (`a2d1a0c`). Non rifà il tema memoria
 | Fatti e regole «sempre» | `CLAUDE.md` | A ogni sessione | A ogni richiesta | [features](https://code.claude.com/docs/en/features-overview) |
 | Regole per cartella o linguaggio | `.claude/rules/` con `paths` | Quando si aprono file corrispondenti | Solo allora | features |
 | Procedure, riferimenti | Skill | Descrizione sempre, corpo all'uso | Basso | [skills](https://code.claude.com/docs/en/skills) |
-| Lavoro isolato che restituisce un riassunto | Sottoagente | Alla delega | Contesto separato | [sub-agents](https://code.claude.com/docs/en/sub-agents) |
+| Lavoro isolato che restituisce un riassunto | Sottoagente | Alla delega | Contesto separato (usarlo «per proteggere il contesto» è ora un consiglio superato nelle best practices: vedi [3_contesto/rapporto_contesto.md](../3_contesto/rapporto_contesto.md), regola 9) | [sub-agents](https://code.claude.com/docs/en/sub-agents) |
 | Cose che devono accadere sempre | Hook | All'evento | Zero, salvo output | features |
 | Tono e formato della risposta | Output style | A inizio sessione | A ogni richiesta | features |
 - Cosa NON va in `CLAUDE.md` (tutte [Verificato] T1): divieti assoluti («an instruction is the wrong tool»: usa hook, permessi, impostazioni gestite), comportamenti da ripetere ogni volta (hook), procedure lunghe (skill), regole di percorso (rules), preferenze personali (file utente). [Verificato] T1 · [blog Anthropic, 2026-06-18](https://claude.com/blog/steering-claude-code-skills-hooks-rules-subagents-and-more)
@@ -77,7 +78,7 @@ Prima passata del tema 1. Parte da `main` (`a2d1a0c`). Non rifà il tema memoria
 - Principi (modelli attuali): chiarezza («show your prompt to a colleague» è il test), motivo dietro la regola, positivo meglio che negativo, 3-5 esempi in `<example>`, tag XML coerenti, ruolo in una frase, documenti lunghi in alto e domanda in fondo (fino a +30% nei test della pagina). Reazione forte al system prompt: ammorbidisci il maiuscolo. [Verificato] T1 · [prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)
 - Agenti: avvisa dei limiti di contesto, limita i sottoagenti per i compiti semplici, chiedi conferma prima di azioni irreversibili, dai regole di perimetro contro l'eccesso di ingegneria. [Verificato] T1 · stessa pagina
 - Opus 5.5: risponde a istruzioni specifiche e a «named prohibitions» meglio che a consigli generici; è sensibile al tempo trascorso; togli i «think carefully» e le istruzioni che spostano il ragionamento nella risposta; aggiunte lunghe al system prompt vanno alla prima richiesta. [Verificato] T1 · [Opus 5.5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5)
-- Opus 5: risposte più lunghe, chiedi brevità in modo esplicito; Fable 5.1: pochi aggiornamenti, chiedili. Sonnet 5.5 e Haiku 5.5 hanno guide proprie: **non lette** (vedi non verificato). [Verificato] T1 · prompting best practices
+- Opus 5: risposte più lunghe, chiedi brevità in modo esplicito; Fable 5.1: pochi aggiornamenti, chiedili. Sonnet 5.5 e Haiku 5.5 hanno guide proprie, lette dalla notte 03: vedi [2_istruzioni_project/rapporto_istruzioni_project.md](../2_istruzioni_project/rapporto_istruzioni_project.md), sezione F. [Verificato] T1 · prompting best practices
 - Altezza giusta: né logica fragile né indicazioni vaghe; parti da un prompt minimo e aggiungi dopo i fallimenti osservati. [Verificato] T1 (2025-09-29) · context engineering
 
 ### E. Prove e studi
@@ -111,10 +112,10 @@ Vedi la sezione seguente.
 ## Raccordo con i report precedenti
 | Punto | Report | Stato oggi |
 |---|---|---|
-| Limite 200 righe, `AGENTS.md` solo senza `CLAUDE.md`, `@AGENTS.md`, hook contro `CLAUDE.md` | [memoria.md](memoria.md) | Ancora vero, riletto da memory il 25-ott. Nuovo: `CLAUDE.local.md` conta come `CLAUDE.md` |
+| Limite 200 righe, `AGENTS.md` solo senza `CLAUDE.md`, `@AGENTS.md`, hook contro `CLAUDE.md` | [4_memoria/rapporto_memoria.md](../4_memoria/rapporto_memoria.md) | Ancora vero, riletto da memory il 25-ott. Nuovo: `CLAUDE.local.md` conta come `CLAUDE.md` |
 | `/doctor prompt-audit` | memoria.md | Ancora vero (memory) |
-| Istruzioni brevi, positive, enfasi rara; nessuna precedenza ufficiale tra profilo, Project e memoria | [istruzioni_per_progetti.md](istruzioni_per_progetti.md) | Ancora vero per la parte su prompt (guida riletta). Parte sui Project: non ricontrollata in questa notte |
-| `AGENTS.md` come strada comune e `@AGENTS.md` | [collegare_claude_app_a_code.md](collegare_claude_app_a_code.md) | Confermato (memory, agents.md) |
+| Istruzioni brevi, positive, enfasi rara; nessuna precedenza ufficiale tra profilo, Project e memoria | report del 18 ottobre sui Project (rimosso il 27 ottobre; resta nella storia del repo) | Ancora vero per la parte su prompt (guida riletta). Parte sui Project: non ricontrollata in questa notte |
+| `AGENTS.md` come strada comune e `@AGENTS.md` | report del 18 ottobre su app e Code (rimosso il 27 ottobre; resta nella storia del repo) | Confermato (memory, agents.md) |
 | «Il cloud vede solo il repo» | memoria.md | Non riletto in questa notte; nessuna pagina letta lo contraddice |
 | Memoria Cursor (rimozione) | memoria.md | Fuori tema, non riesaminato |
 
@@ -128,7 +129,6 @@ Vedi la sezione seguente.
 | Risposta di Cursor al Rules File Backdoor | Pillar 2025-03-18 (T3): «non una vulnerabilità» | nessuna fonte vendor letta | Non risolto [Segnale T3] |
 
 ## Cosa non è stato verificato
-- Guide specifiche di Sonnet 5.5 e Haiku 5.5: nominate dalla pagina di prompting, non lette.
 - Il changelog di Claude Code è stato letto solo nei primi 100.000 caratteri (la pagina è più lunga); `skills` e `sub-agents` sono stati letti per 100.000 caratteri su circa 114.000; `hooks-guide` e `migration guide` con grep.
 - I tre preprint sulla sicurezza e IFScale: solo abstract o riassunto; i CVE citati da 2605.25871 non sono stati controllati.
 - Reddit, Stack Overflow e help.openai.com non sono stati interrogati; nessun dato su Windows e link simbolici per `AGENTS.md`.
@@ -140,18 +140,5 @@ Vedi la sezione seguente.
 **Tier 2.** [agents.md](https://agents.md/) · [Codex](https://learn.chatgpt.com/docs/agent-configuration/agents-md) · [GitHub Docs](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions) · [Cursor](https://cursor.com/docs/context/rules)
 **Tier 3.** [Pillar](https://pillar.security/blog/new-vulnerability-in-github-copilot-and-cursor-how-hackers-can-weaponize-code-agents)
 
-## Guida semplice per l'utente
-Per chi usa Claude Code, la chat dell'app e, se serve, Cursor o Codex. Ogni passo ha un esempio.
-
-1. **Un CLAUDE.md è il foglio di istruzioni di Claude Code.** Mettilo nella cartella del progetto, ad esempio `D:\Workspace\best_practice\CLAUDE.md`, e mandalo su GitHub: così lo leggono anche le attività nel cloud.
-2. **Scrivi poco e preciso.** Meno di 200 righe. «Scrivi in italiano» va bene; «lavora bene» non serve. Per ogni riga chiediti: se la tolgo, Claude sbaglia? Se no, cancellala.
-3. **Metti solo ciò che Claude non può capire da solo.** Comandi da lanciare, nomi dei branch, regole del tuo stile. Non incollare manuali.
-4. **Una regola, una casa.** Non scrivere la stessa regola in due file: se si contraddicono, Claude ne segue una a caso.
-5. **Le regole che non si possono rompere non vanno nel CLAUDE.md.** Sono richieste, non blocchi. Per un blocco vero serve un «hook» o un permesso nelle impostazioni (Claude può aiutarti a scriverlo).
-6. **Procedure lunghe in una «skill».** Una skill si apre solo quando serve. Il CLAUDE.md resta corto.
-7. **La chat dell'app non legge il CLAUDE.md.** Per la chat usa le Istruzioni del Project; per il resto vedi `guida_memoria.md`.
-8. **Se usi anche Cursor o Codex:** crea `AGENTS.md` con le regole comuni e scrivi dentro `CLAUDE.md` la riga `@AGENTS.md`. Evita `CLAUDE.local.md` se non cambi l'impostazione, perché fa smettere Claude di leggere `AGENTS.md`.
-9. **Non farlo scrivere tutto a un'intelligenza artificiale e fidarti.** Uno studio ha trovato che i file generati in automatico non migliorano i risultati e costano di più. Rileggi e taglia.
-10. **I file di istruzioni di altri sono come programmi di altri.** Prima di aprire con Claude un repo scaricato, guarda i suoi file di istruzioni.
-11. **Quando esce un modello nuovo** (ad esempio Opus 5.6) rileggi le istruzioni e togli quelle diventate inutili; in Claude Code lancia `/doctor prompt-audit`.
-12. **Errore comune:** mettere regole solo in `C:\Users\Tommi\.claude\CLAUDE.md` e aspettarsi che le attività nel cloud le seguano: lì non arrivano.
+## Guida
+Le istruzioni d'uso per Claude e i passi per l'utente stanno in `D:\Workspace\best_practice\1_comportamento\guida_comportamento.md`.
