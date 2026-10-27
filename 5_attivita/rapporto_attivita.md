@@ -3,6 +3,7 @@ tema: programmazione delle attività con Claude (attività cloud già routine, a
 versione: 1
 base: e5e53d7
 verificato_il: 2026-10-27
+aggiornato_il: 2026-10-27 (ripassata finale: 15 regole rilette sulle pagine del giorno, nessuna cambiata)
 rivalutare_se: "release notes dell'app, di Code o dell'API che toccano attività programmate, routine o limiti; nuovo modello Claude; oppure 2026-12-18"
 versioni_rilevate:
   claude_code: "2.1.312 del 2026-10-27 (changelog)"
