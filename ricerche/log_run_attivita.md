@@ -10,7 +10,7 @@ Numero di agenti: UN SOLO agente, perché il tema si chiude leggendo a fondo e t
 - **F2 domande A-D** 21:43-21:48. I 10 URL del prompt (routines letta per intero a sezioni da file), poi 3 ricerche, Managed Agents, `web-scheduled-tasks` (redirect), issue 40124, 8 blocchi del changelog di Code, release notes dell'app e dell'API. Registro aggiornato e committato due volte.
 - **F3 domande E-H** 21:48-21:51. permission-modes, tools-reference, help 12429409, claude-projects, changelog Cowork, help 13345190, routines-fire, blog Managed Agents, desktop, issue 103724; 3 ricerche; 3 letture di raggiungibilità per la ripassata finale. Registro aggiornato, commit.
 - **F4 scrittura** 21:51-21:55. `attivita.md` (208 righe), `calibrazione_attivita.md`, questo log. Commit.
-- **F5 controlli** dalle 21:55. Script PowerShell in `$env:TEMP` (fuori dal repo); esiti in «Autocontrollo». Commit finale, push, PR in bozza.
+- **F5 controlli** 21:55-21:57. Script PowerShell `check_notte05.ps1` in `$env:TEMP` (fuori dal repo): `attivita.md` 208 righe; 15 regole con tag, Tier e URL; colonne e vocabolario su 36 righe; 25 URL del README tutti nel registro; nessun [Verificato] su pagine non lette; nessun dato personale nei quattro file; branch `claude/notte-05-attivita`; rispetto a `origin/main` cambiano solo i quattro file nuovi. Esito: tutti i controlli superati. Commit finale, push, PR in bozza.
 
 ## Incidenti
 - Un comando PowerShell con here-string per aggiungere righe al registro è stato bloccato dallo strumento («Remove-Item on system path '/loop' is blocked»): il testo `/loop` dentro le righe è stato scambiato per un percorso. Nessun effetto sul file; righe scritte con lo strumento di scrittura dei file. Stesso incidente della notte 04.
@@ -36,7 +36,7 @@ Numero di agenti: UN SOLO agente, perché il tema si chiude leggendo a fondo e t
 | Regola | Evidenza |
 | --- | --- |
 | 0.1 un solo agente | nessuna chiamata Agent, Task, fork o sessione parallela; solo chiamate indipendenti nello stesso turno |
-| 0.2 tetti | 36 letture su 120, 6 ricerche su 30, durata sotto i 150 minuti (riga sotto) |
+| 0.2 tetti | 36 letture su 120, 6 ricerche su 30, circa 15 minuti su 150 |
 | 0.3 lettura a sezioni | `offset` sul changelog (8 blocchi); routines, cloud-environments, tools-reference, claude-projects salvate su file e lette con Grep/Read; righe `parziale` e `parafrasi` nel registro dove serve |
 | 0.4 permessi | 0 `PROVENANCE_REQUIRED`, nessun aggiramento |
 | 0.5 nessuna domanda | scelte annotate sopra |
@@ -53,5 +53,5 @@ Numero di agenti: UN SOLO agente, perché il tema si chiude leggendo a fondo e t
 Sottoagenti: 0
 Letture: 36
 Ricerche: 6
-Durata: dalle 21:42:27 (Europe/Rome); fine nella riga del commit finale
+Durata: circa 15 minuti (21:42-21:57, Europe/Rome)
 Attività create o modificate: 0

@@ -49,5 +49,5 @@ Da correggere nella ripassata, non qui: la riga di memoria.md su `/clear` nel cl
 
 ## Costo
 - Letture di pagina: 36 (nessuna rifiutata; 8 sono blocchi del changelog di Code). Ricerche web: 6. Sottoagenti: 0.
-- Durata: vedi `log_run_attivita.md` (inizio 21:42:27, Europe/Rome).
+- Durata: circa 15 minuti (21:42-21:57, Europe/Rome).
 - Il consumo in dollari non è visibile all'agente: confrontare il saldo dei crediti prima e dopo e anche l'utilizzo del piano (valori prima della run: quelli dichiarati dall'utente nel messaggio di avvio). Messaggio di avvio: utilizzo del piano 57%; saldo dei crediti non dichiarato (l'ultimo noto, del 27 ottobre, è 23 USD).
