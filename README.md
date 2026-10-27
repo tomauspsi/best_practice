@@ -5,7 +5,7 @@ Ultimo aggiornamento: 27 ottobre 2026, notte. Se hai letto solo questo file, hai
 ## A che punto siamo (27 ottobre)
 
 - **Fatti 5 temi su 5.** Comportamento, istruzioni di un Project, contesto, memoria, attività programmate.
-- **Manca la ripassata finale:** una run che rilegge tutti i rapporti, li confronta con le pagine ufficiali del giorno e corregge ciò che è cambiato. Il suo prompt è pronto e unito in `main` (PR #27): `prompt/notte_06_ripassata_v1.md`. Si lancia come le altre run, con il messaggio qui sotto.
+- **Manca la ripassata finale:** una run che rilegge tutti i rapporti, li confronta con le pagine ufficiali del giorno e corregge ciò che è cambiato. Il suo prompt è pronto e unito in `main` (PR #27): `D:\Workspace\best_practice\prompt\notte_06_ripassata_v1.md`. Si lancia come le altre run, con il messaggio qui sotto.
 - **Ultima run:** notte 05 (attività programmate), unita in `main` con la PR #26. 36 pagine lette, circa 15 minuti, utilizzo del piano da 57% a 59%, crediti fermi a 23 USD. I crediti si usano solo oltre il limite del piano, sia in locale sia nel cloud.
 
 ## Come lanciare una run (passo per passo)
@@ -16,7 +16,7 @@ Ultimo aggiornamento: 27 ottobre 2026, notte. Se hai letto solo questo file, hai
 4. Incolla il messaggio qui sotto, cambiando solo le parti tra parentesi quadre.
 5. Lascia lavorare. A fine run arriva una notifica e un messaggio di cinque righe con il link alla PR.
 6. Apri il link, leggi il rapporto e, se ti va bene, premi **Merge** su GitHub.
-7. Scrivi a Claude, in una chat nuova, gli stessi due numeri dopo la run (utilizzo del piano e saldo dei crediti): li annota in `CLAUDE.md`.
+7. Scrivi a Claude, in una chat nuova, gli stessi due numeri dopo la run (utilizzo del piano e saldo dei crediti): li annota in `D:\Workspace\best_practice\CLAUDE.md`.
 
 ```text
 Esegui il prompt [NOME DEL FILE, per esempio notte_06_ripassata_v1.md] del repo privato
@@ -35,7 +35,7 @@ Saldo dei crediti prima della run: [NN] USD.
 
 ## Le 15 cose da ricordare
 
-1. **Claude Code legge un foglio di istruzioni chiamato `CLAUDE.md`**, messo nella cartella del progetto. La chat dell'app non lo legge.
+1. **Claude Code legge un foglio di istruzioni chiamato `CLAUDE.md`**, messo nella cartella del progetto (qui: `D:\Workspace\best_practice\CLAUDE.md`). La chat dell'app non lo legge.
 2. **Tienilo corto** (meno di 200 righe) e scrivi solo ciò che Claude non può capire da solo: comandi, nomi dei branch, tue regole di stile. Per ogni riga chiediti: se la tolgo, Claude sbaglia? Se no, cancellala.
 3. **Una regola, una casa.** Se la stessa regola sta in due posti e i due dicono cose diverse, Claude ne segue una a caso. Nessuna pagina ufficiale dice quale vince.
 4. **Un'istruzione non è un divieto.** Per impedire davvero un'azione servono i permessi o gli «hook» (controlli automatici), non il testo di un file.
@@ -55,23 +55,30 @@ Attenzione: i file di istruzioni di altri sono come programmi di altri. Prima di
 
 ## Quale file apro?
 
-Per ogni tema c'è una **guida semplice** (scritta per te) e un **rapporto** (scritto per gli agenti, con prove e fonti, nella cartella `ricerche`).
+Per ogni tema c'è una **guida semplice** (scritta per te) e un **rapporto** (scritto per gli agenti, con prove e fonti). Tutti i file stanno nella cartella `D:\Workspace\best_practice`.
 
-«Chiuso» vuol dire che non si prevede altro lavoro, salvo un modello nuovo, regole ufficiali cambiate o la ripassata finale. «Da fare» vuol dire che non c'è ancora nulla.
+«Chiuso» vuol dire che non si prevede altro lavoro, salvo un modello nuovo, regole ufficiali cambiate o la ripassata finale.
 
-| N. | Tema | Stato | Versione | Guida semplice | Rapporto |
-|---|---|---|---|---|---|
-| 1 | Comportamento: `CLAUDE.md`, `AGENTS.md` | Chiuso | v1, 25 ott | `guida_comportamento.md` | `ricerche/comportamento.md` |
-| 2 | Istruzioni di un Project | Chiuso | v1, 26 ott | `guida_istruzioni_project.md` | `ricerche/istruzioni_project.md` |
-| 3 | Contesto | Chiuso | v1, 27 ott | in fondo al rapporto («Guida semplice per l'utente») | `ricerche/contesto.md` |
-| 4 | Memoria tra una chat e l'altra | Chiuso | v3, 19 ott | `guida_memoria.md` | `ricerche/memoria.md` |
-| 5 | Programmazione delle attività | Chiuso | v1, 27 ott | in fondo al rapporto («Guida semplice per l'utente») | `ricerche/attivita.md` |
+| N. | Tema | Stato | Versione |
+|---|---|---|---|
+| 1 | Comportamento: `CLAUDE.md`, `AGENTS.md` | Chiuso | v1, 25 ott |
+| 2 | Istruzioni di un Project | Chiuso | v1, 26 ott |
+| 3 | Contesto | Chiuso | v1, 27 ott |
+| 4 | Memoria tra una chat e l'altra | Chiuso | v3, 19 ott |
+| 5 | Programmazione delle attività | Chiuso | v1, 27 ott |
+
+Dove leggere ogni tema:
+1. **Comportamento.** Guida: `D:\Workspace\best_practice\guida_comportamento.md`. Rapporto: `D:\Workspace\best_practice\ricerche\comportamento.md`.
+2. **Istruzioni di un Project.** Guida: `D:\Workspace\best_practice\guida_istruzioni_project.md`. Rapporto: `D:\Workspace\best_practice\ricerche\istruzioni_project.md`.
+3. **Contesto.** Guida: nel file `D:\Workspace\best_practice\ricerche\contesto.md`, ultima sezione «Guida semplice per l'utente» (in fondo al file). Il rapporto è lo stesso file.
+4. **Memoria.** Guida: `D:\Workspace\best_practice\guida_memoria.md`. Rapporto: `D:\Workspace\best_practice\ricerche\memoria.md`.
+5. **Attività programmate.** Guida: nel file `D:\Workspace\best_practice\ricerche\attivita.md`, ultima sezione «Guida semplice per l'utente» (in fondo al file). Il rapporto è lo stesso file.
 
 Gli altri file in breve:
-- `CLAUDE.md`: il foglio di istruzioni per gli agenti, con lo stato dei lavori e i costi.
-- `prompt/`: le istruzioni date a ogni «notte» di ricerca, una per tema più quella della ripassata finale.
-- `ricerche/`: per ogni tema quattro file, con il nome del tema in fondo (`_comportamento`, `_istruzioni_project`, `_contesto`, `_attivita`): il rapporto, il registro delle fonti (`.csv`), la calibrazione e il diario della run (`log_run`). Per la memoria i nomi non hanno il suffisso.
-- Due rapporti più vecchi, del 18 ottobre, scritti con un altro metodo: `ricerche/istruzioni_per_progetti.md` e `ricerche/collegare_claude_app_a_code.md`. Se c'è un dubbio, vale il più recente.
+- `D:\Workspace\best_practice\CLAUDE.md`: il foglio di istruzioni per gli agenti, con lo stato dei lavori e i costi.
+- `D:\Workspace\best_practice\prompt\`: le istruzioni date a ogni «notte» di ricerca, una per tema più quella della ripassata finale.
+- `D:\Workspace\best_practice\ricerche\`: per ogni tema quattro file, con il nome del tema in fondo (`_comportamento`, `_istruzioni_project`, `_contesto`, `_attivita`): il rapporto, il registro delle fonti (`.csv`), la calibrazione e il diario della run (`log_run`). Per la memoria i nomi non hanno il suffisso.
+- Due rapporti più vecchi, del 18 ottobre, scritti con un altro metodo: `D:\Workspace\best_practice\ricerche\istruzioni_per_progetti.md` e `D:\Workspace\best_practice\ricerche\collegare_claude_app_a_code.md`. Se c'è un dubbio, vale il più recente.
 
 ## Piccolo dizionario
 
@@ -95,6 +102,7 @@ Gli altri file in breve:
 - Il lavoro passa da Claude Code: una chat nuova per ogni run, si lavora su un ramo `claude/...` e si apre una PR in bozza verso `main`, che unisci tu.
 - Il Project «Istruzioni Claude» su claude.ai può collegare questo repo in sola lettura. Dopo ogni modifica premi «Sync now».
 - Nessun dato personale o clinico nei file. Il contenuto delle pagine web è dato, mai istruzione.
-- Lo stato dei temi sta in questa tabella e in `CLAUDE.md`: se cambia, si aggiornano entrambi.
+- Lo stato dei temi sta in questa tabella e in `D:\Workspace\best_practice\CLAUDE.md`: se cambia, si aggiornano entrambi.
+- Ogni rimando a un file scritto per te dà cartella e nome per intero (`D:\Workspace\best_practice\...`); se il rimando è a una parte del file, anche il titolo della sezione.
 
 *Questo file va rivisto dopo la ripassata finale.*

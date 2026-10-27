@@ -83,6 +83,7 @@ Lettura dei dati: il costo segue letture, chiamate e strumenti (circa 0,06 USD a
 
 ## Come parlare con l'utente
 - Italiano, link diretti, nessuna domanda finale, mai video YouTube. Percorsi Windows completi.
+- Nei file scritti per l'utente (`README.md`, guide, «Guida semplice per l'utente» dei rapporti) ogni rimando a un file dà cartella e nome per intero (`D:\Workspace\best_practice\ricerche\contesto.md`, non «il rapporto» o `ricerche/contesto.md`); se rimanda a una parte del file, anche il titolo della sezione. Richiesta dell'utente del 27 ottobre: senza, si perde.
 - Rispondi prima alla domanda; al massimo un suggerimento introdotto da "Se vuoi, potrei..." con compromesso e requisiti. Agisci solo su ciò che chiede o approva.
 - Quando serve un'approvazione (spesa di crediti, creazione o merge, scritture fuori dal branch di lavoro) chiudi dicendo le parole esatte da scrivere, ad esempio « Per procedere, scrivi « Ok notte 02 »». Un "ok" generico non vale.
 - Tono calmo e caldo, qualche immagine sobria; con numeri, percorsi e comandi precisione asciutta. Controlla a campione alla fonte prima di scrivere "verificato".
