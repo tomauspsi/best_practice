@@ -20,8 +20,7 @@ D:\Workspace\best_practice\
 ├── 4_memoria\guida_memoria.md                   cosa Claude ricorda tra una chat e l'altra
 ├── 4_memoria\rapporto_memoria.md
 ├── 5_attivita\guida_attivita.md                 attività programmate (cloud, Desktop, /loop)
-├── 5_attivita\rapporto_attivita.md
-└── prompt\ripassata.md                          unico prompt rimasto: la verifica finale
+└── 5_attivita\rapporto_attivita.md
 ```
 
 ## Il succo, tema per tema
@@ -36,7 +35,7 @@ La memoria dell'app non basta a tenere queste regole: quello che Claude rilegge 
 1. Apri il Project «Istruzioni Claude» nell'app.
 2. Togli dalla knowledge il vecchio documento `memoria_best_practice`, ora nel cestino di Drive. Dalle Istruzioni togli la riga «Prima di ogni risposta, leggi il documento nel contesto».
 3. Nella knowledge clicca **+**:
-   - se compare **GitHub**: scegli `tomauspsi/best_practice` e seleziona solo `README.md` e i cinque file `guida_*.md`. Dopo ogni modifica al repo, usa l'icona di sincronizzazione (**Sync**) sul repository nella knowledge;
+   - se compare **GitHub**: scegli `tomauspsi/best_practice` e seleziona solo `README.md` e i cinque file `guida_*.md`. Dopo ogni modifica al repo, premi l'icona **Sync** nella sezione knowledge del Project, accanto a «Configure files»;
    - se GitHub non compare (succede nella nuova app unificata, dove «aggiungi da GitHub» non è supportato): carica a mano i sei file dalla cartella `D:\Workspace\best_practice` e dalle sottocartelle dei temi. Quando una guida cambia, togli la vecchia e carica la nuova.
 4. Nelle **Istruzioni** del Project incolla questo testo:
 ```text
@@ -54,8 +53,8 @@ Il Project «finanza» usava `memoria_finanza`, anche questo ora nel cestino di 
 ## Come usarle in Claude Code
 Code legge da solo `D:\Workspace\best_practice\CLAUDE.md`. Per un tema, scrivi per esempio «leggi `D:\Workspace\best_practice\4_memoria\guida_memoria.md` e dammi i passi per il mio caso».
 
-## Come lanciare la ripassata finale
-È una verifica delle regole sulle pagine ufficiali del giorno. Il prompt è `D:\Workspace\best_practice\prompt\ripassata.md`.
+## Come lanciare una run
+La ripassata finale è stata fatta il 27 ottobre 2026: tutte le regole sono state rilette sulle pagine ufficiali di quel giorno. Oggi non c'è nessun prompt in attesa. Per una verifica futura (per esempio quando esce un modello nuovo) Claude scrive il prompt in `D:\Workspace\best_practice\prompt\` e lo cancella dopo l'uso.
 1. In Claude Code apri una **chat nuova** nella cartella `D:\Workspace\best_practice`, modello **Opus 5.5**, effort **Alto**.
 2. Da **Settings > Usage** su claude.ai segna l'**utilizzo del piano** e il **saldo dei crediti**.
 3. Incolla il messaggio qui sotto, cambiando le parti tra parentesi quadre.
@@ -63,8 +62,8 @@ Code legge da solo `D:\Workspace\best_practice\CLAUDE.md`. Per un tema, scrivi p
 5. Scrivi a Claude, in una chat nuova, gli stessi due numeri dopo la run.
 
 ```text
-Esegui il prompt ripassata.md del repo privato https://github.com/tomauspsi/best_practice
-(branch main): leggi per intero D:\Workspace\best_practice\prompt\ripassata.md e seguilo
+Esegui il prompt [NOME DEL FILE] del repo privato https://github.com/tomauspsi/best_practice
+(branch main): leggi per intero D:\Workspace\best_practice\prompt\[NOME DEL FILE] e seguilo
 alla lettera, fase per fase. Run locale su Windows, cartella D:\Workspace\best_practice, PowerShell.
 Prima git fetch origin e git status; crea il branch indicato dal prompt da origin/main.
 Se ci sono modifiche vere ai file, non toccarle: fermati e scrivimi tre righe.

@@ -8,7 +8,7 @@ Un set di guide di best practice su Claude, stato dell'arte al 27 ottobre 2026, 
 - Una cartella per tema, `N_tema\`, con due file e nient'altro:
   - `guida_<tema>.md`: per Claude. Intestazione YAML (`tema`, `per`, `aggiornata_il`, `prove`, `rivalutare_se`), poi «Quando usarla», «Cosa è vero oggi», «Regole da applicare», «Come rispondere all'utente» (con un elenco tipo), «Cosa non sappiamo», «Prove». Al massimo circa 120 righe: va nella knowledge di un Project.
   - `rapporto_<tema>.md`: le prove. Intestazione YAML (`verificato_il`, `aggiornato_il`, `rivalutare_se`, `versioni_rilevate`), al massimo 15 regole operative con tag, Tier e URL propri, stato dell'arte, conflitti, «Cosa non è stato verificato», fonti per Tier. Al massimo 300 righe.
-- `prompt\ripassata.md`: unico prompt, la verifica finale; si cancella dopo l'uso.
+- `prompt\`: vuota tra una run e l'altra; il prompt di una run si scrive lì e si cancella dopo l'uso.
 - Una sola casa per ogni informazione: un fatto sta nel rapporto, la guida lo riassume; mai due versioni diverse della stessa regola.
 
 ## Come si lavora
@@ -28,7 +28,7 @@ Un set di guide di best practice su Claude, stato dell'arte al 27 ottobre 2026, 
 ## Costi
 - Run locali, sessioni cloud e attività programmate consumano tutte il limite del piano, come una chat. I crediti d'uso si usano solo dopo aver esaurito il limite incluso (cinque ore o settimanale) e solo se sono attivi: locale o cloud non cambia il conto finché si resta sotto il limite (`D:\Workspace\best_practice\5_attivita\rapporto_attivita.md`, sezione C).
 - I dollari non sono visibili all'agente: l'utente legge utilizzo del piano e saldo dei crediti in Settings > Usage prima e dopo ogni run e li scrive in chat; l'agente li annota qui e registra letture, ricerche e durata nel corpo della PR.
-- Ultimi valori: 27 ottobre 2026, 22:29, utilizzo del piano 60%, crediti 23 USD (dichiarati dall'utente).
+- Ultimi valori: 27 ottobre 2026, prima della ripassata finale, utilizzo del piano 62%, crediti 23 USD (dichiarati dall'utente nel messaggio di avvio); i valori dopo la run li scrive l'utente.
 
 ## Come parlare con l'utente
 - Italiano, link diretti, nessuna domanda finale, mai video YouTube. Percorsi Windows completi.
@@ -38,7 +38,8 @@ Un set di guide di best practice su Claude, stato dell'arte al 27 ottobre 2026, 
 
 ## Stato (27 ottobre 2026)
 - Cinque temi chiusi: 1, 2, 3, 5 in v1, 4 in v3. Riordino ad albero fatto il 27 ottobre: rapporti spostati, guide per Claude scritte, correzioni proposte nei log delle notti 02-05 verificate e applicate, documenti Google `memoria_best_practice` e `memoria_finanza` spostati nel cestino di Drive su richiesta dell'utente.
-- Prossimo passo: la ripassata finale con `D:\Workspace\best_practice\prompt\ripassata.md`, poi le guide nella knowledge del Project «Istruzioni Claude» (passi nel `README.md`).
+- Ripassata finale fatta il 27 ottobre (sera, run locale): le 75 regole operative dei cinque rapporti rilette sulle pagine del giorno. Corrette: tema 1 (best practices di Code riscritte: contenuto di `CLAUDE.md`, niente «IMPORTANT»; Windows e link simbolici; conflitto sulle istruzioni opposte; preprint v3), tema 2 (posizione dell'icona Sync), tema 4 (memoria su Team ed Enterprise, sintesi automatica). Temi 3 e 5 senza correzioni. Nessun modello nuovo al 27 ottobre.
+- Prossimo passo: le guide nella knowledge del Project «Istruzioni Claude» (passi nel `README.md`).
 - Aperti: notifiche push delle attività cloud, tetto giornaliero di run cloud, `send_later`, cosa entra nel contesto di una chat dell'app, precedenza tra profilo, Project e memoria.
 - Rivalutare tutto con un nuovo modello (Opus 5.6 atteso a novembre), con release notes che toccano i temi, o il 2026-12-18.
 - Branch vecchi su GitHub (`claude/notte-...`, `claude/readme-...`, `claude/guida-...`, `claude/sistema-riferimenti`): li cancella l'utente se vuole.
