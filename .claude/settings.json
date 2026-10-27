@@ -5,6 +5,7 @@
       "WebFetch(domain:code.claude.com)",
       "WebFetch(domain:platform.claude.com)",
       "WebFetch(domain:support.claude.com)",
+      "WebFetch(domain:academy.claude.com)",
       "WebFetch(domain:claude.com)",
       "WebFetch(domain:docs.claude.com)",
       "WebFetch(domain:anthropic.com)",
