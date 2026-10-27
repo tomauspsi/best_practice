@@ -3,6 +3,7 @@ tema: istruzioni di un Project di Claude (chat dell'app) e rapporto con conoscen
 versione: 1
 base: a39fbc2
 verificato_il: 2026-10-26
+aggiornato_il: 2026-10-27 (GitHub nella nuova esperienza unificata, prova del documento Google, riordino del repo)
 rivalutare_se: "nuovo modello Claude, per esempio Opus 5.6; release notes dell'app o dei Project che toccano Istruzioni, memoria, connettori; oppure 2026-12-18"
 versioni_rilevate:
   modelli: "claude-fable-5-1, claude-opus-5-5, claude-sonnet-5-5, claude-haiku-5-5 (pagina models overview, senza date). Lanci dalle release notes dell'app: Opus 5.5 il 2026-09-22, Sonnet 5.5 il 2026-09-28, Haiku 5.5 il 2026-10-07. Opus 5.6 e Sonnet 5.6 non compaiono"
@@ -12,7 +13,7 @@ versioni_rilevate:
 
 # Istruzioni di un Project: stato al 26 ottobre 2026 (v1)
 
-Prima passata del tema 2, da `main` (`a39fbc2`). Non rifà i temi chiusi: [comportamento.md](comportamento.md) (CLAUDE.md, AGENTS.md) e [memoria.md](memoria.md). Tag: [Verificato] [Inferenza] [Obsoleto/Conflitto] [Segnale T3]. Quasi tutte le pagine ufficiali non hanno data (solo «Updated this week»): la data è quella della lettura, salvo dove indicato. Le letture passano da uno strumento che restituisce riassunti: i virgolettati sono quelli visti nel testo ricevuto.
+Prima passata del tema 2, da `main` (`a39fbc2`). Non rifà i temi chiusi: [1_comportamento/rapporto.md](../1_comportamento/rapporto.md) (CLAUDE.md, AGENTS.md) e [4_memoria/rapporto.md](../4_memoria/rapporto.md). Tag: [Verificato] [Inferenza] [Obsoleto/Conflitto] [Segnale T3]. Quasi tutte le pagine ufficiali non hanno data (solo «Updated this week»): la data è quella della lettura, salvo dove indicato. Le letture passano da uno strumento che restituisce riassunti: i virgolettati sono quelli visti nel testo ricevuto.
 
 ## Risposta breve
 - Le Istruzioni di un Project valgono per tutte le chat di quel Project e solo per quelle. Il nome e la descrizione del Project non arrivano a Claude.
@@ -35,7 +36,7 @@ Prima passata del tema 2, da `main` (`a39fbc2`). Non rifà i temi chiusi: [compo
 9. Se servono esempi, 3-5, diversi tra loro, in tag coerenti; meglio pochi esempi canonici che un elenco di casi limite. [Verificato] · T1 · <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
 10. Parti da Istruzioni minime e aggiungi solo dopo un errore osservato; «minimale» non vuol dire «corto». Il post è del 2025-09-29 (oltre 12 mesi) ma concorda con la pagina di prompting corrente. [Verificato] come consiglio · T1 · <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
 11. Di' cosa fare se manca qualcosa (un file, un dato, un accesso): dire che cosa manca e fermarsi, senza sostituire né indovinare. L'esempio ufficiale è per i Projects di Code; per le chat dell'app è un trasferimento. [Verificato] come esempio; [Inferenza] per il trasferimento · T1 · <https://code.claude.com/docs/en/claude-projects>
-12. Per Project con GitHub, premi «Sync now» dopo ogni modifica: si sincronizzano solo nomi e contenuti dei file di un branch, e devono stare nella finestra di contesto. Un documento Google aggiunto da Drive si aggiorna da solo, ma solo nei Project privati e solo come testo. [Verificato] · T1 · <https://support.claude.com/en/articles/10167454-using-the-github-integration>
+12. Per Project con GitHub, dopo ogni modifica usa il comando di sincronizzazione sul repository nella knowledge del Project (icona «Sync», «Sync now» nelle FAQ): si sincronizzano solo nomi e contenuti dei file di un branch, e devono stare nella finestra di contesto. Nella nuova esperienza unificata di chat e Cowork «Add from GitHub» non è supportato (letto il 27-ott): lì si caricano i file a mano. Un documento Google aggiunto da Drive si aggiorna da solo, ma solo nei Project privati e solo come testo; Claude non lo scrive da sé. [Verificato] · T1 · <https://support.claude.com/en/articles/10167454-using-the-github-integration>
 13. Con prompt lunghi o molte regole non affidarti a Haiku 5.5: salta passi o si ferma prima; per l'aderenza Anthropic suggerisce una frase («le regole valgono per tutta la conversazione») e effort alto, impostazioni che l'app non sempre espone. [Verificato] per la pagina; [Inferenza] per l'app · T1 · <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5>
 14. Sessioni di Code e Cowork non ereditano da sole i Project di chat: un Project di Code manda le Istruzioni a ogni thread (anche locale) ma la memoria solo ai thread cloud; un Cowork project vive sul computer e può collegare un Project di chat per la sua knowledge. Nessuna pagina dice che le Istruzioni di un Project di chat arrivino a una sessione Code. [Verificato] · T1 · <https://claude.com/docs/cowork/guide/projects.md>
 15. A ogni nuovo modello rileggi le Istruzioni, togli ciò che serviva ai modelli vecchi e rifai le tue prove (Opus 5.5: «rifai le mitigazioni»; Sonnet 5.5: nuova serie di eval). Opus 5.6 e Sonnet 5.6 non sono usciti. [Verificato] · T1 · <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5>
@@ -48,7 +49,8 @@ Prima passata del tema 2, da `main` (`a39fbc2`). Non rifà i temi chiusi: [compo
 - Piani: Project per tutti, Free compresi (massimo cinque); RAG sui piani a pagamento (Pro, Max, Team, Enterprise); condivisione («Can view», «Can edit») su Team ed Enterprise, con interruttore dell'amministratore. [Verificato] T1 · create and manage projects; [RAG](https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects) (2026-09-10)
 - Knowledge: usata in ogni chat del Project; il contesto non passa da una chat all'altra se non è nella knowledge. Vicino al limite di contesto scatta il RAG (fino a 10x di capacità, non regolabile); la pagina RAG non dice se le Istruzioni ci rientrino. File con nomi descrittivi, citati per nome. [Verificato] T1 · RAG; create and manage projects
 - Versioni: la classica (chat e Cowork) resta com'è; la beta in Claude Code (una conversazione che coordina thread cloud, Pro e Max) ha memoria di Project e Istruzioni fino a 16.000 caratteri. I progetti spostati nella beta mantengono Istruzioni, file, cronologia. [Verificato] T1 · [what are projects](https://support.claude.com/en/articles/9517075-what-are-projects) · [claude-projects](https://code.claude.com/docs/en/claude-projects) · [projects redesigned](https://claude.com/resources/articles/projects-redesigned) (2026-09-17)
-- Drive: un documento Google si aggiunge da Files > «+» > Drive, si sincronizza con la versione più recente, solo nei Project privati, solo testo (immagini ignorate, commenti visibili). [Verificato] T1 · [Google Workspace connectors](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors)
+- Drive: un documento Google si aggiunge da Files > «+» > Drive, si sincronizza con la versione più recente, solo nei Project privati, solo testo (immagini ignorate, commenti visibili). [Verificato] T1 · [Google Workspace connectors](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors). Prova dell'utente del 25-ott: il Project legge il documento, una chat con il link incollato lo modifica, una chat nuova vede la modifica entro circa sei minuti; senza una richiesta esplicita Claude non lo aggiorna. Per questo il 27-ott i documenti di memoria su Drive sono stati ritirati. [Segnale] interno, una prova
+- GitHub nella nuova esperienza unificata: «Add from GitHub is not supported» tra i limiti attuali (parafrasi). [Verificato] T1 · [one Claude](https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude) (letto il 27-ott). La pagina sull'integrazione GitHub non dice in quale pannello stia l'icona «Sync» (riletta il 27-ott).
 - GitHub: «+» > GitHub, selezione di file e cartelle; «Sync now» riporta l'ultima versione; si sincronizzano solo file (nomi e contenuti) di un branch, niente cronologia né PR; devono stare nel contesto. [Verificato] T1 · [GitHub integration](https://support.claude.com/en/articles/10167454-using-the-github-integration)
 - Nota: la pagina 9519177 non tratta Drive né GitHub né «Sync now», contrariamente a quanto indicava il prompt di questa notte: stanno nelle due pagine sopra.
 
@@ -62,7 +64,7 @@ Prima passata del tema 2, da `main` (`a39fbc2`). Non rifà i temi chiusi: [compo
 | Skill | Comportamenti caricati su richiesta | personalization |
 | Stili | Non trattati dalla pagina di personalizzazione; il system prompt pubblicato di Sonnet 5.5 dice che lo stile di scrittura si imposta con la funzione stili | [system prompt Sonnet 5.5](https://platform.claude.com/docs/en/release-notes/system-prompts/claude-sonnet-5-5) |
 - Precedenza: la pagina di personalizzazione dice che le funzioni si usano «independently or in combination», senza risolvere i conflitti; Academy dice che le Istruzioni «work alongside» preferenze e stili; la pagina sulla memoria non nomina Istruzioni né profilo; il system prompt di Sonnet 5.5 non parla di Project né di precedenza. Nessuna precedenza dichiarata. [Verificato] T1 per il silenzio
-- Memoria e Istruzioni: la memoria creata in un Project resta in quel Project e può comparire anche nelle chat fuori Project se la memoria è attiva; «Use account memory» isola il Project; la pagina non dice se l'interruttore tocchi le Istruzioni. Novità rispetto a [memoria.md](memoria.md): la frase sulla memoria di Project che compare fuori dai Project. [Verificato] T1 · pagina memoria
+- Memoria e Istruzioni: la memoria creata in un Project resta in quel Project e può comparire anche nelle chat fuori Project se la memoria è attiva; «Use account memory» isola il Project; la pagina non dice se l'interruttore tocchi le Istruzioni. Novità rispetto a [4_memoria/rapporto.md](../4_memoria/rapporto.md): la frase sulla memoria di Project che compare fuori dai Project. [Verificato] T1 · pagina memoria
 - Incoerenza ufficiale: la pagina di personalizzazione dice sia «Project per tutti» sia, nella sezione di scelta, che le Istruzioni di Project sono «solo per i piani a pagamento». Vedi tabella conflitti. [Obsoleto/Conflitto]
 - Il system prompt pubblicato dice che tono, formato e funzioni personali vanno nelle preferenze dell'utente. [Verificato] T1 · system prompt Sonnet 5.5 (versioni del 2026-10-07 e del 2026-09-28, testo uguale per questo punto)
 
@@ -85,7 +87,7 @@ Cosa dimostra la fonte e cosa è un consiglio: le fonti ufficiali non misurano l
 - Cowork project (guida): vive sul computer, non è sincronizzato né condiviso; ha descrizione, cartelle, Istruzioni, link, memoria; si può «linkare» un Project di chat perché le sessioni Cowork attingano alla sua knowledge. Nessuna frase dice se le Istruzioni del Project collegato vengano lette. [Verificato] T1 · [Cowork guide](https://claude.com/docs/cowork/guide/projects.md)
 - Cowork project (Help Center): importare un Project di chat ne copia file e Istruzioni in un Cowork project (è un trasferimento, non un collegamento); condivisione Team ed Enterprise; progetti locali spostati nell'account. [Verificato] T1 · [Cowork projects](https://support.claude.com/en/articles/14116274-organize-your-tasks-with-projects-in-claude-cowork) · conflitto con la guida: vedi tabella.
 - Chat e Cowork unificate dal 2026-09-16 (rollout graduale): «Projects work in every conversation», le Istruzioni globali di Cowork sono confluite in «Instructions for Claude». [Verificato] T1 · [one Claude](https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude) · release notes
-- Sessione Code cloud fresca: vede solo il repository; per i fatti già verificati rimando a [memoria.md](memoria.md). Nessuna prova trovata che le Istruzioni di un Project di chat arrivino a Code.
+- Sessione Code cloud fresca: vede solo il repository; per i fatti già verificati rimando a [4_memoria/rapporto.md](../4_memoria/rapporto.md). Nessuna prova trovata che le Istruzioni di un Project di chat arrivino a Code.
 
 ### E. Prove e studi
 | Fonte | Cosa dimostra | Cosa non dimostra | Tag |
@@ -94,7 +96,7 @@ Cosa dimostra la fonte e cosa è un consiglio: le fonti ufficiali non misurano l
 | [arXiv 2607.19257](https://arxiv.org/abs/2607.19257v1) (preprint, 2026-07-21) | Cinque modelli senza nome: da 10 a 160 regole l'aderenza cala, le risposte perfette sono zero da 80 regole; nessun vantaggio affidabile del Markdown; oltre 64k-128k token il recupero cala | Modelli non nominati: non si sa se ci siano modelli Claude | [Verificato] sull'abstract |
 | [arXiv 2604.09443](https://arxiv.org/html/2604.09443v2) (preprint, 2026-04-13) | ManyIH: con fino a 12 livelli di priorità i modelli di punta sono intorno al 40%; Opus 4.6 51,3% e Sonnet 4.6 39,1% sul codice; il formato della priorità conta | Non è il caso Project/profilo; modelli 4.6 | [Verificato] sul riassunto dello strumento |
 | [arXiv 2404.13208](https://arxiv.org/abs/2404.13208) (OpenAI, 2024) | Un modello può imparare a dare priorità alle istruzioni di livello più alto | Nessuna misura su Claude né sui Project | [Verificato] sull'abstract |
-- Già in [comportamento.md](comportamento.md) (non riletti qui): 2602.11988 (file di contesto non migliorano il successo, costo +20%) e 2507.11538 (IFScale). Citati solo per rimando.
+- Già in [1_comportamento/rapporto.md](../1_comportamento/rapporto.md) (non riletti qui): 2602.11988 (file di contesto non migliorano il successo, costo +20%) e 2507.11538 (IFScale). Citati solo per rimando.
 - Istruzioni in negativo: nessuna prova trovata di una misura su «non fare X» contro «fai Y»; pagine controllate: best practices, context engineering, i tre arXiv sopra (solo abstract). Il consiglio «dì cosa fare» di Anthropic resta un consiglio. [Inferenza]
 - Effetto di un cambio di modello: le guide ufficiali dicono di rifare i test (Sonnet 5.5: «Run a fresh sweep against your own evals»); nessuna misura pubblica sui Project. [Verificato] T1 · [Sonnet 5.5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5)
 - [Segnale] interno, non fonte: il 25 ottobre l'utente ha provato (chat dell'app, Haiku 5.5) che una regola di formato salvata solo nella memoria del Project non è stata applicata subito dopo, mentre la stessa nelle Istruzioni sì. Una sola prova; descritta in `CLAUDE.md`.
@@ -136,18 +138,18 @@ Le regole di questo Project valgono per tutta la conversazione.             (13)
 ## Raccordo con i report precedenti
 | Punto | Report | Stato oggi |
 |---|---|---|
-| Istruzioni = comportamento, knowledge = materiale | [istruzioni_per_progetti.md](istruzioni_per_progetti.md) | Ancora vero (Academy, create and manage projects) |
-| Nessun limite ufficiale per i Project classici; 16.000 caratteri solo nella beta | istruzioni_per_progetti.md; [memoria.md](memoria.md) | Ancora vero, riletto (claude-projects, create and manage projects) |
-| Nome e descrizione non visibili a Claude | istruzioni_per_progetti.md | Ancora vero (9519177) |
-| Nessuna precedenza ufficiale tra profilo, Project, memoria | istruzioni_per_progetti.md; memoria.md | Ancora vero, ricontrollato su cinque pagine |
-| Pagina di personalizzazione incoerente sui piani a pagamento | istruzioni_per_progetti.md | Ancora vero (10185728) |
-| Enfasi attenuata, esempi 3-5, positivo con motivo | istruzioni_per_progetti.md | Ancora vero (pagina di prompting corrente) |
-| Consiglio 400-700 parole | istruzioni_per_progetti.md | Resta [Inferenza]: nessuna fonte ufficiale; non riverificabile |
-| Cowork project «non sincronizzato né condivisibile» | istruzioni_per_progetti.md | Contraddetto in parte: il Help Center parla di condivisione Team/Enterprise (vedi conflitti) |
+| Istruzioni = comportamento, knowledge = materiale | report del 18 ottobre sui Project (rimosso il 27 ottobre; resta nella storia del repo) | Ancora vero (Academy, create and manage projects) |
+| Nessun limite ufficiale per i Project classici; 16.000 caratteri solo nella beta | report del 18 ottobre sui Project; [4_memoria/rapporto.md](../4_memoria/rapporto.md) | Ancora vero, riletto (claude-projects, create and manage projects) |
+| Nome e descrizione non visibili a Claude | report del 18 ottobre sui Project | Ancora vero (9519177) |
+| Nessuna precedenza ufficiale tra profilo, Project, memoria | report del 18 ottobre sui Project; memoria.md | Ancora vero, ricontrollato su cinque pagine |
+| Pagina di personalizzazione incoerente sui piani a pagamento | report del 18 ottobre sui Project | Ancora vero (10185728) |
+| Enfasi attenuata, esempi 3-5, positivo con motivo | report del 18 ottobre sui Project | Ancora vero (pagina di prompting corrente) |
+| Consiglio 400-700 parole | report del 18 ottobre sui Project | Resta [Inferenza]: nessuna fonte ufficiale; non riverificabile |
+| Cowork project «non sincronizzato né condivisibile» | report del 18 ottobre sui Project | Contraddetto in parte: il Help Center parla di condivisione Team/Enterprise (vedi conflitti) |
 | Project con GitHub: «Sync now» | memoria.md | Ancora vero (10167454); aggiunto: solo un branch, solo file |
 | Memoria per Project, mai quella di altri Project | memoria.md | Ancora vero; nuovo: la memoria di Project può comparire fuori dai Project |
-| Haiku 5.5 e Sonnet 5.5: guide non lette | [comportamento.md](comportamento.md) | Ora lette (F) |
-| Reddit (snapshot di aggregatore), Hacker News, blog, esempio privato del report | istruzioni_per_progetti.md | Non riverificati: fonti di Tier 3 o inaccessibili; l'esempio privato non è stato ripreso |
+| Haiku 5.5 e Sonnet 5.5: guide non lette | [1_comportamento/rapporto.md](../1_comportamento/rapporto.md) | Ora lette (F) |
+| Reddit (snapshot di aggregatore), Hacker News, blog, esempio privato del report | report del 18 ottobre sui Project | Non riverificati: fonti di Tier 3 o inaccessibili; l'esempio privato non è stato ripreso |
 
 ## Tabella conflitti
 | Tema | Fonte A | Fonte B | Stato |
@@ -155,7 +157,7 @@ Le regole di questo Project valgono per tutta la conversazione.             (13)
 | Istruzioni di Project e piani | Create and manage projects (T1, senza data): Project per tutti, Free compresi | Personalization features (T1, senza data): nella sezione di scelta, Istruzioni di Project «solo piani a pagamento» | Non risolto: provare nell'interfaccia dell'account |
 | Cowork project: dove vive | Guida Cowork su claude.com (T1, senza data): sul computer, non sincronizzato né condiviso | Help Center Cowork projects (T1, senza data): condivisione Team/Enterprise, progetti locali spostati nell'account | Non risolto: pagine non datate; la guida può precedere |
 | Classico e beta | What are projects (T1): i Project di chat restano come oggi | Projects redesigned (T1, 2026-09-17): i Project esistenti saranno aggiornati con l'estensione del rollout | Conciliabile: dipende dal rollout dell'account; verificare quale versione si ha |
-| Enfasi | Prompting best practices (T1): attenuare il linguaggio aggressivo | `Claude Code best-practices` (T1, letto nella notte 02): «IMPORTANT» su una riga | Conciliabile (vedi [comportamento.md](comportamento.md)) |
+| Enfasi | Prompting best practices (T1): attenuare il linguaggio aggressivo | `Claude Code best-practices` (T1, letto nella notte 02): «IMPORTANT» su una riga | Conciliabile (vedi [1_comportamento/rapporto.md](../1_comportamento/rapporto.md)) |
 
 ## Cosa non è stato verificato
 - Il limite di lunghezza delle Istruzioni nei Project classici: nessuna pagina lo dichiara; non provato nell'interfaccia.
@@ -171,20 +173,5 @@ Le regole di questo Project valgono per tutta la conversazione.             (13)
 **Tier 2.** nessuna fonte usata in questa notte.
 **Tier 3.** nessuna fonte usata.
 
-## Guida semplice per l'utente
-Per scrivere le Istruzioni di un Project nell'app Claude. Ogni passo ha un esempio.
-
-1. **Che cosa sono.** Sono il foglio di istruzioni di un solo Project: valgono per tutte le sue chat e per nessun'altra. Si aprono dalla pagina del Project, con «Set project instructions».
-2. **Il nome e la descrizione del Project Claude non li legge.** Se una cosa serve, scrivila nelle Istruzioni o caricala come documento.
-3. **Istruzioni e documenti hanno compiti diversi.** Le Istruzioni dicono come comportarsi («rispondi in italiano, prima la risposta»). I documenti contengono il materiale (elenchi, tabelle, dati).
-4. **Scrivi poco e preciso.** Meglio dieci righe chiare che una pagina. Per ogni riga chiediti: se la tolgo, Claude sbaglia? Se no, cancellala.
-5. **Di' che cosa fare, non solo che cosa evitare, e spiega perché.** «Scrivi frasi brevi: le leggo dal telefono» funziona meglio di «non scrivere frasi lunghe».
-6. **Non gridare.** Evita «ASSOLUTAMENTE» e «SEMPRE» ripetuti: i modelli recenti li prendono troppo alla lettera.
-7. **Dì che fare se manca qualcosa.** Per esempio: «Se un file non si apre, dimmelo e fermati».
-8. **Una regola, una sola casa.** Non scriverla anche nelle istruzioni del profilo o nella memoria: nessuna pagina dice quale vince, e Claude può seguirne una a caso.
-9. **Le regole che contano vanno nelle Istruzioni, non solo nella memoria.** Una prova del 25 ottobre (una sola) ha mostrato che una regola scritta solo nella memoria non è stata applicata subito.
-10. **Documenti collegati.** Un documento Google si aggiorna da solo (Project privati). Un repository GitHub si aggiorna solo con «Sync now».
-11. **Prova dopo ogni modifica.** Fai 5 o 6 domande vere e 2 o 3 domande a trabocchetto, e leggi le risposte.
-12. **Con un modello piccolo (Haiku) le regole lunghe si perdono più facilmente.** Per ricerche e controlli usa un modello più forte.
-13. **Quando esce un modello nuovo** (per esempio Opus 5.6, non ancora uscito al 26 ottobre), rileggi le Istruzioni e togli ciò che non serve più.
-14. **Code e Cowork non leggono da soli le Istruzioni di un Project dell'app.** Per Code le regole vanno in `CLAUDE.md`, ad esempio `D:\Workspace\best_practice\CLAUDE.md`.
+## Guida
+Le istruzioni d'uso per Claude e i passi per l'utente stanno in `D:\Workspace\best_practice\2_istruzioni_project\guida.md`.

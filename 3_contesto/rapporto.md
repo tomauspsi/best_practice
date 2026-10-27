@@ -14,7 +14,7 @@ versioni_rilevate:
 
 # Contesto di Claude: stato al 27 ottobre 2026 (v1)
 
-Prima passata del tema 3. Temi già chiusi, non rifatti qui: [comportamento.md](comportamento.md) (tema 1), [istruzioni_project.md](istruzioni_project.md) (tema 2), [memoria.md](memoria.md) (tema 4).
+Prima passata del tema 3. Temi già chiusi, non rifatti qui: [1_comportamento/rapporto.md](../1_comportamento/rapporto.md) (tema 1), [2_istruzioni_project/rapporto.md](../2_istruzioni_project/rapporto.md) (tema 2), [4_memoria/rapporto.md](../4_memoria/rapporto.md) (tema 4).
 
 ## Risposta breve
 - Il contesto è tutto ciò che Claude ha davanti in una richiesta: prompt di sistema, istruzioni, strumenti, file, cronologia e la risposta stessa, ragionamento compreso. I quattro modelli correnti hanno 1M token (circa 555.000 parole).
@@ -79,7 +79,7 @@ Prima passata del tema 3. Temi già chiusi, non rifatti qui: [comportamento.md](
 - **Skill.** Si vedono nome e descrizione; il corpo entra solo quando servono. `disable-model-invocation: true` toglie anche la descrizione finché non le chiami. Le procedure di un flusso pesano meno in una skill che in `CLAUDE.md`. [Verificato] T1 · how it works; [costs](https://code.claude.com/docs/en/costs)
 - **MCP.** Definizioni rinviate di default (tool search): fino all'uso entrano solo nomi e istruzioni del server; le CLI come `gh` restano più leggere. [Verificato] T1 · costs
 - **Sottoagenti.** Finestra propria, tornano con un riassunto (Anthropic parla di 1.000-2.000 token nel post del 2025). Le best practices correnti però: «Running out of context is rarely the problem anymore», ogni sottoagente costa token e non migliora la risposta. [Verificato] T1 · context engineering; best practices
-- **Project dell'app.** Il RAG parte da sé vicino al limite e porta fino a 10 volte la capacità; la pagina non dice se le Istruzioni ci rientrino. [Verificato] T1 · [RAG](https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects). Fatti già verificati su `CLAUDE.md`, skill e Istruzioni: [comportamento.md](comportamento.md), [istruzioni_project.md](istruzioni_project.md).
+- **Project dell'app.** Il RAG parte da sé vicino al limite e porta fino a 10 volte la capacità; la pagina non dice se le Istruzioni ci rientrino. [Verificato] T1 · [RAG](https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects). Fatti già verificati su `CLAUDE.md`, skill e Istruzioni: [1_comportamento/rapporto.md](../1_comportamento/rapporto.md), [2_istruzioni_project/rapporto.md](../2_istruzioni_project/rapporto.md).
 
 ### E. Chat e sessioni lunghe
 - **App, consigli ufficiali.** Vicino al limite d'uso apri una conversazione nuova; usa i Project; Istruzioni brevi; togli i file inutili; spegni ragionamento esteso, connettori e ricerca web quando non servono; abbassa l'effort per i compiti di routine. [Verificato] T1 · help 11647753
@@ -117,23 +117,23 @@ Per chi usa Code:
 9. `/compact` con un fuoco alle pause naturali, non a metà; `/rewind` per abbandonare una strada (C, E).
 10. Dopo due correzioni fallite: `/clear` e un prompt nuovo che contiene ciò che hai imparato (E).
 11. Output rumorosi (test, log) filtrati da un hook o mandati a un sottoagente, sapendo che il sottoagente costa (D).
-12. Run lunghe come sessioni a sé, con il contesto nel prompt e nel repo (E; [memoria.md](memoria.md)).
+12. Run lunghe come sessioni a sé, con il contesto nel prompt e nel repo (E; [4_memoria/rapporto.md](../4_memoria/rapporto.md)).
 13. `/context` e `/usage` quando i consumi salgono senza motivo (A, E).
 14. A ogni modello nuovo, rileggere numeri e regole (F).
 
 ## Raccordo con i report precedenti
 | Punto | Report | Stato al 27-ott |
 | --- | --- | --- |
-| Chat lunghe: sintesi automatica, cronologia conservata, nessuna soglia | [memoria.md](memoria.md) regola 15 ed E | Ancora vero. In più: solo piani a pagamento con esecuzione di codice attiva; le chat lunghe consumano più limite. L'articolo 11647753 ha cambiato titolo e indirizzo («how-do-usage-and-length-limits-work») |
+| Chat lunghe: sintesi automatica, cronologia conservata, nessuna soglia | [4_memoria/rapporto.md](../4_memoria/rapporto.md) regola 15 ed E | Ancora vero. In più: solo piani a pagamento con esecuzione di codice attiva; le chat lunghe consumano più limite. L'articolo 11647753 ha cambiato titolo e indirizzo («how-do-usage-and-length-limits-work») |
 | `CLAUDE.md` della radice sopravvive a `/compact` | memoria.md B | Ancora vero; ora c'è la tabella completa (auto memory, skill, cinque file) |
 | Compattazione da inattività (2.1.299, oltre 200K, circa 54 minuti) | memoria.md B | Cambiato nella forma: le docs ora la legano alla cache di un'ora; versione del controllo in conflitto (vedi tabella) |
 | Cache con TTL di 5 minuti (API) | memoria.md C | Ancora vero per chiave API; in Code con abbonamento la conversazione principale ha un'ora |
 | Compaction on demand dal 2026-09-14 | memoria.md C | Ancora vero (release notes API) |
 | Claude Code 2.1.303 | memoria.md intestazione | Superato: 2.1.311 del 2026-10-26 |
 | Context rot: accuratezza e richiamo calano con i token | memoria.md C; istruzioni_project.md C | Ancora vero, stessa pagina |
-| `CLAUDE.md` sotto 200 righe; gli import non riducono il costo | [comportamento.md](comportamento.md) regola 2 | Ancora vero (costs: «under 200 lines») |
+| `CLAUDE.md` sotto 200 righe; gli import non riducono il costo | [1_comportamento/rapporto.md](../1_comportamento/rapporto.md) regola 2 | Ancora vero (costs: «under 200 lines») |
 | Sottoagente come contesto separato | comportamento.md (tabella) | Ancora vero, ma «usali per proteggere il contesto» è ora un consiglio superato |
-| Context rot non misurato su Claude 5.5 | [istruzioni_project.md](istruzioni_project.md) C | Ancora vero: i preprint arrivano a Opus 4.6 |
+| Context rot non misurato su Claude 5.5 | [2_istruzioni_project/rapporto.md](../2_istruzioni_project/rapporto.md) C | Ancora vero: i preprint arrivano a Opus 4.6 |
 | RAG nei Project fino a 10x; Istruzioni dentro o fuori: ignoto | istruzioni_project.md A | Ancora vero; ancora ignoto |
 | Documenti lunghi in alto, domanda in fondo (+30%) | istruzioni_project.md C | Non riletto qui; coerente con 2307.03172 |
 | README, punto 11: le chat molto lunghe peggiorano | [README](../README.md) | Coerente con context rot e consigli dell'app |
@@ -162,27 +162,5 @@ Per chi usa Code:
 **Tier 2.** Nessuna fonte usata: per il tema 3 bastavano le pagine ufficiali.
 **Tier 3.** Nessuna fonte letta; il documento di passaggio resta [Segnale T3] senza fonte citata.
 
-## Guida semplice per l'utente
-Il contesto è il tavolo di lavoro di Claude: tutto ciò che ha davanti mentre ti risponde. Un tavolo grande aiuta, ma se è ingombro Claude trova peggio le cose e ogni messaggio costa di più.
-
-**Nell'app (chat e Project)**
-1. Apri un Project per ogni lavoro e scrivi Istruzioni brevi.
-2. Carica nel Project solo i documenti che servono; togli quelli vecchi.
-3. Usa una chat per argomento. Quando cambi argomento, apri una chat nuova nello stesso Project.
-4. Se una chat è diventata lunga, aprine una nuova e scrivi in tre righe a che punto eri.
-5. Vuoi che le chat lunghe si riassumano da sole? Tieni attiva l'esecuzione di codice nelle impostazioni (piani a pagamento). Il riassunto però perde dettagli.
-6. Accendi ricerca web, connettori e ragionamento esteso solo quando servono: occupano spazio e consumano limite.
-7. Le cose importanti scrivile all'inizio o alla fine del messaggio, non in mezzo.
-
-**In Claude Code**
-8. Le regole che devono valere sempre vanno nel `CLAUDE.md` del progetto, per esempio `D:\Workspace\best_practice\CLAUDE.md`, sotto le 200 righe.
-9. Le procedure lunghe (come fare una revisione, come fare un rilascio) mettile in una skill: Claude le legge solo quando servono.
-10. Scegli modello e livello di effort all'inizio e non cambiarli a metà lavoro.
-11. Finito un lavoro, scrivi `/clear` prima del successivo. Se vuoi tornarci, prima `/rename nome-del-lavoro`.
-12. Se il lavoro è lungo, alle pause scrivi `/compact` seguito da cosa tenere, per esempio `/compact tieni le modifiche ai file e i comandi di test`.
-13. Se Claude ha preso una strada sbagliata, premi due volte `Esc` o scrivi `/rewind` e torna indietro.
-14. Se hai corretto la stessa cosa due volte e non va, scrivi `/clear` e un messaggio nuovo con ciò che hai capito.
-15. Se i consumi salgono senza motivo, scrivi `/context` (cosa occupa spazio) e `/usage` (cosa consuma).
-16. Hai modificato `CLAUDE.md` a sessione aperta? Vale solo dopo `/clear`, `/compact` o un nuovo avvio.
-
-Perché: ogni messaggio rimanda a Claude tutta la conversazione. Una chat pulita costa meno e risponde meglio.
+## Guida
+Le istruzioni d'uso per Claude e i passi per l'utente stanno in `D:\Workspace\best_practice\3_contesto\guida.md`.
