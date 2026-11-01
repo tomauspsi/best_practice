@@ -32,7 +32,7 @@ D:\Workspace\best_practice\
 
 ## Come farle usare a Claude nell'app (chat e Cowork)
 La memoria dell'app non basta a tenere queste regole: quello che Claude rilegge sempre sono le **Istruzioni** e la **knowledge** del Project. Quindi:
-1. Apri il Project «Istruzioni Claude» nell'app.
+1. Apri il Project «best_practice» nell'app.
 2. Nella knowledge clicca **+**:
    - se compare **GitHub**: scegli `tomauspsi/best_practice` e in **Configure files** seleziona solo `README.md` e i cinque file `guida_*.md`; non selezionare i rapporti (`rapporto_*.md`) né `CLAUDE.md`. Dopo ogni merge premi l'icona **Sync** nella sezione knowledge del Project, accanto a «Configure files»;
    - se GitHub non compare (succede nella nuova app unificata, dove «aggiungi da GitHub» non è supportato): carica a mano i sei file dalla cartella `D:\Workspace\best_practice` e dalle sottocartelle dei temi. Quando una guida cambia, togli la vecchia e carica la nuova.
@@ -55,7 +55,7 @@ Le run di manutenzione girano in una sessione cloud di Claude Code. Il prompt di
 4. Dal menu del modello scegli **Opus 5.5** con effort **Alto**. Non usare `/model opus`: qui risponde «modello non supportato», perché il comando vuole l'identificativo esatto del modello.
 5. Incolla il prompt della run.
 6. A fine run apri la PR, leggila, clicca **Ready for review** e poi **Merge pull request**.
-7. Nell'app apri il Project «best practice», sezione knowledge, e premi l'icona **Sync**.
+7. Nell'app apri il Project «best_practice», sezione knowledge, e premi l'icona **Sync**.
 8. Lancia la run successiva solo dopo il merge.
 
 ## Piccolo dizionario

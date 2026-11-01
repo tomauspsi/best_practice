@@ -65,7 +65,8 @@ Le guide le legge Claude nella knowledge di un Project dell'app e da lì restitu
 - Mai numeri di utilizzo del piano o saldo dei crediti, indirizzi, dati clinici o personali in file, commit o PR. Se l'utente li scrive in chat, restano in chat.
 
 ## Costi
-- Le sessioni cloud di Claude Code consumano il limite del piano, come una chat. I crediti d'uso si usano solo oltre il limite incluso e solo se sono attivi (`D:\Workspace\best_practice\5_attivita\rapporto_attivita.md`, sezione «C. Costi e limiti»).
+- Le sessioni cloud di Claude Code scalano i crediti cloud regalati da Anthropic all'account, separati dal limite del piano; il limite del piano vale per l'app e per Code fuori dal cloud (osservazione dell'utente del 1 novembre 2026).
+- Le pagine ufficiali dicono invece che le sessioni cloud contano sul limite del piano e che i crediti d'uso a pagamento si usano solo oltre il limite incluso, se sono attivi: conflitto aperto (`D:\Workspace\best_practice\5_attivita\rapporto_attivita.md`, sezione «C. Costi e limiti»).
 
 ## Come parlare con l'utente
 - Italiano, link diretti, nessuna domanda finale, mai video YouTube. Percorsi Windows completi.

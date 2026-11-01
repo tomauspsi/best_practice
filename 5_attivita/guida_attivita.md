@@ -19,7 +19,7 @@ Per Claude. Usa questa guida quando l'utente vuole che Claude faccia un lavoro d
 - `/loop` e promemoria in Code: solo dentro una sessione aperta; le ripetizioni finiscono da sole dopo 7 giorni e mandano tutta la conversazione a ogni giro.
 - Cowork e nuova app: si chiede in chat («ogni lunedì alle 8...») o da Scheduled; girano nel cloud, salvo quelle che usano file, browser o computer del PC.
 - Un'attività nel cloud parte con tutti i connettori dell'account inclusi e senza chiedere conferme (auto mode); le azioni risultano fatte a nome dell'utente.
-- Costo: tutte queste vie consumano il piano come una chat, in locale e nel cloud. I crediti si usano solo dopo aver finito il limite del piano, e solo se sono attivi. GitHub Actions e Managed Agents di solito pagano con una chiave API.
+- Costo: secondo le pagine ufficiali tutte queste vie consumano il piano come una chat, in locale e nel cloud, e i crediti d'uso si usano solo dopo aver finito il limite del piano, se sono attivi. Però l'utente ha visto che una sessione cloud di Claude Code scala i crediti cloud regalati da Anthropic, separati dal piano: conflitto aperto (`D:\Workspace\best_practice\5_attivita\rapporto_attivita.md`, sezione «C. Costi e limiti»). GitHub Actions e Managed Agents di solito pagano con una chiave API.
 - «Succeeded» nella cronologia vuol dire solo che la sessione è finita senza errori, non che il lavoro è riuscito.
 
 ## Regole da applicare
@@ -61,6 +61,7 @@ Elenco tipo, da adattare al caso:
 ## Cosa non sappiamo
 - Dove si attivano le notifiche push di un'attività nel cloud.
 - Se esista oggi un tetto giornaliero di run nel cloud per piano (una sola segnalazione di marzo).
+- Cosa pagano davvero le sessioni e le attività cloud: le pagine dicono il piano, l'utente ha visto scendere i crediti cloud regalati.
 - `send_later`: nessuna pagina ufficiale.
 
 ## Prove
