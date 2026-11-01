@@ -27,7 +27,7 @@ D:\Workspace\best_practice\
 1. **Comportamento** (`D:\Workspace\best_practice\1_comportamento\guida_comportamento.md`). Claude Code legge `CLAUDE.md`: corto (meno di 200 righe), concreto, una regola in un posto solo. Per un divieto vero serve un hook, non il testo. La chat dell'app non lo legge.
 2. **Istruzioni di un Project** (`D:\Workspace\best_practice\2_istruzioni_project\guida_istruzioni_project.md`). Valgono per tutte le chat del Project. Le regole vanno lì, i fatti nei documenti, la memoria serve solo per le preferenze. Claude non vede nome e descrizione del Project.
 3. **Contesto** (`D:\Workspace\best_practice\3_contesto\guida_contesto.md`). Ogni messaggio rimanda tutta la conversazione: chat lunghe costano di più e sbagliano di più. Un argomento per chat; in Code `/clear` tra un lavoro e l'altro.
-4. **Memoria** (`D:\Workspace\best_practice\4_memoria\guida_memoria.md`). Le memorie di app, Cowork e Code sono separate. Ciò che deve restare va scritto in un posto che si rilegge da solo: Istruzioni, knowledge del Project, `CLAUDE.md`.
+4. **Memoria** (`D:\Workspace\best_practice\4_memoria\guida_memoria.md`). Ogni Project ha la sua memoria, più quella dell'account; la memoria è un promemoria, non una regola. Ciò che deve restare va scritto dove Claude lo rilegge in ogni chat: Istruzioni del profilo o del Project, knowledge del Project.
 5. **Attività programmate** (`D:\Workspace\best_practice\5_attivita\guida_attivita.md`). Nel cloud girano a PC spento, sul PC solo ad app aperta. Partono con tutti i connettori: togli quelli inutili. Consumano il piano come una chat.
 
 ## Come farle usare a Claude nell'app (chat e Cowork)
