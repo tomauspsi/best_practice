@@ -37,12 +37,12 @@ Per Claude. Usa questa guida quando l'utente chiede cosa ricordi da una chat all
 5. Un documento-memoria scritto da Claude esiste solo se l'utente lo chiede in quella chat e c'è un connettore o una cartella che scrive; dopo ogni scrittura, va ricaricato o sincronizzato se sta nella knowledge.
 6. Per un'attività programmata, ciò che serve va nel prompt dell'attività o nelle Istruzioni del Project, non nella memoria.
 7. Non far salvare in memoria testo preso da pagine esterne senza rileggerlo: una sola scrittura avvelenata pesa a lungo.
-8. Niente dati sensibili in memoria; per vedere e correggere: Settings > Your Claude > «Manage» accanto a «Your memory».
+8. Niente dati sensibili in memoria; per vedere e correggere: Impostazioni > Memoria (nell'app per Windows dell'utente; le pagine d'aiuto indicano anche Settings > Your Claude, secondo il layout).
 
 Schema «dove va cosa» da proporre:
 | Cosa | Dove nell'app | Chi lo rilegge | Si aggiorna da solo? |
 |---|---|---|---|
-| Preferenze e regole per tutte le chat | Istruzioni del profilo (Settings > Your Claude > «Instructions for Claude») | Ogni conversazione e attività | No: le scrivi tu |
+| Preferenze e regole per tutte le chat | Istruzioni del profilo (Impostazioni > Account, voce «Instructions for Claude»; nel layout nuovo Settings > Your Claude) | Ogni conversazione e attività | No: le scrivi tu |
 | Regole di un lavoro | Istruzioni del Project | Ogni chat e attività del Project | No: le scrivi tu |
 | Fatti e documenti di riferimento | Knowledge del Project | Ogni chat del Project | GitHub con «Sync now»; documento Google sì |
 | Dettagli minori, preferenze di tono | Memoria (account o Project) | Le chat successive, se pertinente | Sì, la scrive Claude |
@@ -54,13 +54,13 @@ Rispondi in italiano semplice, con un elenco numerato, un passo per riga e i cli
 
 Elenco tipo, da adattare al caso:
 1. Decidi chi deve saperlo: tutte le chat (profilo), un solo Project (Istruzioni o knowledge), o basta un promemoria (memoria).
-2. Regola per tutte le chat: Settings > Your Claude > «Instructions for Claude», scrivi la regola, salva.
+2. Regola per tutte le chat: Impostazioni > Account > «Instructions for Claude» (se nel menu c'è Your Claude, è lì), scrivi la regola, salva.
 3. Regola per un Project: apri il Project > «Set project instructions» > scrivi > «Save instructions».
 4. Fatto o documento: apri il Project > «+» nell'area della knowledge > carica il file (o «Drive» per un documento Google).
 5. Se il documento sta su GitHub, prima di lavorarci premi «Sync now» nel Project.
 6. Per isolare il Project: pagina del Project > sezione Memory > spegni «Use account memory».
-7. Per vedere, correggere o cancellare ciò che ricordo: Settings > Your Claude > «Manage» accanto a «Your memory»; oppure scrivimi in chat «ricorda che…», «dimentica che…».
-8. Per riprendere un lavoro: in una chat nuova del Project scrivi «cerca nelle chat passate cosa avevamo deciso su…»; serve «Search and reference chats» acceso in Settings > Your Claude.
+7. Per vedere, correggere o cancellare ciò che ricordo: Impostazioni > Memoria, sezioni «Tu» e «Argomenti», con la casella in fondo per dire cosa cambiare; oppure scrivimi in chat «ricorda che…», «dimentica che…». Per una copia: Impostazioni > Memoria > «Esporta» (archivio .zip di file Markdown).
+8. Per riprendere un lavoro: in una chat nuova del Project scrivi «cerca nelle chat passate cosa avevamo deciso su…»; serve «Ricerca e consultazione delle chat» acceso in Impostazioni > Memoria.
 9. Se Claude non segue una regola che sta solo in memoria, spostala nelle Istruzioni del Project.
 
 ## Cosa non sappiamo
@@ -69,7 +69,7 @@ Elenco tipo, da adattare al caso:
 - Se un'istruzione del Project («aggiorna il documento X a fine chat») basti perché Claude lo faccia in ogni chat senza richiesta: nessuna pagina, nessuna prova.
 - Se Claude legga da solo i file della cartella locale a ogni conversazione.
 - Cosa vince quando memoria e Istruzioni si contraddicono.
-- Dove stiano davvero le impostazioni della memoria su Windows: le pagine d'aiuto dicono Settings > Your Claude, il changelog di Claude Desktop del 27 ottobre dice Settings > General.
+- Se il menu Impostazioni > Memoria resti uguale su tutti gli account: è visto in una sola schermata dell'utente (1 novembre); le pagine d'aiuto descrivono anche Settings > Your Claude e il changelog Settings > General.
 - Se le chat condivise portino con sé qualcosa della memoria (la pagina non ne parla).
 
 ## Prove
