@@ -3,7 +3,7 @@ tema: programmazione delle attività con Claude (attività cloud già routine, a
 versione: 1
 base: e5e53d7
 verificato_il: 2026-10-27
-aggiornato_il: 2026-10-27 (ripassata finale: 15 regole rilette sulle pagine del giorno, nessuna cambiata)
+aggiornato_il: 2026-11-01 (costi delle sessioni cloud: osservazione dell'utente in conflitto con le pagine; prima: ripassata finale del 2026-10-27)
 rivalutare_se: "release notes dell'app, di Code o dell'API che toccano attività programmate, routine o limiti; nuovo modello Claude; oppure 2026-12-18"
 versioni_rilevate:
   claude_code: "2.1.312 del 2026-10-27 (changelog)"
@@ -20,7 +20,7 @@ Prima passata del tema 5, l'ultimo. Temi chiusi, non rifatti qui: [1_comportamen
 - Le vie sono sei: **attività cloud** (le vecchie routine, su claude.ai), **attività locali di Desktop**, **`/loop` e attività di sessione**, **attività di Cowork e della nuova app unificata**, **GitHub Actions** con `claude-code-action`, **scheduled deployments** di Managed Agents via API. Le prime quattro pesano sull'abbonamento; Actions e Managed Agents di norma sulla chiave API.
 - Cloud: gira col PC spento, su un clone fresco del repo, in auto mode, con **tutti i connettori dell'account inclusi di default**. Intervallo minimo un'ora; trigger orario, una tantum, API (`/fire`) ed eventi GitHub.
 - Desktop: gira sul PC con i file locali, ma solo ad app aperta e PC sveglio; una run persa si recupera una volta al risveglio. `/loop`: solo a sessione aperta, scade dopo 7 giorni, consuma tutto il contesto a ogni scatto.
-- Un'attività cloud conta sul limite del piano come una sessione interattiva; i crediti d'uso entrano solo oltre il limite e se sono attivi. L'osservazione dell'utente (notti 03 e 04: piano su, crediti fermi) è coerente con le pagine.
+- Secondo le pagine, un'attività cloud conta sul limite del piano come una sessione interattiva; i crediti d'uso entrano solo oltre il limite e se sono attivi. Conflitto aperto: il 1 novembre l'utente ha visto scendere i crediti cloud regalati da Anthropic durante una sessione cloud di Claude Code avviata a mano (sezione C).
 - «Succeeded» dice solo che la sessione è finita senza errori, non che il lavoro è fatto: l'esito si legge nella trascrizione o in ciò che la run produce (PR, file).
 - `send_later` non ha una pagina ufficiale: compare solo in una issue utente come strumento di un server MCP `claude-code-remote` [Segnale T3].
 
@@ -71,7 +71,7 @@ Fonti: [scheduled-tasks](https://code.claude.com/docs/en/scheduled-tasks) (tabel
 ### C. Costi e limiti
 - Attività cloud: consumano l'uso dell'abbonamento come le sessioni interattive; a limite raggiunto, con crediti d'uso attivi continuano a consumo, senza vengono rifiutate fino al reset; con l'abbonamento in pausa restano ferme. [Verificato] T1 · routines. Una sessione cloud conta sul limite del piano insieme al resto dell'uso di Claude, senza costo separato per la VM. [Verificato] T1 · [claude-code-on-the-web](https://code.claude.com/docs/en/claude-code-on-the-web). Le sessioni avviate da `/fire` si pagano sull'abbonamento, non sulla Claude Platform. [Verificato] T1 · [routines-fire](https://platform.claude.com/docs/en/api/claude-code/routines-fire)
 - Crediti d'uso: si usano solo dopo aver esaurito un limite incluso (cinque ore, settimanale), a tariffe API, addebitati a parte. [Verificato] (parafrasi) T1 · [help 12429409](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans). L'articolo non nomina attività programmate né sessioni cloud.
-- **Osservazioni dell'utente.** Le osservazioni dell'utente sono coerenti con le pagine: il piano scende, i crediti restano fermi finché il limite non è raggiunto. [Inferenza] su fatti T1.
+- **Osservazioni dell'utente.** Notte 03 (attività cloud programmata) e notte 04 (chat locale): piano su, crediti fermi. 1 novembre, sessione cloud di Claude Code avviata a mano: scende il saldo dei crediti cloud regalati da Anthropic all'account, separato dal limite del piano; secondo l'utente il limite del piano vale per l'app e per Code fuori dal cloud. Nessuna pagina letta descrive crediti dedicati al cloud: claude-code-on-the-web e help 12429409, riletti il 1-nov, parlano solo di limite del piano e di crediti d'uso oltre il limite. [Obsoleto/Conflitto] · [Inferenza] su una sola sessione
 - GitHub Actions: minuti di Actions più token; con `CLAUDE_CODE_OAUTH_TOKEN` le run usano l'abbonamento invece della fatturazione API; un token OAuth è legato all'abbonamento di chi l'ha generato. Consigli ufficiali: `--max-turns`, timeout del workflow, controlli di concorrenza. [Verificato] T1 · github-actions
 - Managed Agents: richieste con `x-api-key` (Claude Platform); `budget` copiato su ogni sessione, quindi vale per ogni run e non in totale (nell'esempio della pagina, `"2000"` corrisponde a circa 20 USD per run). [Verificato] T1 · scheduled-deployments
 - `/loop` e attività di sessione: scattano anche a sessione ferma e rimandano tutto il contesto; `/usage` ha una riga Loops con token per run (da 2.1.243). Cache, sessioni lunghe e `/compact`: vedi [3_contesto/rapporto_contesto.md](../3_contesto/rapporto_contesto.md) (sezione E). [Verificato] T1 · [costs](https://code.claude.com/docs/en/costs); [changelog](https://code.claude.com/docs/en/changelog)
@@ -149,7 +149,7 @@ Lista di controllo prima di attivarla (A-E):
 | Il report del 18 ottobre non tratta le attività programmate | report del 18 ottobre su app e Code | Ancora vero: nulla da riverificare oltre la riga sopra |
 | Attività con TUTTI i connettori e approvazione automatica | [CLAUDE.md](../CLAUDE.md) «Perimetro e sicurezza» | Ancora vero per il cloud (connettori di default, auto mode) e per Cowork dal 1-ott |
 | Le routine clonano il branch predefinito (`main`) | CLAUDE.md «Repo» | Ancora vero, salvo istruzioni diverse nel prompt |
-| L'attività sembra una chat normale, non una sessione cloud con crediti | CLAUDE.md «Costi» | Corretto in `CLAUDE.md` il 27-ott: anche le sessioni cloud pagano col piano; i crediti solo oltre il limite |
+| L'attività sembra una chat normale, non una sessione cloud con crediti | CLAUDE.md «Costi» | Riaperto il 1-nov: le pagine dicono piano, ma l'utente vede scendere i crediti cloud regalati durante una sessione cloud (sezione C); `CLAUDE.md` «Costi» riporta il conflitto |
 | `PROVENANCE_REQUIRED` sulle prime letture nel cloud | CLAUDE.md «Scoperte» | Coerente con 2.1.304: le sessioni Cowork programmate aspettavano approvazioni di URL che nessuno dava [Inferenza] |
 | Run come attività cloud una tantum con notifica push | CLAUDE.md (versione del 27-ott, poi riscritta) | Una tantum: vero; notifica push: impostazione non documentata nelle pagine lette |
 
@@ -162,11 +162,13 @@ Lista di controllo prima di attivarla (A-E):
 | `/schedule` in Cowork | help 13345190: si scrive `/schedule` (ottobre 2026, T1) | changelog Cowork 22-ott: tolto dal menu, scriverlo compila una richiesta (T1) | Risolto: compatibili |
 | Nome della funzione | routines: «scheduled tasks, formerly routines» (corrente, T1) | changelog 2.1.312: «routine» (2026-10-27, T1) | Risolto: cambio di nome in corso, l'interfaccia può mostrare l'uno o l'altro |
 | `/clear` nel cloud | memoria.md: non funziona (2026-10-19, T1 allora) | claude-code-on-the-web: funziona (corrente, T1) | Risolto a favore della pagina corrente |
+| Cosa paga una sessione cloud | claude-code-on-the-web: limite del piano, nessun costo separato (riletta il 2026-11-01, T1) | osservazione dell'utente: scendono i crediti cloud regalati da Anthropic (2026-11-01, una sessione) | Non risolto: nessuna pagina descrive questi crediti |
 
 ## Cosa non è stato verificato
 - Dove si attivano le notifiche push di un'attività cloud (citate dal changelog 2.1.292); pagine controllate: routines, desktop (primi 100.000 caratteri), tools-reference.
 - Se esista oggi un tetto giornaliero di run cloud per piano (issue 40124 senza risposta).
 - Intervallo minimo dei cron di GitHub Actions (pagina GitHub non letta); minimi e limiti delle attività di Cowork; modalità di approvazione di Cowork per le attività in dettaglio.
+- Crediti cloud regalati da Anthropic: nessuna pagina ufficiale letta li descrive; non si sa se valgano anche per le attività cloud programmate (la notte 03 i crediti erano rimasti fermi) né cosa succede quando finiscono.
 - `send_later`: solo una segnalazione utente; il server `claude-code-remote` non ha pagina ufficiale letta.
 - Pagine lette in parte: cloud-environments (elenco domini, script), permission-modes (ultimi 17.027 caratteri), desktop (ultimi 103.688), changelog Cowork (ultimi 130.308), release notes API (ultimi 33.491), changelog Code oltre 800.000 caratteri (versioni prima di maggio).
 - Versione di Code e di Desktop installate su questo PC: `claude` non è nel PATH della sessione.
