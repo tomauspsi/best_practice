@@ -1,6 +1,6 @@
 # Best practice per Claude: la guida unica
 
-Stato dell'arte al 27 ottobre 2026. Questo file è l'indice: dice cosa c'è, dove sta e come usarlo. Lo leggono sia tu sia Claude.
+Stato dell'arte al 1 novembre 2026. Questo file è l'indice: dice cosa c'è, dove sta e come usarlo. Lo leggono sia tu sia Claude.
 
 ## Cosa c'è e dove
 Tutto sta nella cartella `D:\Workspace\best_practice` (su GitHub: `tomauspsi/best_practice`, ramo `main`). Ogni tema ha una cartella con due file:
@@ -11,11 +11,11 @@ Tutto sta nella cartella `D:\Workspace\best_practice` (su GitHub: `tomauspsi/bes
 D:\Workspace\best_practice\
 ├── README.md                                   questa guida unica
 ├── CLAUDE.md                                   istruzioni per gli agenti di Claude Code
-├── 1_comportamento\guida_comportamento.md       CLAUDE.md, AGENTS.md, regole, hook
+├── 1_comportamento\guida_comportamento.md       profilo, stili, skill, connettori
 ├── 1_comportamento\rapporto_comportamento.md
 ├── 2_istruzioni_project\guida_istruzioni_project.md   Istruzioni di un Project dell'app
 ├── 2_istruzioni_project\rapporto_istruzioni_project.md
-├── 3_contesto\guida_contesto.md                 chat lunghe, /clear, /compact, consumi
+├── 3_contesto\guida_contesto.md                 chat lunghe, chat nuova, consumi
 ├── 3_contesto\rapporto_contesto.md
 ├── 4_memoria\guida_memoria.md                   cosa Claude ricorda tra una chat e l'altra
 ├── 4_memoria\rapporto_memoria.md
@@ -24,9 +24,9 @@ D:\Workspace\best_practice\
 ```
 
 ## Il succo, tema per tema
-1. **Comportamento** (`D:\Workspace\best_practice\1_comportamento\guida_comportamento.md`). Claude Code legge `CLAUDE.md`: corto (meno di 200 righe), concreto, una regola in un posto solo. Per un divieto vero serve un hook, non il testo. La chat dell'app non lo legge.
+1. **Personalizzazione** (`D:\Workspace\best_practice\1_comportamento\guida_comportamento.md`). Una regola, una casa: ciò che vale sempre nelle Istruzioni del profilo, ciò che vale per un lavoro nelle Istruzioni del Project, un compito che ritorna in una skill. Le azioni da non fare da sole si fermano con i permessi dei connettori, non con il testo.
 2. **Istruzioni di un Project** (`D:\Workspace\best_practice\2_istruzioni_project\guida_istruzioni_project.md`). Valgono per tutte le chat del Project. Le regole vanno lì, i fatti nei documenti, la memoria serve solo per le preferenze. Claude non vede nome e descrizione del Project.
-3. **Contesto** (`D:\Workspace\best_practice\3_contesto\guida_contesto.md`). Ogni messaggio rimanda tutta la conversazione: chat lunghe costano di più e sbagliano di più. Un argomento per chat; in Code `/clear` tra un lavoro e l'altro.
+3. **Contesto** (`D:\Workspace\best_practice\3_contesto\guida_contesto.md`). Ogni messaggio rimanda tutta la conversazione: chat lunghe costano di più e sbagliano di più. Un argomento per chat; quando cambi lavoro, chat nuova nello stesso Project con tre righe su dove eri.
 4. **Memoria** (`D:\Workspace\best_practice\4_memoria\guida_memoria.md`). Ogni Project ha la sua memoria, più quella dell'account; la memoria è un promemoria, non una regola. Ciò che deve restare va scritto dove Claude lo rilegge in ogni chat: Istruzioni del profilo o del Project, knowledge del Project.
 5. **Attività programmate** (`D:\Workspace\best_practice\5_attivita\guida_attivita.md`). Girano nel cloud, anche a PC spento; sul PC solo se usano file, browser o computer locali. Il prompt deve bastare da solo, perché ogni run parte da zero. Compiti a basso rischio e risultato da rivedere. Consumano il limite del piano come una chat.
 
@@ -45,7 +45,7 @@ Quando ti chiedo qualcosa su uno di questi temi:
 3. Rispondi in italiano semplice, con un elenco numerato di cose da fare, una per riga, con il clic esatto o il percorso Windows completo del file.
 Le regole di questo Project valgono per tutta la conversazione.
 ```
-4. Prova in una chat nuova del Project, per esempio con «come scrivo un buon CLAUDE.md?». Deve arrivarti un elenco numerato che cita `guida_comportamento.md`.
+4. Prova in una chat nuova del Project, per esempio con «come faccio a far ricordare una regola a tutte le chat del Project?». Deve arrivarti un elenco numerato che cita `guida_memoria.md`.
 
 ## Come lanciare una run
 Le run di manutenzione girano in una sessione cloud di Claude Code. Il prompt di ogni run è autosufficiente; le regole fisse stanno in `D:\Workspace\best_practice\CLAUDE.md`.
