@@ -19,7 +19,7 @@ Per Claude. Usa questa guida quando l'utente vuole scrivere o correggere le Istr
 - Le Istruzioni valgono in ogni chat del Project e in nessun'altra; nell'app unificata il Project funziona in ogni conversazione. Nome e descrizione Claude non li vede.
 - Nessun limite di lunghezza pubblicato: le pagine ufficiali chiedono Istruzioni concise (contesto, ruolo, linee guida); le richieste del singolo compito vanno nella chat.
 - Istruzioni = come lavorare; knowledge = materiale da consultare. Vicino al limite la knowledge passa da sola alla ricerca (RAG); nessuna pagina dice se le Istruzioni ci rientrino.
-- GitHub: solo nei Project privati, file scelti di un branch, aggiornati con **Sync now**. La pagina sull'app unificata dice che «Add from GitHub» non è supportato; nessuna pagina dice se un Project già collegato continui a sincronizzarsi.
+- GitHub: solo nei Project privati, file scelti di un branch, aggiornati con **Sync now** («Sincronizza ora» nell'app in italiano). La pagina sull'app unificata dice che «Add from GitHub» non è supportato, ma è il comando delle chat: il 1 novembre il Project «best practice», già collegato, mostrava ancora «Sincronizza ora» (prova dell'utente, una sola).
 - Documento Google: solo Project privati, arriva come testo e si aggiorna da Drive (le pagine non concordano sul ritmo). Claude non lo modifica se non glielo chiedi.
 - Cartella locale: Claude la usa tramite Claude Desktop, che deve restare aperto; in chat la legge soltanto, e solo se aggiunta al Project dal 5 ottobre 2026 in poi (per una più vecchia: aggiungila di nuovo e apri una chat nuova).
 - I progetti locali di Cowork sono passati nell'account con nome, descrizione, Istruzioni e copia della memoria; cartelle e file restano sul PC. Ogni Project ha le sue attività programmate.
@@ -68,9 +68,9 @@ Elenco tipo «collegare il repository e scegliere i file giusti», da adattare:
 3. Cerca `tomauspsi/best_practice` o incolla l'indirizzo del repository.
 4. Spunta solo `README.md` e le cinque guide: `1_comportamento/guida_comportamento.md`, `2_istruzioni_project/guida_istruzioni_project.md`, `3_contesto/guida_contesto.md`, `4_memoria/guida_memoria.md`, `5_attivita/guida_attivita.md`.
 5. Clicca **Add files**.
-6. Dopo ogni modifica unita su `main`, clicca **Sync now** sul repository nella knowledge.
+6. Dopo ogni modifica unita su `main`, clicca **Sync now** («Sincronizza ora» nell'app in italiano) sul repository nella knowledge.
 7. Per cambiare i file scelti: clicca il repository nella knowledge, cambia la selezione, **Update**.
-8. Se GitHub o **Sync now** non compaiono (app unificata): scarica i sei file e caricali a mano nella knowledge, per esempio da `D:\Workspace\best_practice\`, e ricaricali dopo ogni modifica.
+8. Se GitHub o «Sincronizza ora» non compaiono: scarica i sei file e caricali a mano nella knowledge, per esempio da `D:\Workspace\best_practice\`, e ricaricali dopo ogni modifica.
 
 Elenco tipo «provare le Istruzioni con 5 domande vere e 2 trabocchetti», da adattare:
 1. Scrivi su un foglio 5 domande che fai davvero in questo Project e, per ognuna, com'è una risposta buona.
@@ -82,7 +82,7 @@ Elenco tipo «provare le Istruzioni con 5 domande vere e 2 trabocchetti», da ad
 7. Rifai la stessa serie a ogni modello nuovo.
 
 ## Cosa non sappiamo
-- Se un Project con un repository già collegato continui a sincronizzarsi nell'app unificata, e se l'icona Sync resti.
+- Se nell'app unificata si possa collegare un repository nuovo a un Project.
 - Un limite di lunghezza delle Istruzioni nell'interfaccia.
 - Se le Istruzioni rientrino nel RAG quando la knowledge è grande.
 - Quali file della cartella locale Claude legge, e quando.
