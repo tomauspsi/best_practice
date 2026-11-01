@@ -2,29 +2,17 @@
   "permissions": {
     "allow": [
       "WebSearch",
-      "WebFetch(domain:code.claude.com)",
-      "WebFetch(domain:platform.claude.com)",
       "WebFetch(domain:support.claude.com)",
-      "WebFetch(domain:academy.claude.com)",
       "WebFetch(domain:claude.com)",
+      "WebFetch(domain:www.claude.com)",
       "WebFetch(domain:docs.claude.com)",
+      "WebFetch(domain:academy.claude.com)",
+      "WebFetch(domain:platform.claude.com)",
+      "WebFetch(domain:code.claude.com)",
       "WebFetch(domain:anthropic.com)",
       "WebFetch(domain:www.anthropic.com)",
       "WebFetch(domain:arxiv.org)",
-      "WebFetch(domain:github.com)",
-      "WebFetch(domain:docs.github.com)",
-      "WebFetch(domain:agents.md)",
-      "WebFetch(domain:openai.com)",
-      "WebFetch(domain:developers.openai.com)",
-      "WebFetch(domain:platform.openai.com)",
-      "WebFetch(domain:cursor.com)",
-      "WebFetch(domain:docs.cursor.com)",
-      "WebFetch(domain:code.visualstudio.com)",
-      "WebFetch(domain:learn.microsoft.com)",
-      "WebFetch(domain:ai.google.dev)",
-      "WebFetch(domain:developers.google.com)",
-      "WebFetch(domain:blog.google)",
-      "WebFetch(domain:support.google.com)"
+      "WebFetch(domain:github.com)"
     ]
   }
 }
