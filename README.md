@@ -19,7 +19,7 @@ D:\Workspace\best_practice\
 ├── 3_contesto\rapporto_contesto.md
 ├── 4_memoria\guida_memoria.md                   cosa Claude ricorda tra una chat e l'altra
 ├── 4_memoria\rapporto_memoria.md
-├── 5_attivita\guida_attivita.md                 attività programmate (cloud, Desktop, /loop)
+├── 5_attivita\guida_attivita.md                 attività programmate dell'app (cloud e PC)
 └── 5_attivita\rapporto_attivita.md
 ```
 
@@ -28,7 +28,7 @@ D:\Workspace\best_practice\
 2. **Istruzioni di un Project** (`D:\Workspace\best_practice\2_istruzioni_project\guida_istruzioni_project.md`). Valgono per tutte le chat del Project. Le regole vanno lì, i fatti nei documenti, la memoria serve solo per le preferenze. Claude non vede nome e descrizione del Project.
 3. **Contesto** (`D:\Workspace\best_practice\3_contesto\guida_contesto.md`). Ogni messaggio rimanda tutta la conversazione: chat lunghe costano di più e sbagliano di più. Un argomento per chat; in Code `/clear` tra un lavoro e l'altro.
 4. **Memoria** (`D:\Workspace\best_practice\4_memoria\guida_memoria.md`). Ogni Project ha la sua memoria, più quella dell'account; la memoria è un promemoria, non una regola. Ciò che deve restare va scritto dove Claude lo rilegge in ogni chat: Istruzioni del profilo o del Project, knowledge del Project.
-5. **Attività programmate** (`D:\Workspace\best_practice\5_attivita\guida_attivita.md`). Nel cloud girano a PC spento, sul PC solo ad app aperta. Partono con tutti i connettori: togli quelli inutili. Consumano il piano come una chat.
+5. **Attività programmate** (`D:\Workspace\best_practice\5_attivita\guida_attivita.md`). Girano nel cloud, anche a PC spento; sul PC solo se usano file, browser o computer locali. Il prompt deve bastare da solo, perché ogni run parte da zero. Compiti a basso rischio e risultato da rivedere. Consumano il limite del piano come una chat.
 
 ## Come farle usare a Claude nell'app (chat e Cowork)
 La memoria dell'app non basta a tenere queste regole: quello che Claude rilegge sempre sono le **Istruzioni** e la **knowledge** del Project. Quindi:
@@ -38,7 +38,7 @@ La memoria dell'app non basta a tenere queste regole: quello che Claude rilegge 
    - se GitHub non compare (succede nella nuova app unificata, dove «aggiungi da GitHub» non è supportato): carica a mano i sei file dalla cartella `D:\Workspace\best_practice` e dalle sottocartelle dei temi. Quando una guida cambia, togli la vecchia e carica la nuova.
 3. Nelle **Istruzioni** del Project incolla questo testo:
 ```text
-Nella knowledge ci sono le guide di best practice su Claude, aggiornate al 27 ottobre 2026: README.md (indice) e cinque guide (guida_comportamento, guida_istruzioni_project, guida_contesto, guida_memoria, guida_attivita).
+Nella knowledge ci sono le guide di best practice su Claude, aggiornate al 1 novembre 2026: README.md (indice) e cinque guide (guida_comportamento, guida_istruzioni_project, guida_contesto, guida_memoria, guida_attivita).
 Quando ti chiedo qualcosa su uno di questi temi:
 1. Prima di rispondere leggi README.md e la guida del tema.
 2. Applica le regole della guida; se sai di una pagina ufficiale più recente che dice altro, dimmelo.
@@ -65,7 +65,7 @@ Le run di manutenzione girano in una sessione cloud di Claude Code. Il prompt di
 - **Memoria:** appunti che Claude tiene da una chat all'altra. È un promemoria, non una regola.
 - **Contesto:** tutto ciò che Claude ha davanti in un momento. Più è pieno, più Claude sbaglia e più costa.
 - **`CLAUDE.md`:** foglio di istruzioni per Claude Code; qui serve solo alla manutenzione del repository.
-- **Attività programmata:** un compito che parte da solo a un'ora decisa, nel cloud (prima «routine») o sul tuo PC.
+- **Attività programmata:** un compito che parte da solo a un'ora decisa, di norma nel cloud, oppure sul tuo PC se usa file locali.
 - **Crediti d'uso:** soldi prepagati che Claude usa solo quando hai finito il limite del piano, se li hai attivati.
 - **Branch, PR, `main`:** su GitHub, un ramo di lavoro, la richiesta di unirlo e il ramo principale. Gli agenti scrivono solo su rami `claude/...`; l'unione la fai tu.
 - **[Verificato], [Inferenza], [Segnale T3]:** etichette nei rapporti. «Verificato» = letto su una pagina ufficiale; «Inferenza» = conclusione nostra; «Segnale T3» = solo blog o forum.
