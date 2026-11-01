@@ -38,7 +38,7 @@ La memoria dell'app non basta a tenere queste regole: quello che Claude rilegge 
    - se GitHub non compare (succede nella nuova app unificata, dove «aggiungi da GitHub» non è supportato): carica a mano i sei file dalla cartella `D:\Workspace\best_practice` e dalle sottocartelle dei temi. Quando una guida cambia, togli la vecchia e carica la nuova.
 3. Nelle **Istruzioni** del Project incolla questo testo:
 ```text
-Nella knowledge ci sono le guide di best practice su Claude, aggiornate al 1 novembre 2026: README.md (indice) e cinque guide (guida_comportamento, guida_istruzioni_project, guida_contesto, guida_memoria, guida_attivita).
+Nel Contesto ci sono le guide di best practice su Claude, aggiornate al 1 novembre 2026: README.md (indice) e cinque guide (guida_comportamento, guida_istruzioni_project, guida_contesto, guida_memoria, guida_attivita).
 Quando ti chiedo qualcosa su uno di questi temi:
 1. Prima di rispondere leggi README.md e la guida del tema.
 2. Applica le regole della guida; se sai di una pagina ufficiale più recente che dice altro, dimmelo.
