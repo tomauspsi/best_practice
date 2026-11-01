@@ -1,60 +1,76 @@
 ---
-tema: memoria tra una chat e l'altra (claude.ai, Project, Claude Code, sessioni cloud, API)
-per: Claude (chat, Cowork, Code) quando aiuta l'utente su questo tema
-aggiornata_il: 2026-10-27
+tema: memoria tra una chat e l'altra nell'app Claude (chat e Cowork unificati, Project)
+per: Claude nell'app (chat e Cowork)
+aggiornata_il: 2026-11-01
 prove: D:\Workspace\best_practice\4_memoria\rapporto_memoria.md
-rivalutare_se: "nuovo modello Claude (per esempio Opus 5.6); release notes che toccano la memoria; oppure 2026-12-18"
+rivalutare_se: "nuovo modello Claude (per esempio Opus 5.6); release notes o changelog di Claude Desktop che toccano memoria, Project, cartelle o permessi; oppure 2026-12-18"
 ---
 
 # Guida 4 · Memoria tra chat diverse
 
-Per Claude. Usa questa guida quando l'utente chiede cosa Claude ricorda da una chat all'altra, dove salvare regole e fatti perché restino, o perché una sessione non sa una cosa detta altrove. Vale al 27 ottobre 2026: se una pagina ufficiale più recente dice altro, vince la pagina e lo dici.
+Per Claude. Usa questa guida quando l'utente chiede cosa ricordi da una chat all'altra, soprattutto dentro un Project, e dove scrivere ciò che deve restare. Vale al 1 novembre 2026 per la sola app Claude: se una pagina ufficiale più recente dice altro, vince la pagina e lo dici. Claude Code ha una memoria sua, separata da questa: se l'utente ne chiede, dillo in una riga.
 
 ## Quando usarla
-- «Come faccio a fargli ricordare questa cosa?», «perché Code non sa ciò che ho detto in chat?», «dove metto le regole?».
-- Quando l'utente vuole una memoria condivisa tra app, Cowork e Code.
+- «Come faccio a fargli ricordare questa cosa?», «perché la chat nuova non sa ciò che ho detto ieri?», «dove metto le regole del Project?».
+- Quando l'utente vuole che Claude tenga da solo un documento di appunti, o che un'attività programmata «sappia» qualcosa.
+- Chat lunghe e sintesi automatica non stanno qui: vedi `D:\Workspace\best_practice\3_contesto\guida_contesto.md`.
 
 ## Cosa è vero oggi
-- Le memorie sono separate e non si parlano: memoria dell'account e dei Project (app e Cowork cloud), ricerca nelle chat passate, `CLAUDE.md`/`AGENTS.md`, auto memory locale di Code, memory tool dell'API, memoria dei Projects di Code (beta).
-- Ogni Project dell'app ha la sua memoria e usa anche quella delle chat fuori Project, mai quella di altri Project; «Use account memory» lo isola. La ricerca nelle chat passate non attraversa i Project.
-- La memoria è un promemoria, non una regola: una regola salvata solo lì può non essere seguita (prova dell'utente del 25 ottobre).
-- Claude non aggiorna da solo un documento esterno (per esempio Google Docs) usato come memoria: lo fa solo se glielo chiedi e ha un connettore che scrive.
-- L'auto memory di Code sta sul PC; una sessione o un'attività nel cloud vede solo il repo clonato, non `C:\Users\<utente>\.claude\`, e nessuna prova dice che riceva la memoria della chat.
-- Cancellare una chat non cancella le memorie che ne sono nate; i temi sensibili sono esclusi di default.
+- **Memoria dell'account:** nasce dalle chat fuori Project. Claude la scrive durante la chat, per argomenti; se l'utente dice «ricorda che…» la salva subito; le modifiche valgono dalla conversazione successiva. Con la memoria «legacy» (ancora su alcuni account) la sintesi si aggiorna ogni 24 ore.
+- **Memoria di Project:** ogni Project ha la sua. Dentro il Project Claude usa quella del Project più quella dell'account, mai quella di altri Project; le memorie nuove vanno nel Project. La memoria del Project può comparire anche nelle chat fuori Project; spegnere «Use account memory» (sezione Memory della pagina del Project) la tiene separata.
+- **Attività di Cowork solo locali:** la loro memoria resta con quelle attività; le sessioni di Cowork eseguite sul computer non usano la memoria delle chat. Nel cloud la memoria è condivisa tra chat e attività.
+- **Ricerca nelle chat passate:** solo piani a pagamento. Fuori Project cerca tra le chat fuori Project; dentro un Project solo tra le chat di quel Project. Non cerca nelle vecchie attività di Cowork. Si vede come una chiamata a strumento nella chat.
+- **Knowledge del Project:** Claude la usa in ogni chat del Project; il contesto delle altre chat non passa, salvo ciò che si mette nella knowledge. Un repo GitHub si aggiorna solo con «Sync now»; un documento Google aggiunto da Drive (solo Project privati) resta sincronizzato con Drive.
+- **Istruzioni:** quelle del profilo («Instructions for Claude») valgono in ogni conversazione, comprese le attività programmate; quelle del Project in tutte le chat e le attività del Project.
+- **Precedenza:** nessuna pagina ufficiale dice cosa vince tra memoria, Istruzioni del profilo, Istruzioni del Project, stili e knowledge.
+- **Una regola salvata solo in memoria può non essere seguita:** prova dell'utente del 25 ottobre (la stessa regola nelle Istruzioni è stata seguita). Una sola prova.
+- **Claude può scrivere fuori dalla memoria:** con i connettori Google crea e modifica documenti, se l'utente nomina Google; nelle cartelle collegate legge e scrive file, solo con Claude Desktop aperto. Nessuna pagina dice che lo faccia da solo in ogni chat per un'istruzione del Project.
+- **Cartella locale nel Project:** è montata e accessibile in ogni conversazione del Project; nessuna pagina dice che Claude ne rilegga i file da solo a ogni conversazione.
+- **Attività programmate in un Project:** girano con il contesto del Project (Academy); nessuna pagina dice in modo esplicito che leggano o scrivano la memoria del Project.
+- **Privacy:** cancellare una chat non cancella le memorie nate da lì; i temi sensibili sono esclusi finché non li attivi; «Reset memory» cancella tutto, anche le memorie dei Project, e non si annulla. Le chat in incognito non vanno in memoria né nella ricerca.
 
 ## Regole da applicare
-1. Una casa per ogni informazione: regole sempre valide nelle Istruzioni (profilo per tutte le chat, Project per un lavoro, `CLAUDE.md` per Code); fatti e documenti nella knowledge del Project o nel repo.
-2. Ciò che deve valere per tutti gli strumenti va in un file del repo; nell'app lo si carica nella knowledge del Project e lo si ricarica quando cambia.
-3. Non promettere che Claude «si ricorderà»: se conta, va scritto in un posto che si rilegge da solo.
-4. Per una sessione cloud o un'attività: tutto ciò che serve sta nel prompt o nel repo.
-5. In Code tieni `CLAUDE.md` sotto le 200 righe e metti in cima all'indice della memoria ciò che conta: si caricano solo 200 righe o 25 KB.
-6. Niente dati sensibili nella memoria dell'app; il testo preso da pagine esterne non va salvato in memoria senza rileggerlo (rischio di avvelenamento).
-7. Per un blocco vero servono hook o permessi, non la memoria.
+1. Una casa per ogni informazione: regola che vale sempre → Istruzioni (profilo o Project); fatto o documento → knowledge del Project; preferenza minore → memoria.
+2. Non promettere che Claude «si ricorderà»: ciò che conta va scritto dove si rilegge da solo (Istruzioni o knowledge).
+3. Se un Project deve restare isolato, spegni «Use account memory»; per una chat sola, togli «Memory» dal menu «+» prima del primo messaggio.
+4. Per riprendere un lavoro in un Project chiedi in modo esplicito di cercare nelle chat passate («cosa avevamo deciso su…?»); la ricerca non è garantita in ogni chat.
+5. Un documento-memoria scritto da Claude esiste solo se l'utente lo chiede in quella chat e c'è un connettore o una cartella che scrive; dopo ogni scrittura, va ricaricato o sincronizzato se sta nella knowledge.
+6. Per un'attività programmata, ciò che serve va nel prompt dell'attività o nelle Istruzioni del Project, non nella memoria.
+7. Non far salvare in memoria testo preso da pagine esterne senza rileggerlo: una sola scrittura avvelenata pesa a lungo.
+8. Niente dati sensibili in memoria; per vedere e correggere: Settings > Your Claude > «Manage» accanto a «Your memory».
 
 Schema «dove va cosa» da proporre:
-| Cosa | Dove | Chi lo legge |
-|---|---|---|
-| Regole di un repo | `CLAUDE.md` del repo | Code sul PC e nel cloud, attività |
-| Preferenze personali di Code | `C:\Users\<utente>\.claude\CLAUDE.md` | Code sul PC |
-| Preferenze per tutte le chat | Istruzioni del profilo | Chat e Cowork |
-| Regole di un lavoro | Istruzioni del Project | Chat di quel Project |
-| Fatti e documenti di un lavoro | Knowledge del Project | Chat di quel Project |
-| Contesto di un'attività | Prompt dell'attività e repo | L'attività |
+| Cosa | Dove nell'app | Chi lo rilegge | Si aggiorna da solo? |
+|---|---|---|---|
+| Preferenze e regole per tutte le chat | Istruzioni del profilo (Settings > Your Claude > «Instructions for Claude») | Ogni conversazione e attività | No: le scrivi tu |
+| Regole di un lavoro | Istruzioni del Project | Ogni chat e attività del Project | No: le scrivi tu |
+| Fatti e documenti di riferimento | Knowledge del Project | Ogni chat del Project | GitHub con «Sync now»; documento Google sì |
+| Dettagli minori, preferenze di tono | Memoria (account o Project) | Le chat successive, se pertinente | Sì, la scrive Claude |
+| Diario o appunti di lavoro | Documento Google scritto tramite connettore | Claude, se il documento è nella knowledge o glielo indichi | Solo quando lo chiedi |
+| File di lavoro e appunti locali | Cartella locale del Project | Claude, solo con Claude Desktop aperto e quando serve | Solo quando lo chiedi |
 
 ## Come rispondere all'utente
-Rispondi in italiano semplice, con un elenco numerato di cose da fare, una per riga, con il posto esatto (menu dell'app o percorso Windows completo). Di' chiaramente cosa non verrà ricordato.
+Rispondi in italiano semplice, con un elenco numerato, un passo per riga e i clic esatti. Di' chiaramente cosa non verrà ricordato e cosa resta incerto.
 
 Elenco tipo, da adattare al caso:
-1. Decidi chi deve ricordare: tutte le chat, un solo Project o Claude Code.
-2. Se è una regola, scrivila nelle Istruzioni di quel posto (profilo, Project o `CLAUDE.md`), una sola volta.
-3. Se è un fatto o un documento, caricalo nella knowledge del Project con un nome chiaro.
-4. Quando il documento cambia, ricaricalo nel Project: non si aggiorna da solo.
-5. Per vedere o cancellare ciò che l'app ricorda: Settings > Your Claude > Manage.
-6. Non contare sulla memoria per le cose obbligatorie: se Claude sbaglia, sposta la regola nelle Istruzioni.
+1. Decidi chi deve saperlo: tutte le chat (profilo), un solo Project (Istruzioni o knowledge), o basta un promemoria (memoria).
+2. Regola per tutte le chat: Settings > Your Claude > «Instructions for Claude», scrivi la regola, salva.
+3. Regola per un Project: apri il Project > «Set project instructions» > scrivi > «Save instructions».
+4. Fatto o documento: apri il Project > «+» nell'area della knowledge > carica il file (o «Drive» per un documento Google).
+5. Se il documento sta su GitHub, prima di lavorarci premi «Sync now» nel Project.
+6. Per isolare il Project: pagina del Project > sezione Memory > spegni «Use account memory».
+7. Per vedere, correggere o cancellare ciò che ricordo: Settings > Your Claude > «Manage» accanto a «Your memory»; oppure scrivimi in chat «ricorda che…», «dimentica che…».
+8. Per riprendere un lavoro: in una chat nuova del Project scrivi «cerca nelle chat passate cosa avevamo deciso su…»; serve «Search and reference chats» acceso in Settings > Your Claude.
+9. Se Claude non segue una regola che sta solo in memoria, spostala nelle Istruzioni del Project.
 
 ## Cosa non sappiamo
-- Se un'attività creata da un Project di Code legga la memoria del Project (dedotto, non scritto).
-- Se la memoria della chat arrivi mai alle sessioni cloud di Code (nessuna prova; trattala come assente).
+- Dopo quanti minuti una chat nuova vede una memoria appena scritta: la pagina dice solo «dalla conversazione successiva».
+- Se le attività programmate di un Project leggano o scrivano la memoria del Project.
+- Se un'istruzione del Project («aggiorna il documento X a fine chat») basti perché Claude lo faccia in ogni chat senza richiesta: nessuna pagina, nessuna prova.
+- Se Claude legga da solo i file della cartella locale a ogni conversazione.
+- Cosa vince quando memoria e Istruzioni si contraddicono.
+- Dove stiano davvero le impostazioni della memoria su Windows: le pagine d'aiuto dicono Settings > Your Claude, il changelog di Claude Desktop del 27 ottobre dice Settings > General.
+- Se le chat condivise portino con sé qualcosa della memoria (la pagina non ne parla).
 
 ## Prove
-Regole numerate, tabella delle sessioni cloud, rischi e studi sull'avvelenamento: `D:\Workspace\best_practice\4_memoria\rapporto_memoria.md`.
+Regole numerate con fonti, conflitti e verifiche mancanti: `D:\Workspace\best_practice\4_memoria\rapporto_memoria.md`, sezioni «Regole operative», «Tabella conflitti» e «Cosa non è stato verificato».
