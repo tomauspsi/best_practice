@@ -66,11 +66,10 @@ Elenco tipo «collegare il repository e scegliere i file giusti», da adattare:
 1. Controlla che il Project sia privato: in un Project condiviso l'opzione GitHub è grigia.
 2. Nella sezione knowledge del Project clicca «+» > **GitHub** (la prima volta l'app ti manda su GitHub per l'accesso).
 3. Cerca `tomauspsi/best_practice` o incolla l'indirizzo del repository.
-4. Spunta solo `README.md` e le cinque guide: `1_comportamento/guida_comportamento.md`, `2_istruzioni_project/guida_istruzioni_project.md`, `3_contesto/guida_contesto.md`, `4_memoria/guida_memoria.md`, `5_attivita/guida_attivita.md`.
-5. Clicca **Add files**.
-6. Dopo ogni modifica unita su `main`, clicca **Sync now** («Sincronizza ora» nell'app in italiano) sul repository nella knowledge.
-7. Per cambiare i file scelti: clicca il repository nella knowledge, cambia la selezione, **Update**.
-8. Se GitHub o «Sincronizza ora» non compaiono: scarica i sei file e caricali a mano nella knowledge, per esempio da `D:\Workspace\best_practice\`, e ricaricali dopo ogni modifica.
+4. Clicca **Add files**.
+5. Dopo ogni modifica unita su `main`, clicca **Sync now** («Sincronizza ora» nell'app in italiano) sul repository nella knowledge.
+6. Per cambiare i file scelti: clicca il repository nella knowledge, cambia la selezione, **Update**.
+7. Se GitHub o «Sincronizza ora» non compaiono: scarica i sei file e caricali a mano nella knowledge, per esempio da `D:\Workspace\best_practice\`, e ricaricali dopo ogni modifica.
 
 Elenco tipo «provare le Istruzioni con 5 domande vere e 2 trabocchetti», da adattare:
 1. Scrivi su un foglio 5 domande che fai davvero in questo Project e, per ognuna, com'è una risposta buona.
